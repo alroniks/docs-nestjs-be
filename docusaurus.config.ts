@@ -111,6 +111,15 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      '@polymetis-apps/pirsch-docusaurus', {
+        code: "oJlVPB4xDoajxtpdROJEhwcD6BqlvjVI" 
+      }
+    ],
+  ],
+  
 };
 
 export default config;

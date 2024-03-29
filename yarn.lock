@@ -1794,6 +1794,11 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.24.tgz#58601079e11784d20f82d0585865bb42305c4df3"
   integrity sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==
 
+"@polymetis-apps/pirsch-docusaurus@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@polymetis-apps/pirsch-docusaurus/-/pirsch-docusaurus-0.6.2.tgz#9888e2cab56cd17894c5c7d532c9f82730576b76"
+  integrity sha512-g8BTfr5fjLwGplRmoQxkGb2jqDnCoGgWyvfpI04P5sRtg2rW7g3uReA7j9SRGxdr54MgwvvSgLLEzw53kvOSFQ==
+
 "@sideway/address@^4.1.4":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
