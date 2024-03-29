@@ -1,38 +1,37 @@
 ---
-sidebar_label: ewdfdsfsdf
-title: dsfdsf
+slug: /
 ---
 
-### Introduction
+# Уводзіны
 
-Nest (NestJS) is a framework for building efficient, scalable [Node.js](https://nodejs.org/) server-side applications. It uses progressive JavaScript, is built with and fully supports [TypeScript](http://www.typescriptlang.org/) (yet still enables developers to code in pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).
+Nest (NestJS) - гэта структура для стварэння эфектыўных серверных праграм [Node.js](https://nodejs.org/) з магчымасцю маштабавання. Ён выкарыстоўвае прагрэсіўны JavaScript, створаны і цалкам падтрымлівае [TypeScript](http://www.typescriptlang.org/) (але ўсё яшчэ дазваляе распрацоўшчыкам пісаць код у чыстым JavaScript) і спалучае ў сабе элементы ААП (аб'ектна-арыентаванага праграмавання), FP (функцыянальнага праграмавання) і FRP (функцыянальнага рэактыўнага праграмавання).
 
-Under the hood, Nest makes use of robust HTTP Server frameworks like [Express](https://expressjs.com/) (the default) and optionally can be configured to use [Fastify](https://github.com/fastify/fastify) as well!
+Пад капотам Nest выкарыстоўвае надзейныя фрэймворкі HTTP-сервера, такія як [Express](https://expressjs.com/) (па змаўчанні), і пры жаданні можа быць таксама настроены на выкарыстанне [Fastify](https://github.com/fastify/fastify) !
 
-Nest provides a level of abstraction above these common Node.js frameworks (Express/Fastify), but also exposes their APIs directly to the developer. This gives developers the freedom to use the myriad of third-party modules which are available for the underlying platform.
+Nest забяспечвае ўзровень абстракцыі, вышэйшы за гэтыя агульныя структуры Node.js (Express/Fastify), але таксама паказвае іх API непасрэдна распрацоўшчыку. Гэта дае распрацоўнікам свабоду выкарыстання мноства старонніх модуляў, якія даступныя для асноўнай платформы.
 
-## Philosophy
+## Філасофія
 
-In recent years, thanks to Node.js, JavaScript has become the “lingua franca” of the web for both front and backend applications. This has given rise to awesome projects like [Angular](https://angular.dev/), [React](https://github.com/facebook/react) and [Vue](https://github.com/vuejs/vue), which improve developer productivity and enable the creation of fast, testable, and extensible frontend applications. However, while plenty of superb libraries, helpers, and tools exist for Node (and server-side JavaScript), none of them effectively solve the main problem of - **Architecture**.
+У апошнія гады, дзякуючы Node.js, JavaScript стаў «lingua franca» Інтэрнэту як для інтэрфейсных, так і для серверных прыкладанняў. Гэта прывяло да з'яўлення цудоўных праектаў, такіх як [Angular](https://angular.dev/) , [React](https://github.com/facebook/react) і [Vue](https://github.com/vuejs/vue) , якія павышаюць прадукцыйнасць распрацоўшчыкаў і дазваляюць ствараць хуткія інтэрфейсныя прыкладанні, якія можна правяраць і пашыраць. Аднак, нягледзячы на ​​тое, што для Node (і сервернага JavaScript) існуе мноства выдатных бібліятэк, памочнікаў і інструментаў, ніводная з іх не вырашае асноўнай праблемы - **архітэктуры** .
 
-Nest provides an out-of-the-box application architecture which allows developers and teams to create highly testable, scalable, loosely coupled, and easily maintainable applications. The architecture is heavily inspired by Angular.
+Nest забяспечвае гатовую архітэктуру прыкладанняў, якая дазваляе распрацоўшчыкам і камандам ствараць прыкладанні з высокім узроўнем тэставання, маштабаванасцю, слаба звязанымі і простымі ў абслугоўванні. Архітэктура ў значнай ступені натхнёная Angular.
 
-#### Installation
+## Ўстаноўка
 
-To get started, you can either scaffold the project with the [Nest CLI](/cli/overview), or clone a starter project (both will produce the same outcome).
+Каб пачаць, вы можаце стварыць праект з дапамогай [Nest CLI](/cli/overview) або кланаваць стартавы праект (абодва дадуць аднолькавы вынік).
 
-To scaffold the project with the Nest CLI, run the following commands. This will create a new project directory, and populate the directory with the initial core Nest files and supporting modules, creating a conventional base structure for your project. Creating a new project with the **Nest CLI** is recommended for first-time users. We'll continue with this approach in [First Steps](first-steps).
+Каб стварыць канструкцыю праекта з дапамогай Nest CLI, выканайце наступныя каманды. Гэта створыць новы каталог праекта і запоўніць каталог першапачатковымі асноўнымі файламі Nest і дапаможнымі модулямі, ствараючы звычайную базавую структуру для вашага праекта. Новым карыстальнікам рэкамендуецца ствараць новы праект з дапамогай **Nest CLI** . Мы працягнем гэты падыход у [Першых кроках](first-steps) .
 
 ```bash
 $ npm i -g @nestjs/cli
 $ nest new project-name
 ```
 
-> info **Hint** To create a new TypeScript project with stricter feature set, pass the `--strict` flag to the `nest new` command.
+> інфармацыя **Падказка** Каб стварыць новы праект TypeScript з больш строгім наборам функцый, перадайце сцяжок `--strict` камандзе `nest new` .
 
-#### Alternatives
+## Альтэрнатывы
 
-Alternatively, to install the TypeScript starter project with **Git**:
+Акрамя таго, каб усталяваць пачатковы праект TypeScript з дапамогай **Git** :
 
 ```bash
 $ git clone https://github.com/nestjs/typescript-starter.git project
@@ -41,13 +40,13 @@ $ npm install
 $ npm run start
 ```
 
-> info **Hint** If you'd like to clone the repository without the git history, you can use [degit](https://github.com/Rich-Harris/degit).
+> info **Падказка** Калі вы хочаце кланаваць рэпазітар без гісторыі git, вы можаце выкарыстоўваць [degit](https://github.com/Rich-Harris/degit) .
 
-Open your browser and navigate to [`http://localhost:3000/`](http://localhost:3000/).
+Адкрыйце браўзер і перайдзіце да [`http://localhost:3000/`](http://localhost:3000/).
 
-To install the JavaScript flavor of the starter project, use `javascript-starter.git` in the command sequence above.
+Каб усталяваць варыянт JavaScript пачатковага праекта, выкарыстоўвайце `javascript-starter.git` у паслядоўнасці каманд вышэй.
 
-You can also manually create a new project from scratch by installing the core and supporting files with **npm** (or **yarn**). In this case, of course, you'll be responsible for creating the project boilerplate files yourself.
+Вы таксама можаце ўручную стварыць новы праект з нуля, усталяваўшы ядро ​​і файлы падтрымкі з дапамогай **npm** (або **yarn** ). У гэтым выпадку, вядома, вы самі будзеце несці адказнасць за стварэнне шаблонных файлаў праекта.
 
 ```bash
 $ npm i --save @nestjs/core @nestjs/common rxjs reflect-metadata
