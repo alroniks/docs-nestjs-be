@@ -4,15 +4,27 @@
  * work well for content-centric websites.
  */
 
+/*#ed2945*/
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
+/*  --ifm-color-primary: #2e8555;*/
+  --ifm-color-primary: hsl(350,85%,55%);
+  --ifm-color-primary-dark: hsl(350,85%,45%);
+  --ifm-color-primary-darker: hsl(350,85%,35%);
+  --ifm-color-primary-darkest: hsl(350,85%,25%);
+/*  --ifm-color-primary-dark: #29784c;*/
+/*  --ifm-color-primary-darker: #277148;*/
+/*  --ifm-color-primary-darkest: #205d3b;*/
+
+  /*--ifm-color-primary-light: #33925d;
   --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary-lightest: #3cad6e;*/
+
+  --ifm-color-primary-light: hsl(350,85%,60%);
+  --ifm-color-primary-lighter: hsl(350,85%,65%);
+  --ifm-color-primary-lightest: hsl(350,85%,70%);
+
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
