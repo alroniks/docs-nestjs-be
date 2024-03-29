@@ -3,13 +3,12 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'NestJS па-беларуску',
-  tagline: 'Беларуская мова - топ!!',
+  title: 'Дакументацыя | NestJS – прагрэсіўны Node.js фрэймворк',
   favicon: 'img/favicon.ico',
 
   trailingSlash: false,
 
-  url: 'https://nestjs-be.netlify.app/',
+  url: 'https://docs-nestjs-be.netlify.app/',
   baseUrl: '/',
 
   // onBrokenLinks: 'throw',
@@ -46,11 +45,10 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: '/img/docusaurus-social-card.jpg',
+    image: '/img/nestjs-social-card.png',
     navbar: {
-      title: 'NestJS Дакументацыя',
+      title: 'NestJS',
       logo: {
-        alt: 'My Site Logo',
         src: '/img/logo.svg',
       },
       items: [
@@ -58,7 +56,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Дакументацыя NestJS',
+          label: 'Дакументацыя',
         },
         {
           href: 'https://github.com/alroniks/nestjsby',
