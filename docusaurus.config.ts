@@ -3,20 +3,19 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'NestJS па-беларуску',
+  tagline: 'Беларуская мова - топ!!',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  trailingSlash: false,
+
+  url: 'https://alroniks.github.io',
+  baseUrl: '/nestjsby/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'alroniks', // del
+  projectName: 'nestjsby', // del
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -25,27 +24,23 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'be',
+    locales: ['be'],
+    localeConfigs: {
+      be: { htmlLang: 'be-BY' },
+    },
   },
 
   presets: [
     [
       'classic',
       {
+        blog: false,
         docs: {
+          path: 'convert/be',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/alroniks/nestjsby/tree/main/convert/be/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -55,13 +50,12 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: '/img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'NestJS Дакументацыя',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: '/img/logo.svg',
       },
       items: [
         {
@@ -70,9 +64,8 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/alroniks/nestjsby',
           label: 'GitHub',
           position: 'right',
         },
@@ -86,7 +79,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/intro',
+              to: '/intro',
             },
           ],
         },
@@ -121,7 +114,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Alroniks Technologoes, Ltd. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
