@@ -9,13 +9,8 @@ const config: Config = {
 
   trailingSlash: false,
 
-  url: 'https://alroniks.github.io',
-  baseUrl: '/nestjsby/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'alroniks', // del
-  projectName: 'nestjsby', // del
+  url: 'https://nestjs-be.netlify.app/',
+  baseUrl: '/',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
