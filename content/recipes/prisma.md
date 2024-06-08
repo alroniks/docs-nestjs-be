@@ -40,11 +40,7 @@ In the following steps, we'll be utilizing the [Prisma CLI](https://www.prisma.i
 $ npx prisma
 ```
 
-<details>
-
-<summary>
-  Expand if you're using Yarn
-</summary>
+<details><summary>Expand if you're using Yarn</summary>
 
 If you're using Yarn, then you can install the Prisma CLI as follows:
 
@@ -96,10 +92,7 @@ Make sure you have a [ConfigModule](https://docs.nestjs.com/techniques/configura
 
 SQLite databases are simple files; no server is required to use a SQLite database. So instead of configuring a connection URL with a _host_ and _port_, you can just point it to a local file which in this case is called `dev.db`. This file will be created in the next step.
 
-<details>
-<summary>
-  Expand if you're using PostgreSQL or MySQL
-</summary>
+<details><summary>Expand if you're using PostgreSQL or MySQL</summary>
 
 With PostgreSQL and MySQL, you need to configure the connection URL to point to the _database server_. You can learn more about the required connection URL format [here](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
@@ -203,10 +196,7 @@ prisma
 └── schema.prisma
 ```
 
-<details>
-<summary>
-Expand to view the generated SQL statements
-</summary>
+<details><summary>Expand to view the generated SQL statements</summary>
 
 The following tables were created in your SQLite database:
 

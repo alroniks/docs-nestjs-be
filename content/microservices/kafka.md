@@ -54,7 +54,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/configuration"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>consumer</code></td>
@@ -62,7 +64,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/consuming#a-name-options-a-options"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>run</code></td>
@@ -70,7 +74,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/consuming"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>subscribe</code></td>
@@ -78,7 +84,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/consuming#frombeginning"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>producer</code></td>
@@ -86,7 +94,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/producing#options"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>send</code></td>
@@ -94,7 +104,9 @@ The `options` property is specific to the chosen transporter. The <strong>Kafka<
       <a
         href="https://kafka.js.org/docs/producing#options"
         rel="nofollow"
-        target="blank">here</a>)</td>
+        target="blank"
+        >here</a
+      >)</td>
   </tr>
   <tr>
     <td><code>producerOnlyMode</code></td>

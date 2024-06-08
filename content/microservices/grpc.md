@@ -82,7 +82,8 @@ The <strong>gRPC</strong> transporter options object exposes the properties desc
         href="https://github.com/grpc/grpc-node/blob/master/packages/proto-loader/README.md"
         rel="nofollow"
         target="_blank"
-        >here</a> for more details
+        >here</a
+      > for more details
     </td>
   </tr>
   <tr>
@@ -91,7 +92,9 @@ The <strong>gRPC</strong> transporter options object exposes the properties desc
       Server credentials.  Optional. <a
         href="https://grpc.io/grpc/node/grpc.ServerCredentials.html"
         rel="nofollow"
-        target="_blank">Read more here</a>
+        target="_blank"
+        >Read more here</a
+      >
     </td>
   </tr>
 </table>
