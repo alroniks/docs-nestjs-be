@@ -38,8 +38,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           sidebarCollapsible: true,
           sidebarCollapsed: false,
-          showLastUpdateAuthor: true,
-          editUrl: 'https://github.com/alroniks/docs-nestjs-be/tree/main/convert/be/',
+          editUrl: 'https://github.com/alroniks/docs-nestjs-be/blob/master/',
         },
         theme: {
           customCss: './src/css/custom.css',
