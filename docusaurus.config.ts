@@ -4,6 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Дакументацыя | NestJS – прагрэсіўны Node.js фрэймворк',
+  tagline: 'Прагрэсіўны Node.js фрэймворк для стварэння эфектыўных, здольных да пашырэння, серверных праграм карпаратыўнага ўзроўню, з выкарыстаннем моў праграмавання TypeScript і JavaScript 🚀',
   favicon: 'img/favicon.ico',
 
   trailingSlash: false,
@@ -35,7 +36,10 @@ const config: Config = {
           path: 'convert/be',
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/alroniks/nestjsby/tree/main/convert/be/',
+          sidebarCollapsible: true,
+          sidebarCollapsed: false,
+          showLastUpdateAuthor: true,
+          editUrl: 'https://github.com/alroniks/docs-nestjs-be/tree/main/convert/be/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -46,6 +50,10 @@ const config: Config = {
 
   themeConfig: {
     image: '/img/nestjs-social-card.png',
+    tableOfContents: {
+      minHeadingLevel: 4,
+      maxHeadingLevel: 6,
+    },
     navbar: {
       title: 'NestJS',
       logo: {
@@ -59,7 +67,7 @@ const config: Config = {
           label: 'Дакументацыя',
         },
         {
-          href: 'https://github.com/alroniks/nestjsby',
+          href: 'https://github.com/alroniks/docs-nestjs-be',
           label: 'GitHub',
           position: 'right',
         },
@@ -73,7 +81,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/intro',
+              to: '/introduction',
             },
           ],
         },

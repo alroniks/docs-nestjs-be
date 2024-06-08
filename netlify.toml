@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/"
+  to = "/introduction"
+  status = 301
+  force = false
