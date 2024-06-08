@@ -24,7 +24,9 @@ $ nest new project-name
 ```
 
 :::info **Hint**
+
 To create a new TypeScript project with stricter feature set, pass the `--strict` flag to the `nest new` command.
+
 :::
 
 #### Alternatives
@@ -39,7 +41,9 @@ $ npm run start
 ```
 
 :::info **Hint**
+
 If you'd like to clone the repository without the git history, you can use [degit](https://github.com/Rich-Harris/degit).
+
 :::
 
 Open your browser and navigate to [`http://localhost:3000/`](http://localhost:3000/).
