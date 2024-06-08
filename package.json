@@ -1,7 +1,14 @@
 {
-  "name": "nestjs-be",
+  "name": "docs-nestjs-be",
   "version": "0.0.0",
   "private": true,
+  "description": "Прагрэсіўны Node.js фрэймворк для стварэння эфектыўных, здольных да пашырэння, серверных праграм карпаратыўнага ўзроўню, з выкарыстаннем моў праграмавання TypeScript і JavaScript 🚀",
+  "authors": {
+    "name": "Ivan Klimchuk",
+    "email": "alroniks@gmail.com",
+    "url": "https://klimchuk.net"
+  },
+  "repository": "https://github.com/alroniks/docs-nestjs-be",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -10,25 +17,23 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.1.1",
-    "@docusaurus/preset-classic": "^3.1.1",
-    "@mdx-js/react": "^3.0.0",
+    "@docusaurus/core": "^3.4.0",
+    "@docusaurus/preset-classic": "^3.4.0",
+    "@mdx-js/react": "^3.0.1",
     "@polymetis-apps/pirsch-docusaurus": "^0.6.2",
-    "clsx": "^2.0.0",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "clsx": "^2.1.1",
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.1.1",
-    "@docusaurus/tsconfig": "^3.1.1",
-    "@docusaurus/types": "^3.1.1",
-    "typescript": "~5.2.2"
+    "@docusaurus/module-type-aliases": "^3.4.0",
+    "@docusaurus/tsconfig": "^3.4.0",
+    "@docusaurus/types": "^3.4.0",
+    "typescript": "~5.4.5"
   },
   "browserslist": {
     "production": [
