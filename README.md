@@ -1,5 +1,7 @@
 # Website
 
+[![gitlocalized ](https://gitlocalize.com/repo/9468/whole_project/badge.svg)](https://gitlocalize.com/repo/9468?utm_source=badge)
+
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
 ### Installation
