@@ -4,15 +4,15 @@
 
 <figure><img src="/assets/Controllers_1.png"></figure>
 
-A controller's purpose is to receive specific requests for the application. The **routing** mechanism controls which controller receives which requests. Frequently, each controller has more than one route, and different routes can perform different actions.
+Мэта кантролера - атрымліваць канкрэтныя запыты для прыкладання. Механізм **маршрутызацыі** кантралюе, які кантролер атрымлівае якія запыты. Часта кожны кантролер мае больш чым адзін маршрут, і розныя маршруты могуць выконваць розныя дзеянні.
 
-In order to create a basic controller, we use classes and **decorators**. Decorators associate classes with required metadata and enable Nest to create a routing map (tie requests to the corresponding controllers).
+Каб стварыць базавы кантролер, мы выкарыстоўваем класы і **дэкаратары** . Дэкаратары звязваюць класы з неабходнымі метададзенымі і дазваляюць Nest ствараць карту маршрутызацыі (прывязваць запыты да адпаведных кантролераў).
 
-:::info **Hint** For quickly creating a CRUD controller with the [validation](https://docs.nestjs.com/techniques/validation) built-in, you may use the CLI's [CRUD generator](https://docs.nestjs.com/recipes/crud-generator#crud-generator): `nest g resource [name]`. :::
+:::info **Падказка** Для хуткага стварэння CRUD-кантролера з убудаванай [праверкай](https://docs.nestjs.com/techniques/validation) вы можаце выкарыстоўваць [CRUD-генератар](https://docs.nestjs.com/recipes/crud-generator#crud-generator) CLI: `nest g resource [name]` . :::
 
 ## Маршрутызацыя
 
-In the following example we'll use the `@Controller()` decorator, which is **required** to define a basic controller. We'll specify an optional route path prefix of `cats`. Using a path prefix in a `@Controller()` decorator allows us to easily group a set of related routes, and minimize repetitive code. For example, we may choose to group a set of routes that manage interactions with a cat entity under the route `/cats`. In that case, we could specify the path prefix `cats` in the `@Controller()` decorator so that we don't have to repeat that portion of the path for each route in the file.
+У наступным прыкладзе мы будзем выкарыстоўваць дэкаратар `@Controller()` , **неабходны** для вызначэння базавага кантролера. Мы ўкажам неабавязковы прэфікс шляху шляху `cats` . Выкарыстанне прэфікса шляху ў дэкаратары `@Controller()` дазваляе нам лёгка згрупаваць набор звязаных маршрутаў і звесці да мінімуму паўтаральны код. Напрыклад, мы можам згрупаваць набор маршрутаў, якія кіруюць узаемадзеяннем з аб'ектам cat пад маршрутам `/cats` . У такім выпадку мы маглі б пазначыць прэфікс шляху `cats` у дэкаратары `@Controller()` , каб нам не прыйшлося паўтараць гэтую частку шляху для кожнага маршруту ў файле.
 
 ```typescript
 @@filename(cats.controller)
@@ -37,9 +37,9 @@ export class CatsController {
 }
 ```
 
-:::info **Hint** To create a controller using the CLI, simply execute the `$ nest g controller [name]` command. :::
+:::info **Падказка** Каб стварыць кантролер з дапамогай CLI, проста выканайце каманду `$ nest g controller [name]` . :::
 
-The `@Get()` HTTP request method decorator before the `findAll()` method tells Nest to create a handler for a specific endpoint for HTTP requests. The endpoint corresponds to the HTTP request method (GET in this case) and the route path. What is the route path? The route path for a handler is determined by concatenating the (optional) prefix declared for the controller, and any path specified in the method's decorator. Since we've declared a prefix for every route ( `cats`), and haven't added any path information in the decorator, Nest will map `GET /cats` requests to this handler. As mentioned, the path includes both the optional controller path prefix **and** any path string declared in the request method decorator. For example, a path prefix of `cats` combined with the decorator `@Get('breed')` would produce a route mapping for requests like `GET /cats/breed`.
+Дэкаратар метаду HTTP-запыту `@Get()` перад метадам `findAll()` загадвае Nest стварыць апрацоўшчык для пэўнай канчатковай кропкі для HTTP-запытаў. Канчатковы пункт адпавядае метаду запыту HTTP (у дадзеным выпадку GET) і шляху маршруту. Які шлях маршруту? Маршрутны шлях для апрацоўшчыка вызначаецца шляхам канкатэнацыі (неабавязковага) прэфікса, аб'яўленага для кантролера, і любога шляху, указанага ў дэкаратары метаду. Паколькі мы аб'явілі прэфікс для кожнага маршруту ( `cats` ) і не дадалі ніякай інфармацыі аб шляху ў дэкаратар, Nest будзе супастаўляць запыты `GET /cats` з гэтым апрацоўшчыкам. Як ужо згадвалася, шлях уключае як неабавязковы прэфікс шляху кантролера **, так і** любы радок шляху, аб'яўлены ў дэкаратары метаду запыту. Напрыклад, прэфікс шляху `cats` у спалучэнні з дэкаратарам `@Get('breed')` будзе ствараць адлюстраванне маршруту для такіх запытаў, як `GET /cats/breed` .
 
 У нашым прыкладзе вышэй, калі да гэтай канчатковай кропкі робіцца запыт GET, Nest накіроўвае запыт да вызначанага карыстальнікам метаду `findAll()` . Звярніце ўвагу, што імя метаду, якое мы выбіраем тут, абсалютна адвольнае. Відавочна, што мы павінны аб'явіць метад для прывязкі маршруту, але Nest не надае ніякага значэння абранай назве метаду.
 
@@ -47,22 +47,22 @@ The `@Get()` HTTP request method decorator before the `findAll()` method tells N
 
 <table>
   <tr>
-    <td>Standard (recommended)</td>
-    <td>       Using this built-in method, when a request handler returns a JavaScript object or array, it will <strong>automatically</strong>       be serialized to JSON. When it returns a JavaScript primitive type (e.g., <code>string</code>, <code>number</code>, <code>boolean</code>), however, Nest will send just the value without attempting to serialize it. This makes response handling simple: just return the value, and Nest takes care of the rest.       <br>       <br> Furthermore, the response's <strong>status code</strong> is always 200 by default, except for POST       requests which use 201. We can easily change this behavior by adding the <code>@HttpCode(...)</code>       decorator at a handler-level (see <a href="controllers#status-code">Status codes</a>).     </td>
+    <td>Стандарт (рэкамендуецца)</td>
+    <td>       З дапамогай гэтага ўбудаванага метаду, калі апрацоўшчык запытаў вяртае аб'ект або масіў JavaScript, ён будзе <strong>аўтаматычна</strong> серыялізаваны ў JSON. Аднак калі ён вяртае прымітыўны тып JavaScript (напрыклад, <code>string</code> , <code>number</code> , <code>boolean</code> ), Nest адправіць толькі значэнне без спробы яго серыялізацыі. Гэта робіць апрацоўку адказу простай: проста вярніце значэнне, а Nest паклапоціцца пра ўсё астатняе.<br><br> Акрамя таго, <strong>код стану</strong> адказу заўсёды роўны 200 па змаўчанні, за выключэннем запытаў POST, якія выкарыстоўваюць 201. Мы можам лёгка змяніць гэтыя паводзіны, дадаўшы дэкаратар <code>@HttpCode(...)</code> на ўзроўні апрацоўшчыка (гл. <a href="controllers#status-code">Коды стану</a> ).     </td>
   </tr>
   <tr>
-    <td>Library-specific</td>
-    <td>       We can use the library-specific (e.g., Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">response object</a>, which can be injected using the <code>@Res()</code> decorator in the method handler signature (e.g., <code>findAll(@Res() response)</code>).  With this approach, you have the ability to use the native response handling methods exposed by that object.  For example, with Express, you can construct responses using code like <code>response.status(200).send()</code>.     </td>
+    <td>Спецыфіка бібліятэкі</td>
+    <td>       Мы можам выкарыстоўваць спецыфічны для бібліятэкі (напрыклад, Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">аб'ект адказу</a> , які можа быць уведзены з дапамогай дэкаратара <code>@Res()</code> у сігнатуры апрацоўшчыка метаду (напрыклад, <code>findAll(@Res() response)</code> ). Пры такім падыходзе ў вас ёсць магчымасць выкарыстоўваць уласныя метады апрацоўкі адказаў, адкрытыя гэтым аб'ектам. Напрыклад, з дапамогай Express вы можаце будаваць адказы з дапамогай кода накшталт <code>response.status(200).send()</code> .     </td>
   </tr>
 </table>
 
-:::warning **Warning** Nest detects when the handler is using either `@Res()` or `@Next()`, indicating you have chosen the library-specific option. If both approaches are used at the same time, the Standard approach is **automatically disabled** for this single route and will no longer work as expected. To use both approaches at the same time (for example, by injecting the response object to only set cookies/headers but still leave the rest to the framework), you must set the `passthrough` option to `true` in the `@Res({{ '{' }} passthrough: true {{ '}' }})` decorator. :::
+::: **папярэджанне Папярэджанне** Nest вызначае, калі апрацоўшчык выкарыстоўвае `@Res()` або `@Next()` , паказваючы, што вы выбралі спецыфічную для бібліятэкі опцыю. Калі абодва падыходы выкарыстоўваюцца адначасова, стандартны падыход **аўтаматычна адключаецца** для гэтага адзінага маршруту і больш не будзе працаваць належным чынам. Каб выкарыстоўваць абодва падыходы адначасова (напрыклад, шляхам увядзення аб'екта адказу, каб усталяваць толькі кукі/загалоўкі, а ўсё астатняе пакінуць фрэймворку), вы павінны ўсталяваць для параметра `passthrough` значэнне `true` у `@Res({{ '{' }} passthrough: true {{ '}' }})` дэкаратар. :::
 
 <app-banner-devtools></app-banner-devtools>
 
-## Request object
+## Аб'ект запыту
 
-Handlers often need access to the client **request** details. Nest provides access to the [request object](https://expressjs.com/en/api.html#req) of the underlying platform (Express by default). We can access the request object by instructing Nest to inject it by adding the `@Req()` decorator to the handler's signature.
+Апрацоўшчыкам часта патрабуецца доступ да дэталяў **запыту** кліента. Nest забяспечвае доступ да [аб'екта запыту](https://expressjs.com/en/api.html#req) базавай платформы (па змаўчанні - Express). Мы можам атрымаць доступ да аб'екта запыту, даручыўшы Nest увесці яго, дадаўшы дэкаратар `@Req()` у подпіс апрацоўшчыка.
 
 ```typescript
 @@filename(cats.controller)
@@ -89,9 +89,9 @@ export class CatsController {
 }
 ```
 
-:::info **Hint** In order to take advantage of `express` typings (as in the `request: Request` parameter example above), install `@types/express` package. :::
+:::info **Падказка** Каб скарыстацца перавагамі `express` ўводу (як у прыкладзе `request: Request` вышэй), усталюйце пакет `@types/express` . :::
 
-The request object represents the HTTP request and has properties for the request query string, parameters, HTTP headers, and body (read more [here](https://expressjs.com/en/api.html#req)). In most cases, it's not necessary to grab these properties manually. We can use dedicated decorators instead, such as `@Body()` or `@Query()`, which are available out of the box. Below is a list of the provided decorators and the plain platform-specific objects they represent.
+Аб'ект запыту прадстаўляе запыт HTTP і мае ўласцівасці для радка запыту запыту, параметраў, загалоўкаў HTTP і цела (падрабязней [тут](https://expressjs.com/en/api.html#req) ). У большасці выпадкаў няма неабходнасці захопліваць гэтыя ўласцівасці ўручную. Замест гэтага мы можам выкарыстоўваць спецыяльныя дэкаратары, такія як `@Body()` або `@Query()` , якія даступныя з скрынкі. Ніжэй прыведзены спіс прадастаўленых дэкаратараў і простых аб'ектаў, характэрных для платформы, якія яны прадстаўляюць.
 
 <table>
   <tbody>
@@ -148,13 +148,13 @@ The request object represents the HTTP request and has properties for the reques
   </tbody>
 </table>
 
-<sup>* </sup>For compatibility with typings across underlying HTTP platforms (e.g., Express and Fastify), Nest provides `@Res()` and `@Response()` decorators. `@Res()` is simply an alias for `@Response()`. Both directly expose the underlying native platform `response` object interface. When using them, you should also import the typings for the underlying library (e.g., `@types/express`) to take full advantage. Note that when you inject either `@Res()` or `@Response()` in a method handler, you put Nest into **Library-specific mode** for that handler, and you become responsible for managing the response. When doing so, you must issue some kind of response by making a call on the `response` object (e.g., `res.json(...)` or `res.send(...)`), or the HTTP server will hang.
+<sup>*</sup> Для сумяшчальнасці з уводам на базавых платформах HTTP (напрыклад, Express і Fastify) Nest забяспечвае дэкаратары `@Res()` і `@Response()` . `@Res()` - гэта проста псеўданім для `@Response()` . Абодва непасрэдна раскрываюць асноўны інтэрфейс аб'екта `response` ўласнай платформы. Пры іх выкарыстанні вы таксама павінны імпартаваць тыпізацыю для асноўнай бібліятэкі (напрыклад, `@types/express` ), каб атрымаць усе перавагі. Звярніце ўвагу, што калі вы ўстаўляеце `@Res()` або `@Response()` у апрацоўшчык метаду, вы пераводзіце Nest у **спецыфічны для бібліятэкі рэжым** для гэтага апрацоўшчыка, і вы становіцеся адказным за кіраванне адказам. Пры гэтым вы павінны даць нейкі адказ, зрабіўшы выклік аб'екта `response` (напрыклад, `res.json(...)` або `res.send(...)` ), інакш сервер HTTP завісне.
 
-:::info **Hint** To learn how to create your own custom decorators, visit [this](/custom-decorators) chapter. :::
+:::info **Падказка** Каб даведацца, як ствараць свае ўласныя дэкаратары, наведайце [гэты](/custom-decorators) раздзел. :::
 
-## Resources
+## Рэсурсы
 
-Earlier, we defined an endpoint to fetch the cats resource (**GET** route). We'll typically also want to provide an endpoint that creates new records. For this, let's create the **POST** handler:
+Раней мы вызначылі канечную кропку для атрымання рэсурсу cats (маршрут **GET** ). Звычайна мы таксама хочам забяспечыць канечную кропку, якая стварае новыя запісы. Для гэтага давайце створым апрацоўшчык **POST** :
 
 ```typescript
 @@filename(cats.controller)
@@ -189,11 +189,11 @@ export class CatsController {
 }
 ```
 
-It's that simple. Nest provides decorators for all of the standard HTTP methods: `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`, `@Options()`, and `@Head()`. In addition, `@All()` defines an endpoint that handles all of them.
+Гэта так проста. Nest забяспечвае дэкаратары для ўсіх стандартных метадаў HTTP: `@Get()` , `@Post()` , `@Put()` , `@Delete()` , `@Patch()` , `@Options()` і `@Head()` . Акрамя таго, `@All()` вызначае канечную кропку, якая апрацоўвае ўсе з іх.
 
-## Route wildcards
+## Падстаноўныя знакі маршруту
 
-Pattern based routes are supported as well. For instance, the asterisk is used as a wildcard, and will match any combination of characters.
+Таксама падтрымліваюцца маршруты на аснове шаблонаў. Напрыклад, зорачка выкарыстоўваецца як сімвал падстаноўкі і будзе адпавядаць любой камбінацыі сімвалаў.
 
 ```typescript
 @Get('ab*cd')
@@ -202,13 +202,13 @@ findAll() {
 }
 ```
 
-The `'ab*cd'` route path will match `abcd`, `ab_cd`, `abecd`, and so on. The characters `?`, `+`, `*`, and `()` may be used in a route path, and are subsets of their regular expression counterparts. The hyphen ( `-`) and the dot (`.`) are interpreted literally by string-based paths.
+Шлях маршруту `'ab*cd'` будзе адпавядаць `abcd` , `ab_cd` , `abecd` і гэтак далей. Персанажы `?` , `+` , `*` і `()` могуць выкарыстоўвацца ў шляху маршруту і з'яўляюцца падмноствамі сваіх аналагаў рэгулярных выразаў. Злучок ( `-` ) і кропка ( `.` ) інтэрпрэтуюцца літаральна шляхамі на аснове радкоў.
 
-:::warning **Warning** A wildcard in the middle of the route is only supported by express. :::
+:::папярэджанне **Папярэджанне** Падстаноўны знак у сярэдзіне маршруту падтрымліваецца толькі экспрэс. :::
 
-## Status code
+## Код стану
 
-As mentioned, the response **status code** is always **200** by default, except for POST requests which are **201**. We can easily change this behavior by adding the `@HttpCode(...)` decorator at a handler level.
+Як ужо згадвалася, **код статусу** адказу заўсёды роўны **200** па змаўчанні, за выключэннем запытаў POST, якія роўны **201** . Мы можам лёгка змяніць гэтыя паводзіны, дадаўшы дэкаратар `@HttpCode(...)` на ўзроўні апрацоўшчыка.
 
 ```typescript
 @Post()
@@ -218,13 +218,13 @@ create() {
 }
 ```
 
-:::info **Hint** Import `HttpCode` from the `@nestjs/common` package. :::
+:::info **Падказка** Імпарт `HttpCode` з пакета `@nestjs/common` . :::
 
-Often, your status code isn't static but depends on various factors. In that case, you can use a library-specific **response** (inject using `@Res()`) object (or, in case of an error, throw an exception).
+Часта ваш код стану не статычны, а залежыць ад розных фактараў. У такім выпадку вы можаце выкарыстоўваць аб'ект **адказу** для бібліятэкі (ін'екцыя з дапамогай `@Res()` ) (або, у выпадку памылкі, выклікаць выключэнне).
 
-## Headers
+## Загалоўкі
 
-To specify a custom response header, you can either use a `@Header()` decorator or a library-specific response object (and call `res.header()` directly).
+Каб задаць карыстальніцкі загаловак адказу, вы можаце выкарыстоўваць дэкаратар `@Header()` або спецыфічны для бібліятэкі аб'ект адказу (і выклікаць `res.header()` непасрэдна).
 
 ```typescript
 @Post()
@@ -234,22 +234,22 @@ create() {
 }
 ```
 
-:::info **Hint** Import `Header` from the `@nestjs/common` package. :::
+:::info **Падказка** Імпартаваць `Header` з пакета `@nestjs/common` . :::
 
-## Redirection
+## Перанакіраванне
 
-To redirect a response to a specific URL, you can either use a `@Redirect()` decorator or a library-specific response object (and call `res.redirect()` directly).
+Каб перанакіраваць адказ на пэўны URL, вы можаце выкарыстоўваць дэкаратар `@Redirect()` або спецыфічны для бібліятэкі аб'ект адказу (і выклікаць `res.redirect()` непасрэдна).
 
-`@Redirect()` takes two arguments, `url` and `statusCode`, both are optional. The default value of `statusCode` is `302` (`Found`) if omitted.
+`@Redirect()` прымае два аргументы, `url` і `statusCode` , абодва неабавязковыя. Значэнне па змаўчанні `statusCode` роўна `302` ( `Found` ), калі яно апушчана.
 
 ```typescript
 @Get()
 @Redirect('https://nestjs.com', 301)
 ```
 
-:::info **Hint** Sometimes you may want to determine the HTTP status code or the redirect URL dynamically. Do this by returning an object following the `HttpRedirectResponse` interface (from `@nestjs/common`). :::
+:::info **Падказка** Часам вы можаце дынамічна вызначаць код стану HTTP або URL перанакіравання. Зрабіце гэта, вярнуўшы аб'ект пасля інтэрфейсу `HttpRedirectResponse` (з `@nestjs/common` ). :::
 
-Returned values will override any arguments passed to the `@Redirect()` decorator. For example:
+Вернутыя значэнні будуць перавызначаць любыя аргументы, перададзеныя дэкаратару `@Redirect()` . Напрыклад:
 
 ```typescript
 @Get('docs')
@@ -261,11 +261,11 @@ getDocs(@Query('version') version) {
 }
 ```
 
-## Route parameters
+## Параметры маршруту
 
-Routes with static paths won't work when you need to accept **dynamic data** as part of the request (e.g., `GET /cats/1` to get cat with id `1`). In order to define routes with parameters, we can add route parameter **tokens** in the path of the route to capture the dynamic value at that position in the request URL. The route parameter token in the `@Get()` decorator example below demonstrates this usage. Route parameters declared in this way can be accessed using the `@Param()` decorator, which should be added to the method signature.
+Маршруты са статычнымі шляхамі не будуць працаваць, калі вам трэба прыняць **дынамічныя дадзеныя** як частку запыту (напрыклад, `GET /cats/1` каб атрымаць котку з ідэнтыфікатарам `1` ). Каб вызначыць маршруты з параметрамі, мы можам дадаць **маркеры** параметраў маршруту ў шлях маршруту, каб захапіць дынамічнае значэнне ў гэтай пазіцыі ў URL-адрасе запыту. Токен параметра маршруту ў прыкладзе дэкаратара `@Get()` дэманструе такое выкарыстанне. Параметры маршруту, заяўленыя такім чынам, могуць быць даступныя з дапамогай дэкаратара `@Param()` , які трэба дадаць у подпіс метаду.
 
-:::info **Hint** Routes with parameters should be declared after any static paths. This prevents the parameterized paths from intercepting traffic destined for the static paths. :::
+:::info **Падказка** Маршруты з параметрамі павінны быць аб'яўлены пасля любых статычных шляхоў. Гэта прадухіляе параметрізаваныя шляхі ад перахопу трафіку, прызначанага для статычных шляхоў. :::
 
 ```typescript
 @@filename()
@@ -283,9 +283,9 @@ findOne(params) {
 }
 ```
 
-`@Param()` is used to decorate a method parameter (`params` in the example above), and makes the **route** parameters available as properties of that decorated method parameter inside the body of the method. As seen in the code above, we can access the `id` parameter by referencing `params.id`. You can also pass in a particular parameter token to the decorator, and then reference the route parameter directly by name in the method body.
+`@Param()` выкарыстоўваецца для ўпрыгожвання параметра метаду ( `params` у прыкладзе вышэй) і робіць параметры **маршрута** даступнымі ў якасці ўласцівасцей гэтага параметра ўпрыгожанага метаду ўнутры цела метаду. Як відаць у кодзе вышэй, мы можам атрымаць доступ да параметру `id` , спасылаючыся на `params.id` . Вы таксама можаце перадаць пэўны токен параметра ў дэкаратар, а затым спасылацца на параметр маршруту непасрэдна па імені ў целе метаду.
 
-:::info **Hint** Import `Param` from the `@nestjs/common` package. :::
+:::info **Падказка** Імпартаваць `Param` з пакета `@nestjs/common` . :::
 
 ```typescript
 @@filename()
@@ -301,9 +301,9 @@ findOne(id) {
 }
 ```
 
-## Sub-Domain Routing
+## Маршрутызацыя субдамена
 
-The `@Controller` decorator can take a `host` option to require that the HTTP host of the incoming requests matches some specific value.
+Дэкаратар `@Controller` можа выкарыстоўваць параметр `host` , каб патрабаваць, каб хост HTTP ўваходных запытаў адпавядаў пэўнаму значэнню.
 
 ```typescript
 @Controller({ host: 'admin.example.com' })
@@ -315,9 +315,9 @@ export class AdminController {
 }
 ```
 
-:::danger **Warning** Since **Fastify** lacks support for nested routers, when using sub-domain routing, the (default) Express adapter should be used instead. :::
+:::небяспека **Папярэджанне** Паколькі **ў Fastify** адсутнічае падтрымка ўкладзеных маршрутызатараў, пры выкарыстанні субдаменнай маршрутызацыі замест гэтага варта выкарыстоўваць (па змаўчанні) адаптар Express. :::
 
-Similar to a route `path`, the `hosts` option can use tokens to capture the dynamic value at that position in the host name. The host parameter token in the `@Controller()` decorator example below demonstrates this usage. Host parameters declared in this way can be accessed using the `@HostParam()` decorator, which should be added to the method signature.
+Падобна `path` маршруту, параметр `hosts` можа выкарыстоўваць токены для фіксацыі дынамічнага значэння ў гэтай пазіцыі ў імені хоста. Маркер параметра хаста ў прыкладзе дэкаратара `@Controller()` ніжэй дэманструе такое выкарыстанне. Параметры хаста, аб'яўленыя такім чынам, могуць быць даступныя з дапамогай дэкаратара `@HostParam()` , які трэба дадаць у подпіс метаду.
 
 ```typescript
 @Controller({ host: ':account.example.com' })
@@ -329,19 +329,19 @@ export class AccountController {
 }
 ```
 
-## Scopes
+## Сферы прыцэла
 
-For people coming from different programming language backgrounds, it might be unexpected to learn that in Nest, almost everything is shared across incoming requests. We have a connection pool to the database, singleton services with global state, etc. Remember that Node.js doesn't follow the request/response Multi-Threaded Stateless Model in which every request is processed by a separate thread. Hence, using singleton instances is fully **safe** for our applications.
+Для людзей, якія паходзяць з розных моў праграмавання, можа быць нечаканым даведацца, што ў Nest амаль усё абагульваецца паміж уваходнымі запытамі. У нас ёсць пул злучэнняў з базай дадзеных, адзінкавыя сэрвісы з глабальным станам і г. д. Памятайце, што Node.js не прытрымліваецца шматструменнай мадэлі без захавання стану запыту/адказу, у якой кожны запыт апрацоўваецца асобным патокам. Такім чынам, выкарыстанне адзіночных асобнікаў цалкам **бяспечна** для нашых прыкладанняў.
 
-However, there are edge-cases when request-based lifetime of the controller may be the desired behavior, for instance per-request caching in GraphQL applications, request tracking or multi-tenancy. Learn how to control scopes [here](/fundamentals/injection-scopes).
+Аднак бываюць крайнія выпадкі, калі час жыцця кантролера на аснове запытаў можа быць жаданым, напрыклад, кэшаванне кожнага запыту ў праграмах GraphQL, адсочванне запытаў або мультыарэнда. Даведайцеся, як кіраваць прыцэлам [тут](/fundamentals/injection-scopes) .
 
-## Asynchronicity
+## Асінхроннасць
 
-We love modern JavaScript and we know that data extraction is mostly **asynchronous**. That's why Nest supports and works well with `async` functions.
+Мы любім сучасны JavaScript і ведаем, што здабыча даных у асноўным **асінхронная** . Вось чаму Nest падтрымлівае і добра працуе з `async` функцыямі.
 
-:::info **Hint** Learn more about `async / await` feature [here](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await) :::
+:::info **Падказка** Даведайцеся больш пра функцыю `async / await` [тут](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await) :::
 
-Every async function has to return a `Promise`. This means that you can return a deferred value that Nest will be able to resolve by itself. Let's see an example of this:
+Кожная асінхронная функцыя павінна вяртаць `Promise` . Гэта азначае, што вы можаце вярнуць адкладзенае значэнне, якое Nest зможа вырашыць самастойна. Давайце паглядзім прыклад гэтага:
 
 ```typescript
 @@filename(cats.controller)
@@ -356,7 +356,7 @@ async findAll() {
 }
 ```
 
-The above code is fully valid. Furthermore, Nest route handlers are even more powerful by being able to return RxJS [observable streams](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html). Nest will automatically subscribe to the source underneath and take the last emitted value (once the stream is completed).
+Прыведзены вышэй код цалкам сапраўдны. Акрамя таго, апрацоўшчыкі маршрутаў Nest яшчэ больш магутныя, бо могуць вяртаць [патокі, якія назіраюцца](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html) RxJS. Nest аўтаматычна падпішацца на крыніцу ніжэй і прыме апошняе выпушчанае значэнне (пасля завяршэння трансляцыі).
 
 ```typescript
 @@filename(cats.controller)
@@ -371,15 +371,15 @@ findAll() {
 }
 ```
 
-Both of the above approaches work and you can use whatever fits your requirements.
+Абодва вышэйпералічаныя падыходы працуюць, і вы можаце выкарыстоўваць усё, што адпавядае вашым патрабаванням.
 
-## Request payloads
+## Запыт карысных нагрузак
 
-Our previous example of the POST route handler didn't accept any client params. Let's fix this by adding the `@Body()` decorator here.
+Наш папярэдні прыклад апрацоўшчыка маршрутаў POST не прымаў ніякіх кліенцкіх параметраў. Давайце выправім гэта, дадаўшы сюды дэкаратар `@Body()` .
 
-But first (if you use TypeScript), we need to determine the **DTO** (Data Transfer Object) schema. A DTO is an object that defines how the data will be sent over the network. We could determine the DTO schema by using **TypeScript** interfaces, or by simple classes. Interestingly, we recommend using **classes** here. Why? Classes are part of the JavaScript ES6 standard, and therefore they are preserved as real entities in the compiled JavaScript. On the other hand, since TypeScript interfaces are removed during the transpilation, Nest can't refer to them at runtime. This is important because features such as **Pipes** enable additional possibilities when they have access to the metatype of the variable at runtime.
+Але спачатку (калі вы выкарыстоўваеце TypeScript), нам трэба вызначыць схему **DTO** (аб'ект перадачы даных). DTO - гэта аб'ект, які вызначае спосаб адпраўкі даных па сетцы. Мы маглі б вызначыць схему DTO з дапамогай інтэрфейсаў **TypeScript** або простых класаў. Цікава, што мы рэкамендуем выкарыстоўваць тут **класы** . чаму? Класы з'яўляюцца часткай стандарту JavaScript ES6, і таму яны захоўваюцца як рэальныя аб'екты ў скампіляваным JavaScript. З іншага боку, паколькі інтэрфейсы TypeScript выдаляюцца падчас транспіляцыі, Nest не можа звяртацца да іх падчас выканання. Гэта важна, таму што такія функцыі, як **Pipes,** адкрываюць дадатковыя магчымасці, калі яны маюць доступ да метатыпу зменнай падчас выканання.
 
-Let's create the `CreateCatDto` class:
+Давайце створым клас `CreateCatDto` :
 
 ```typescript
 @@filename(create-cat.dto)
@@ -390,7 +390,7 @@ export class CreateCatDto {
 }
 ```
 
-It has only three basic properties. Thereafter we can use the newly created DTO inside the `CatsController`:
+Ён валодае ўсяго трыма асноўнымі ўласцівасцямі. Пасля гэтага мы можам выкарыстоўваць толькі што створаны DTO ўнутры `CatsController` :
 
 ```typescript
 @@filename(cats.controller)
@@ -406,15 +406,15 @@ async create(createCatDto) {
 }
 ```
 
-:::info **Hint** Our `ValidationPipe` can filter out properties that should not be received by the method handler. In this case, we can whitelist the acceptable properties, and any property not included in the whitelist is automatically stripped from the resulting object. In the `CreateCatDto` example, our whitelist is the `name`, `age`, and `breed` properties. Learn more [here](https://docs.nestjs.com/techniques/validation#stripping-properties). :::
+:::info **Падказка** Наш `ValidationPipe` можа адфільтраваць уласцівасці, якія не павінны быць атрыманы апрацоўшчыкам метаду. У гэтым выпадку мы можам занесці прымальныя ўласцівасці ў белы спіс, і любая ўласцівасць, не ўключаная ў белы спіс, аўтаматычна выдаляецца з атрыманага аб'екта. У прыкладзе `CreateCatDto` наш белы спіс - гэта ўласцівасці `name` , `age` і `breed` . Даведайцеся больш [тут](https://docs.nestjs.com/techniques/validation#stripping-properties) . :::
 
-## Handling errors
+## Апрацоўка памылак
 
-There's a separate chapter about handling errors (i.e., working with exceptions) [here](/exception-filters).
+[Тут](/exception-filters) ёсць асобная глава пра апрацоўку памылак (г.зн. працу з выключэннямі).
 
-## Full resource sample
+## Поўны ўзор рэсурсу
 
-Below is an example that makes use of several of the available decorators to create a basic controller. This controller exposes a couple of methods to access and manipulate internal data.
+Ніжэй прыведзены прыклад, які выкарыстоўвае некалькі даступных дэкаратараў для стварэння базавага кантролера. Гэты кантролер прапануе некалькі метадаў доступу да ўнутраных даных і маніпулявання імі.
 
 ```typescript
 @@filename(cats.controller)
@@ -486,13 +486,13 @@ export class CatsController {
 }
 ```
 
-:::info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code** to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator). :::
+:::info **Hint** Nest CLI забяспечвае генератар (схему), які аўтаматычна генеруе **ўвесь шаблонны код** , каб дапамагчы нам пазбегнуць усяго гэтага і зрабіць працу распрацоўшчыка значна прасцейшай. Падрабязней аб гэтай функцыі чытайце [тут](/recipes/crud-generator) . :::
 
-## Getting up and running
+## Устаючы і бегчы
 
-With the above controller fully defined, Nest still doesn't know that `CatsController` exists and as a result won't create an instance of this class.
+Калі вышэйзгаданы кантролер цалкам вызначаны, Nest усё яшчэ не ведае, што `CatsController` існуе, і ў выніку не стварае асобнік гэтага класа.
 
-Controllers always belong to a module, which is why we include the `controllers` array within the `@Module()` decorator. Since we haven't yet defined any other modules except the root `AppModule`, we'll use that to introduce the `CatsController`:
+Кантролеры заўсёды належаць да модуля, таму мы ўключаем масіў `controllers` у дэкаратар `@Module()` . Паколькі мы яшчэ не вызначылі ніякіх іншых модуляў, акрамя каранёвага `AppModule` , мы будзем выкарыстоўваць яго, каб прадставіць `CatsController` :
 
 ```typescript
 @@filename(app.module)
@@ -505,11 +505,11 @@ import { CatsController } from './cats/cats.controller';
 export class AppModule {}
 ```
 
-We attached the metadata to the module class using the `@Module()` decorator, and Nest can now easily reflect which controllers have to be mounted.
+Мы далучылі метаданыя да класа модуля з дапамогай дэкаратара `@Module()` , і цяпер Nest можа лёгка вызначыць, якія кантролеры трэба ўсталяваць.
 
-## Library-specific approach
+## Бібліятэчна-спецыфічны падыход
 
-So far we've discussed the Nest standard way of manipulating responses. The second way of manipulating the response is to use a library-specific [response object](https://expressjs.com/en/api.html#res). In order to inject a particular response object, we need to use the `@Res()` decorator. To show the differences, let's rewrite the `CatsController` to the following:
+Да гэтага часу мы абмяркоўвалі стандартны спосаб Nest маніпулявання адказамі. Другі спосаб маніпулявання адказам - выкарыстанне бібліятэчнага [аб'екта адказу](https://expressjs.com/en/api.html#res) . Для таго, каб увесці пэўны аб'ект адказу, нам трэба выкарыстоўваць дэкаратар `@Res()` . Каб паказаць адрозненні, давайце перапішам `CatsController` да наступнага:
 
 ```typescript
 @@filename()
@@ -547,9 +547,9 @@ export class CatsController {
 }
 ```
 
-Though this approach works, and does in fact allow for more flexibility in some ways by providing full control of the response object (headers manipulation, library-specific features, and so on), it should be used with care. In general, the approach is much less clear and does have some disadvantages. The main disadvantage is that your code becomes platform-dependent (as underlying libraries may have different APIs on the response object), and harder to test (you'll have to mock the response object, etc.).
+Нягледзячы на ​​тое, што гэты падыход працуе і сапраўды забяспечвае большую гібкасць у пэўным сэнсе, забяспечваючы поўны кантроль над аб'ектам адказу (маніпуляцыі з загалоўкамі, спецыфічныя функцыі бібліятэкі і г.д.), яго трэба выкарыстоўваць асцярожна. У цэлым гэты падыход значна менш зразумелы і мае некаторыя недахопы. Асноўным недахопам з'яўляецца тое, што ваш код становіцца залежным ад платформы (паколькі асноўныя бібліятэкі могуць мець розныя API для аб'екта адказу), і яго цяжэй праверыць (вам давядзецца здзекавацца з аб'екта адказу і г.д.).
 
-Also, in the example above, you lose compatibility with Nest features that depend on Nest standard response handling, such as Interceptors and `@HttpCode()` / `@Header()` decorators. To fix this, you can set the `passthrough` option to `true`, as follows:
+Акрамя таго, у прыведзеным вышэй прыкладзе вы губляеце сумяшчальнасць з функцыямі Nest, якія залежаць ад стандартнай апрацоўкі адказаў Nest, такімі як перахопнікі і дэкаратары `@HttpCode()` / `@Header()` . Каб выправіць гэта, вы можаце ўсталяваць опцыю `passthrough` ў `true` наступным чынам:
 
 ```typescript
 @@filename()
@@ -567,4 +567,4 @@ findAll(res) {
 }
 ```
 
-Now you can interact with the native response object (for example, set cookies or headers depending on certain conditions), but leave the rest to the framework.
+Цяпер вы можаце ўзаемадзейнічаць з уласным аб'ектам адказу (напрыклад, усталёўваць файлы cookie або загалоўкі ў залежнасці ад пэўных умоў), але пакіньце ўсё астатняе фрэймворку.
