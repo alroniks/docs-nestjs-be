@@ -1,4 +1,4 @@
-### Pipes
+# Pipes
 
 A pipe is a class annotated with the `@Injectable()` decorator, which implements the `PipeTransform` interface.
 
@@ -15,9 +15,11 @@ In both cases, pipes operate on the `arguments` being processed by a <a href="co
 
 Nest comes with a number of built-in pipes that you can use out-of-the-box. You can also build your own custom pipes. In this chapter, we'll introduce the built-in pipes and show how to bind them to route handlers. We'll then examine several custom-built pipes to show how you can build one from scratch.
 
-> info **Hint** Pipes run inside the exceptions zone. This means that when a Pipe throws an exception it is handled by the exceptions layer (global exceptions filter and any [exceptions filters](/exception-filters) that are applied to the current context). Given the above, it should be clear that when an exception is thrown in a Pipe, no controller method is subsequently executed. This gives you a best-practice technique for validating data coming into the application from external sources at the system boundary.
+:::info **Hint**
+Pipes run inside the exceptions zone. This means that when a Pipe throws an exception it is handled by the exceptions layer (global exceptions filter and any [exceptions filters](/exception-filters) that are applied to the current context). Given the above, it should be clear that when an exception is thrown in a Pipe, no controller method is subsequently executed. This gives you a best-practice technique for validating data coming into the application from external sources at the system boundary.
+:::
 
-#### Built-in pipes
+## Built-in pipes
 
 Nest comes with nine pipes available out-of-the-box:
 
@@ -35,7 +37,7 @@ They're exported from the `@nestjs/common` package.
 
 Let's take a quick look at using `ParseIntPipe`. This is an example of the **transformation** use case, where the pipe ensures that a method handler parameter is converted to a JavaScript integer (or throws an exception if the conversion fails). Later in this chapter, we'll show a simple custom implementation for a `ParseIntPipe`. The example techniques below also apply to the other built-in transformation pipes (`ParseBoolPipe`, `ParseFloatPipe`, `ParseEnumPipe`, `ParseArrayPipe` and `ParseUUIDPipe`, which we'll refer to as the `Parse*` pipes in this chapter).
 
-#### Binding pipes
+## Binding pipes
 
 To use a pipe, we need to bind an instance of the pipe class to the appropriate context. In our `ParseIntPipe` example, we want to associate the pipe with a particular route handler method, and make sure it runs before the method is called. We do so with the following construct, which we'll refer to as binding the pipe at the method parameter level:
 
@@ -105,13 +107,17 @@ async findOne(uuid) {
 }
 ```
 
-> info **Hint** When using `ParseUUIDPipe()` you are parsing UUID in version 3, 4 or 5, if you only require a specific version of UUID you can pass a version in the pipe options.
+:::info **Hint**
+When using `ParseUUIDPipe()` you are parsing UUID in version 3, 4 or 5, if you only require a specific version of UUID you can pass a version in the pipe options.
+:::
 
 Above we've seen examples of binding the various `Parse*` family of built-in pipes. Binding validation pipes is a little bit different; we'll discuss that in the following section.
 
-> info **Hint** Also, see [Validation techniques](/techniques/validation) for extensive examples of validation pipes.
+:::info **Hint**
+Also, see [Validation techniques](/techniques/validation) for extensive examples of validation pipes.
+:::
 
-#### Custom pipes
+## Custom pipes
 
 As mentioned, you can build your own custom pipes. While Nest provides a robust built-in `ParseIntPipe` and `ValidationPipe`, let's build simple custom versions of each from scratch to see how custom pipes are constructed.
 
@@ -138,7 +144,9 @@ export class ValidationPipe {
 }
 ```
 
-> info **Hint** `PipeTransform<T, R>` is a generic interface that must be implemented by any pipe. The generic interface uses `T` to indicate the type of the input `value`, and `R` to indicate the return type of the `transform()` method.
+:::info **Hint**
+`PipeTransform<T, R>` is a generic interface that must be implemented by any pipe. The generic interface uses `T` to indicate the type of the input `value`, and `R` to indicate the return type of the `transform()` method.
+:::
 
 Every pipe must implement the `transform()` method to fulfill the `PipeTransform` interface contract. This method has two parameters:
 
@@ -188,9 +196,11 @@ These properties describe the currently processed argument.
   </tr>
 </table>
 
-> warning **Warning** TypeScript interfaces disappear during transpilation. Thus, if a method parameter's type is declared as an interface instead of a class, the `metatype` value will be `Object`.
+:::warning **Warning**
+TypeScript interfaces disappear during transpilation. Thus, if a method parameter's type is declared as an interface instead of a class, the `metatype` value will be `Object`.
+:::
 
-#### Schema based validation
+## Schema based validation
 
 Let's make our validation pipe a little more useful. Take a closer look at the `create()` method of the `CatsController`, where we probably would like to ensure that the post body object is valid before attempting to run our service method.
 
@@ -228,7 +238,7 @@ This is, of course, exactly the use case for which pipes are designed. So let's 
 
 <app-banner-courses></app-banner-courses>
 
-#### Object schema validation
+## Object schema validation
 
 There are several approaches available for doing object validation in a clean, [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) way. One common approach is to use **schema-based** validation. Let's go ahead and try that approach.
 
@@ -281,7 +291,7 @@ export class ZodValidationPipe {
 
 ```
 
-#### Binding validation pipes
+## Binding validation pipes
 
 Earlier, we saw how to bind transformation pipes (like `ParseIntPipe` and the rest of the `Parse*` pipes).
 
@@ -327,13 +337,19 @@ async create(createCatDto) {
 }
 ```
 
-> info **Hint** The `@UsePipes()` decorator is imported from the `@nestjs/common` package.
+:::info **Hint**
+The `@UsePipes()` decorator is imported from the `@nestjs/common` package.
+:::
 
-> warning **Warning** `zod` library requires the `strictNullChecks` configuration to be enabled in your `tsconfig.json` file.
+:::warning **Warning**
+`zod` library requires the `strictNullChecks` configuration to be enabled in your `tsconfig.json` file.
+:::
 
-#### Class validator
+## Class validator
 
-> warning **Warning** The techniques in this section require TypeScript and are not available if your app is written using vanilla JavaScript.
+:::warning **Warning**
+The techniques in this section require TypeScript and are not available if your app is written using vanilla JavaScript.
+:::
 
 Let's look at an alternate implementation for our validation technique.
 
@@ -361,7 +377,9 @@ export class CreateCatDto {
 }
 ```
 
-> info **Hint** Read more about the class-validator decorators [here](https://github.com/typestack/class-validator#usage).
+:::info **Hint**
+Read more about the class-validator decorators [here](https://github.com/typestack/class-validator#usage).
+:::
 
 Now we can create a `ValidationPipe` class that uses these annotations.
 
@@ -392,9 +410,13 @@ export class ValidationPipe implements PipeTransform<any> {
 }
 ```
 
-> info **Hint** As a reminder, you don't have to build a generic validation pipe on your own since the `ValidationPipe` is provided by Nest out-of-the-box. The built-in `ValidationPipe` offers more options than the sample we built in this chapter, which has been kept basic for the sake of illustrating the mechanics of a custom-built pipe. You can find full details, along with lots of examples [here](/techniques/validation).
+:::info **Hint**
+As a reminder, you don't have to build a generic validation pipe on your own since the `ValidationPipe` is provided by Nest out-of-the-box. The built-in `ValidationPipe` offers more options than the sample we built in this chapter, which has been kept basic for the sake of illustrating the mechanics of a custom-built pipe. You can find full details, along with lots of examples [here](/techniques/validation).
+:::
 
-> warning **Notice** We used the [class-transformer](https://github.com/typestack/class-transformer) library above which is made by the same author as the **class-validator** library, and as a result, they play very well together.
+:::warning **Notice** We used the [class-transformer](https://github.com/typestack/class-transformer) library above which is made by the same author as the **class-validator**
+library, and as a result, they play very well together.
+:::
 
 Let's go through this code. First, note that the `transform()` method is marked as `async`. This is possible because Nest supports both synchronous and **asynchronous** pipes. We make this method `async` because some of the class-validator validations [can be async](https://github.com/typestack/class-validator#custom-validation-classes) (utilize Promises).
 
@@ -421,7 +443,7 @@ async create(
 
 Parameter-scoped pipes are useful when the validation logic concerns only one specified parameter.
 
-#### Global scoped pipes
+## Global scoped pipes
 
 Since the `ValidationPipe` was created to be as generic as possible, we can realize its full utility by setting it up as a **global-scoped** pipe so that it is applied to every route handler across the entire application.
 
@@ -435,7 +457,9 @@ async function bootstrap() {
 bootstrap();
 ```
 
-> warning **Notice** In the case of <a href="faq/hybrid-application">hybrid apps</a> the `useGlobalPipes()` method doesn't set up pipes for gateways and micro services. For "standard" (non-hybrid) microservice apps, `useGlobalPipes()` does mount pipes globally.
+:::warning **Notice**
+In the case of <a href="faq/hybrid-application">hybrid apps</a> the `useGlobalPipes()` method doesn't set up pipes for gateways and micro services. For "standard" (non-hybrid) microservice apps, `useGlobalPipes()` does mount pipes globally.
+:::
 
 Global pipes are used across the whole application, for every controller and every route handler.
 
@@ -457,13 +481,15 @@ import { APP_PIPE } from '@nestjs/core';
 export class AppModule {}
 ```
 
-> info **Hint** When using this approach to perform dependency injection for the pipe, note that regardless of the module where this construction is employed, the pipe is, in fact, global. Where should this be done? Choose the module where the pipe (`ValidationPipe` in the example above) is defined. Also, `useClass` is not the only way of dealing with custom provider registration. Learn more [here](/fundamentals/custom-providers).
+:::info **Hint**
+When using this approach to perform dependency injection for the pipe, note that regardless of the module where this construction is employed, the pipe is, in fact, global. Where should this be done? Choose the module where the pipe (`ValidationPipe` in the example above) is defined. Also, `useClass` is not the only way of dealing with custom provider registration. Learn more [here](/fundamentals/custom-providers).
+:::
 
-#### The built-in ValidationPipe
+## The built-in ValidationPipe
 
 As a reminder, you don't have to build a generic validation pipe on your own since the `ValidationPipe` is provided by Nest out-of-the-box. The built-in `ValidationPipe` offers more options than the sample we built in this chapter, which has been kept basic for the sake of illustrating the mechanics of a custom-built pipe. You can find full details, along with lots of examples [here](/techniques/validation).
 
-#### Transformation use case
+## Transformation use case
 
 Validation isn't the only use case for custom pipes. At the beginning of this chapter, we mentioned that a pipe can also **transform** the input data to the desired format. This is possible because the value returned from the `transform` function completely overrides the previous value of the argument.
 
@@ -534,7 +560,7 @@ findOne(userEntity) {
 
 We leave the implementation of this pipe to the reader, but note that like all other transformation pipes, it receives an input value (an `id`) and returns an output value (a `UserEntity` object). This can make your code more declarative and [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) by abstracting boilerplate code out of your handler and into a common pipe.
 
-#### Providing defaults
+## Providing defaults
 
 `Parse*` pipes expect a parameter's value to be defined. They throw an exception upon receiving `null` or `undefined` values. To allow an endpoint to handle missing querystring parameter values, we have to provide a default value to be injected before the `Parse*` pipes operate on these values. The `DefaultValuePipe` serves that purpose. Simply instantiate a `DefaultValuePipe` in the `@Query()` decorator before the relevant `Parse*` pipe, as shown below:
 

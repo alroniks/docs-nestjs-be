@@ -1,4 +1,4 @@
-### Modules
+# Modules
 
 A module is a class annotated with a `@Module()` decorator. The `@Module()` decorator provides metadata that **Nest** makes use of to organize the application structure.
 
@@ -17,7 +17,7 @@ The `@Module()` decorator takes a single object whose properties describe the mo
 
 The module **encapsulates** providers by default. This means that it's impossible to inject providers that are neither directly part of the current module nor exported from the imported modules. Thus, you may consider the exported providers from a module as the module's public interface, or API.
 
-#### Feature modules
+## Feature modules
 
 The `CatsController` and `CatsService` belong to the same application domain. As they are closely related, it makes sense to move them into a feature module. A feature module simply organizes code relevant for a specific feature, keeping code organized and establishing clear boundaries. This helps us manage complexity and develop with [SOLID](https://en.wikipedia.org/wiki/SOLID) principles, especially as the size of the application and/or team grow.
 
@@ -36,7 +36,9 @@ import { CatsService } from './cats.service';
 export class CatsModule {}
 ```
 
-> info **Hint** To create a module using the CLI, simply execute the `$ nest g module cats` command.
+:::info **Hint**
+To create a module using the CLI, simply execute the `$ nest g module cats` command.
+:::
 
 Above, we defined the `CatsModule` in the `cats.module.ts` file, and moved everything related to this module into the `cats` directory. The last thing we need to do is import this module into the root module (the `AppModule`, defined in the `app.module.ts` file).
 
@@ -75,7 +77,7 @@ Here is how our directory structure looks now:
   </div>
 </div>
 
-#### Shared modules
+## Shared modules
 
 In Nest, modules are **singletons** by default, and thus you can share the same instance of any provider between multiple modules effortlessly.
 
@@ -101,7 +103,7 @@ Now any module that imports the `CatsModule` has access to the `CatsService` and
 
 <app-banner-devtools></app-banner-devtools>
 
-#### Module re-exporting
+## Module re-exporting
 
 As seen above, Modules can export their internal providers. In addition, they can re-export modules that they import. In the example below, the `CommonModule` is both imported into **and** exported from the `CoreModule`, making it available for other modules which import this one.
 
@@ -113,7 +115,7 @@ As seen above, Modules can export their internal providers. In addition, they ca
 export class CoreModule {}
 ```
 
-#### Dependency injection
+## Dependency injection
 
 A module class can **inject** providers as well (e.g., for configuration purposes):
 
@@ -149,7 +151,7 @@ export class CatsModule {
 
 However, module classes themselves cannot be injected as providers due to [circular dependency](/fundamentals/circular-dependency) .
 
-#### Global modules
+## Global modules
 
 If you have to import the same set of modules everywhere, it can get tedious. Unlike in Nest, [Angular](https://angular.dev) `providers` are registered in the global scope. Once defined, they're available everywhere. Nest, however, encapsulates providers inside the module scope. You aren't able to use a module's providers elsewhere without first importing the encapsulating module.
 
@@ -171,9 +173,11 @@ export class CatsModule {}
 
 The `@Global()` decorator makes the module global-scoped. Global modules should be registered **only once**, generally by the root or core module. In the above example, the `CatsService` provider will be ubiquitous, and modules that wish to inject the service will not need to import the `CatsModule` in their imports array.
 
-> info **Hint** Making everything global is not a good design decision. Global modules are available to reduce the amount of necessary boilerplate. The `imports` array is generally the preferred way to make the module's API available to consumers.
+:::info **Hint**
+Making everything global is not a good design decision. Global modules are available to reduce the amount of necessary boilerplate. The `imports` array is generally the preferred way to make the module's API available to consumers.
+:::
 
-#### Dynamic modules
+## Dynamic modules
 
 The Nest module system includes a powerful feature called **dynamic modules**. This feature enables you to easily create customizable modules that can register and configure providers dynamically. Dynamic modules are covered extensively [here](/fundamentals/dynamic-modules). In this chapter, we'll give a brief overview to complete the introduction to modules.
 
@@ -220,7 +224,9 @@ export class DatabaseModule {
 }
 ```
 
-> info **Hint** The `forRoot()` method may return a dynamic module either synchronously or asynchronously (i.e., via a `Promise`).
+:::info **Hint**
+The `forRoot()` method may return a dynamic module either synchronously or asynchronously (i.e., via a `Promise`).
+:::
 
 This module defines the `Connection` provider by default (in the `@Module()` decorator metadata), but additionally - depending on the `entities` and `options` objects passed into the `forRoot()` method - exposes a collection of providers, for example, repositories. Note that the properties returned by the dynamic module **extend** (rather than override) the base module metadata defined in the `@Module()` decorator. That's how both the statically declared `Connection` provider **and** the dynamically generated repository providers are exported from the module.
 
@@ -235,7 +241,9 @@ If you want to register a dynamic module in the global scope, set the `global` p
 }
 ```
 
-> warning **Warning** As mentioned above, making everything global **is not a good design decision**.
+:::warning **Warning**
+As mentioned above, making everything global **is not a good design decision**.
+:::
 
 The `DatabaseModule` can be imported and configured in the following manner:
 
@@ -266,4 +274,6 @@ export class AppModule {}
 
 The [Dynamic modules](/fundamentals/dynamic-modules) chapter covers this topic in greater detail, and includes a [working example](https://github.com/nestjs/nest/tree/master/sample/25-dynamic-modules).
 
-> info **Hint** Learn how to build highly customizable dynamic modules with the use of `ConfigurableModuleBuilder` here in [this chapter](/fundamentals/dynamic-modules#configurable-module-builder).
+:::info **Hint**
+Learn how to build highly customizable dynamic modules with the use of `ConfigurableModuleBuilder` here in [this chapter](/fundamentals/dynamic-modules#configurable-module-builder).
+:::
