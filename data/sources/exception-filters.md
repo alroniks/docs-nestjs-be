@@ -16,7 +16,9 @@ Out of the box, this action is performed by a built-in **global exception filter
 ```
 
 :::info **Hint**
+
 The global exception filter partially supports the `http-errors` library. Basically, any thrown exception containing the `statusCode` and `message` properties will be properly populated and sent back as a response (instead of the default `InternalServerErrorException` for unrecognized exceptions).
+
 :::
 
 ## Throwing standard exceptions
@@ -34,7 +36,9 @@ async findAll() {
 ```
 
 :::info **Hint**
+
 We used the `HttpStatus` here. This is a helper enum imported from the `@nestjs/common` package.
+
 :::
 
 When the client calls this endpoint, the response looks like this:
@@ -209,11 +213,15 @@ export class HttpExceptionFilter {
 ```
 
 :::info **Hint**
+
 All exception filters should implement the generic `ExceptionFilter<T>` interface. This requires you to provide the `catch(exception: T, host: ArgumentsHost)` method with its indicated signature. `T` indicates the type of the exception.
+
 :::
 
 :::warning **Warning**
+
 If you are using `@nestjs/platform-fastify` you can use `response.send()` instead of `response.json()`. Don't forget to import the correct types from `fastify`.
+
 :::
 
 The `@Catch(HttpException)` decorator binds the required metadata to the exception filter, telling Nest that this particular filter is looking for exceptions of type `HttpException` and nothing else. The `@Catch()` decorator may take a single parameter, or a comma-separated list. This lets you set up the filter for several types of exceptions at once.
@@ -247,7 +255,9 @@ async create(createCatDto) {
 ```
 
 :::info **Hint**
+
 The `@UseFilters()` decorator is imported from the `@nestjs/common` package.
+
 :::
 
 We have used the `@UseFilters()` decorator here. Similar to the `@Catch()` decorator, it can take a single filter instance, or a comma-separated list of filter instances. Here, we created the instance of `HttpExceptionFilter` in place. Alternatively, you may pass the class (instead of an instance), leaving responsibility for instantiation to the framework, and enabling **dependency injection**.
@@ -269,7 +279,9 @@ async create(createCatDto) {
 ```
 
 :::info **Hint** Prefer applying filters by using classes instead of instances when possible. It reduces **memory usage**
+
 since Nest can easily reuse instances of the same class across your entire module.
+
 :::
 
 In the example above, the `HttpExceptionFilter` is applied only to the single `create()` route handler, making it method-scoped. Exception filters can be scoped at different levels: method-scoped of the controller/resolver/gateway, controller-scoped, or global-scoped.
@@ -296,7 +308,9 @@ bootstrap();
 ```
 
 :::warning **Warning**
+
 The `useGlobalFilters()` method does not set up filters for gateways or hybrid applications.
+
 :::
 
 Global-scoped filters are used across the whole application, for every controller and every route handler. In terms of dependency injection, global filters registered from outside of any module (with `useGlobalFilters()` as in the example above) cannot inject dependencies since this is done outside the context of any module. In order to solve this issue, you can register a global-scoped filter **directly from any module** using the following construction:
@@ -318,7 +332,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 When using this approach to perform dependency injection for the filter, note that regardless of the module where this construction is employed, the filter is, in fact, global. Where should this be done? Choose the module where the filter (`HttpExceptionFilter` in the example above) is defined. Also, `useClass` is not the only way of dealing with custom provider registration. Learn more [here](/fundamentals/custom-providers).
+
 :::
 
 You can add as many filters with this technique as needed; simply add each to the providers array.
@@ -367,7 +383,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
 ```
 
 :::warning **Warning**
+
 When combining an exception filter that catches everything with a filter that is bound to a specific type, the "Catch anything" filter should be declared first to allow the specific filter to correctly handle the bound type.
+
 :::
 
 ## Inheritance
@@ -400,7 +418,9 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
 ```
 
 :::warning **Warning**
+
 Method-scoped and Controller-scoped filters that extend the `BaseExceptionFilter` should not be instantiated with `new`. Instead, let the framework instantiate them automatically.
+
 :::
 
 Global filters **can** extend the base filter. This can be done in either of two ways.

@@ -124,7 +124,9 @@ import { ThrottlerBehindProxyGuard } from './throttler-behind-proxy.guard';
 ```
 
 :::info **Hint**
+
 You can find the API of the `req` Request object for express [here](https://expressjs.com/en/api.html#req.ips) and for fastify [here](https://www.fastify.io/docs/latest/Reference/Request/).
+
 :::
 
 ## Websockets
@@ -150,7 +152,9 @@ export class WsThrottlerGuard extends ThrottlerGuard {
 ```
 
 :::info **Hint**
+
 If you are using ws, it is necessary to replace the `_socket` with `conn`
+
 :::
 
 There's a few things to keep in mind when working with WebSockets:
@@ -159,7 +163,9 @@ There's a few things to keep in mind when working with WebSockets:
 - When a limit is reached, Nest will emit an `exception` event, so make sure there is a listener ready for this
 
 :::info **Hint**
+
 If you are using the `@nestjs/platform-ws` package you can use `client._socket.remoteAddress` instead.
+
 :::
 
 ## GraphQL
@@ -272,7 +278,9 @@ The built in storage is an in memory cache that keeps track of the requests made
 For distributed servers you could use the community storage provider for [Redis](https://github.com/kkoomen/nestjs-throttler-storage-redis) to have a single source of truth.
 
 :::info **Note**
+
 `ThrottlerStorage` can be imported from `@nestjs/throttler`.
+
 :::
 
 ## Time Helpers

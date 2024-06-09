@@ -1,7 +1,9 @@
 # Streaming files
 
 :::info **Note**
+
 This chapter shows how you can stream files from your **HTTP application**. The examples presented below do not apply to GraphQL or Microservice applications.
+
 :::
 
 There may be times where you would like to send back a file from your REST API to the client. To do this with Nest, normally you'd do the following:
@@ -24,7 +26,9 @@ But in doing so you end up losing access to your post-controller interceptor log
 A `StreamableFile` is a class that holds onto the stream that is to be returned. To create a new `StreamableFile`, you can pass either a `Buffer` or a `Stream` to the `StreamableFile` constructor.
 
 :::info **hint**
+
 The `StreamableFile` class can be imported from `@nestjs/common`.
+
 :::
 
 ## Cross-platform support

@@ -13,7 +13,9 @@ $ npm install -g @nestjs/cli
 ```
 
 :::info **Hint**
+
 Alternatively, you can use this command `npx @nestjs/cli@latest` without installing the cli globally.
+
 :::
 
 ## Basic workflow
@@ -41,7 +43,9 @@ $ npm run start:dev
 In your browser, open [http://localhost:3000](http://localhost:3000) to see the new application running. The app will automatically recompile and reload when you change any of the source files.
 
 :::info **Hint**
+
 We recommend using the [SWC builder](/recipes/swc) for faster builds (10x more performant than the default TypeScript compiler).
+
 :::
 
 ## Project structure

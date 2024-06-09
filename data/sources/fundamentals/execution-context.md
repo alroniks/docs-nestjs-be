@@ -25,7 +25,9 @@ if (host.getType() === 'http') {
 ```
 
 :::info **Hint**
+
 The `GqlContextType` is imported from the `@nestjs/graphql` package.
+
 :::
 
 With the application type available, we can write more generic components, as shown below.
@@ -184,7 +186,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 The `Reflector` class is imported from the `@nestjs/core` package.
+
 :::
 
 Now, to read the handler metadata, use the `get()` method:
@@ -282,7 +286,9 @@ async create(createCatDto) {
 ```
 
 :::info **Hint**
+
 The `@SetMetadata()` decorator is imported from the `@nestjs/common` package.
+
 :::
 
 With the construction above, we attached the `roles` metadata (`roles` is a metadata key and `['admin']` is the associated value) to the `create()` method. While this works, it's not good practice to use `@SetMetadata()` directly in your routes. Instead, you can create your own decorators, as shown below:
@@ -337,7 +343,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 The `Reflector` class is imported from the `@nestjs/core` package.
+
 :::
 
 Now, to read the handler metadata, use the `get()` method.

@@ -60,7 +60,9 @@ export class HttpExceptionFilter implements GqlExceptionFilter {
 ```
 
 :::info **Hint**
+
 Both `GqlExceptionFilter` and `GqlArgumentsHost` are imported from the `@nestjs/graphql` package.
+
 :::
 
 Note that unlike the REST case, you don't use the native `response` object to generate a response.
@@ -87,7 +89,9 @@ async upvotePost(
 ```
 
 :::info **Hint**
+
 In the above example, we have assumed that the `user` object is assigned to the context of your GraphQL application.
+
 :::
 
 ## Execute enhancers at the field resolver level
@@ -101,7 +105,9 @@ GraphQLModule.forRoot({
 ```
 
 :::danger **Warning**
+
 Enabling enhancers for field resolvers can cause performance issues when you are returning lots of records and your field resolver is executed thousands of times. For this reason, when you enable `fieldResolverEnhancers`, we advise you to skip execution of enhancers that are not strictly necessary for your field resolvers. You can do this using the following helper function:
+
 :::
 
 ```typescript

@@ -5,7 +5,9 @@ internally to generate mock objects, simplifying the process of testing by autom
 of classes. Automock enables you to streamline test development and focus on writing robust and efficient unit tests.
 
 :::info **info**
+
 `Automock` is a third party package and is not managed by the NestJS core team.
+
 :::
 > Please, report any issues found with the library in the [appropriate repository](https://github.com/automock/automock)
 

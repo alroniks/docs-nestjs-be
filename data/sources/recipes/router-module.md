@@ -1,7 +1,9 @@
 # Router module
 
 :::info **Hint**
+
 This chapter is only relevant to HTTP-based applications.
+
 :::
 
 In an HTTP application (for example, REST API), the route path for a handler is determined by concatenating the (optional) prefix declared for the controller (inside the `@Controller` decorator),
@@ -28,7 +30,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 The `RouterModule` class is exported from the `@nestjs/core` package.
+
 :::
 
 In addition, you can define hierarchical structures. This means each module can have `children` modules.
@@ -61,7 +65,9 @@ The children modules will inherit their parent's prefix. In the following exampl
 ```
 
 :::info **Hint**
+
 This feature should be used very carefully, as overusing it can make code difficult to maintain over time.
+
 :::
 
 In the example above, any controller registered inside the `DashboardModule` will have an extra `/admin/dashboard` prefix (as the module concatenates paths from top to bottom - recursively - parent to children).

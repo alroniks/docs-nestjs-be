@@ -51,7 +51,9 @@ bootstrap();
 ```
 
 :::info **Hint** Microservices use the **TCP**
+
 transport layer by default.
+
 :::
 
 The second argument of the `createMicroservice()` method is an `options` object. This object may consist of two members:
@@ -200,7 +202,9 @@ async handleUserCreated(data) {
 ```
 
 :::info **Hint** You can register multiple event handlers for a **single**
+
 event pattern and all of them will be automatically triggered in parallel.
+
 :::
 
 The `handleUserCreated()` **event handler** listens for the `'user_created'` event. The event handler takes a single argument, the `data` passed from the client (in this case, an event payload which has been sent over the network).
@@ -228,11 +232,15 @@ getDate(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `NatsContext` are imported from `@nestjs/microservices`.
+
 :::
 
 :::info **Hint**
+
 You can also pass in a property key to the `@Payload()` decorator to extract a specific property from the incoming payload object, for example, `@Payload('id')`.
+
 :::
 
 ## Client
@@ -265,7 +273,9 @@ constructor(
 ```
 
 :::info **Hint**
+
 The `ClientsModule` and `ClientProxy` classes are imported from the `@nestjs/microservices` package.
+
 :::
 
 At times we may need to fetch the transporter configuration from another service (say a `ConfigService`), rather than hard-coding it in our client application. To do this, we can register a [custom provider](/fundamentals/custom-providers) using the `ClientProxyFactory` class. This class has a static `create()` method, which accepts a transporter options object, and returns a customized `ClientProxy` instance.
@@ -287,7 +297,9 @@ At times we may need to fetch the transporter configuration from another service
 ```
 
 :::info **Hint**
+
 The `ClientProxyFactory` is imported from the `@nestjs/microservices` package.
+
 :::
 
 Another option is to use the `@Client()` property decorator.
@@ -298,7 +310,9 @@ client: ClientProxy;
 ```
 
 :::info **Hint**
+
 The `@Client()` decorator is imported from the `@nestjs/microservices` package.
+
 :::
 
 Using the `@Client()` decorator is not the preferred technique, as it is harder to test and harder to share a client instance.
@@ -401,7 +415,9 @@ this.client
 ```
 
 :::info **Hint**
+
 The `timeout` operator is imported from the `rxjs/operators` package.
+
 :::
 
 After 5 seconds, if the microservice isn't responding, it will throw an error.

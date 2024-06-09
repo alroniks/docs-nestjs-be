@@ -16,7 +16,9 @@ In both cases, pipes operate on the `arguments` being processed by a <a href="co
 Nest comes with a number of built-in pipes that you can use out-of-the-box. You can also build your own custom pipes. In this chapter, we'll introduce the built-in pipes and show how to bind them to route handlers. We'll then examine several custom-built pipes to show how you can build one from scratch.
 
 :::info **Hint**
+
 Pipes run inside the exceptions zone. This means that when a Pipe throws an exception it is handled by the exceptions layer (global exceptions filter and any [exceptions filters](/exception-filters) that are applied to the current context). Given the above, it should be clear that when an exception is thrown in a Pipe, no controller method is subsequently executed. This gives you a best-practice technique for validating data coming into the application from external sources at the system boundary.
+
 :::
 
 ## Built-in pipes
@@ -108,13 +110,17 @@ async findOne(uuid) {
 ```
 
 :::info **Hint**
+
 When using `ParseUUIDPipe()` you are parsing UUID in version 3, 4 or 5, if you only require a specific version of UUID you can pass a version in the pipe options.
+
 :::
 
 Above we've seen examples of binding the various `Parse*` family of built-in pipes. Binding validation pipes is a little bit different; we'll discuss that in the following section.
 
 :::info **Hint**
+
 Also, see [Validation techniques](/techniques/validation) for extensive examples of validation pipes.
+
 :::
 
 ## Custom pipes
@@ -145,7 +151,9 @@ export class ValidationPipe {
 ```
 
 :::info **Hint**
+
 `PipeTransform<T, R>` is a generic interface that must be implemented by any pipe. The generic interface uses `T` to indicate the type of the input `value`, and `R` to indicate the return type of the `transform()` method.
+
 :::
 
 Every pipe must implement the `transform()` method to fulfill the `PipeTransform` interface contract. This method has two parameters:
@@ -197,7 +205,9 @@ These properties describe the currently processed argument.
 </table>
 
 :::warning **Warning**
+
 TypeScript interfaces disappear during transpilation. Thus, if a method parameter's type is declared as an interface instead of a class, the `metatype` value will be `Object`.
+
 :::
 
 ## Schema based validation
@@ -338,17 +348,23 @@ async create(createCatDto) {
 ```
 
 :::info **Hint**
+
 The `@UsePipes()` decorator is imported from the `@nestjs/common` package.
+
 :::
 
 :::warning **Warning**
+
 `zod` library requires the `strictNullChecks` configuration to be enabled in your `tsconfig.json` file.
+
 :::
 
 ## Class validator
 
 :::warning **Warning**
+
 The techniques in this section require TypeScript and are not available if your app is written using vanilla JavaScript.
+
 :::
 
 Let's look at an alternate implementation for our validation technique.
@@ -378,7 +394,9 @@ export class CreateCatDto {
 ```
 
 :::info **Hint**
+
 Read more about the class-validator decorators [here](https://github.com/typestack/class-validator#usage).
+
 :::
 
 Now we can create a `ValidationPipe` class that uses these annotations.
@@ -411,11 +429,15 @@ export class ValidationPipe implements PipeTransform<any> {
 ```
 
 :::info **Hint**
+
 As a reminder, you don't have to build a generic validation pipe on your own since the `ValidationPipe` is provided by Nest out-of-the-box. The built-in `ValidationPipe` offers more options than the sample we built in this chapter, which has been kept basic for the sake of illustrating the mechanics of a custom-built pipe. You can find full details, along with lots of examples [here](/techniques/validation).
+
 :::
 
 :::warning **Notice** We used the [class-transformer](https://github.com/typestack/class-transformer) library above which is made by the same author as the **class-validator**
+
 library, and as a result, they play very well together.
+
 :::
 
 Let's go through this code. First, note that the `transform()` method is marked as `async`. This is possible because Nest supports both synchronous and **asynchronous** pipes. We make this method `async` because some of the class-validator validations [can be async](https://github.com/typestack/class-validator#custom-validation-classes) (utilize Promises).
@@ -458,7 +480,9 @@ bootstrap();
 ```
 
 :::warning **Notice**
+
 In the case of <a href="faq/hybrid-application">hybrid apps</a> the `useGlobalPipes()` method doesn't set up pipes for gateways and micro services. For "standard" (non-hybrid) microservice apps, `useGlobalPipes()` does mount pipes globally.
+
 :::
 
 Global pipes are used across the whole application, for every controller and every route handler.
@@ -482,7 +506,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 When using this approach to perform dependency injection for the pipe, note that regardless of the module where this construction is employed, the pipe is, in fact, global. Where should this be done? Choose the module where the pipe (`ValidationPipe` in the example above) is defined. Also, `useClass` is not the only way of dealing with custom provider registration. Learn more [here](/fundamentals/custom-providers).
+
 :::
 
 ## The built-in ValidationPipe

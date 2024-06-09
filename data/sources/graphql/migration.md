@@ -168,7 +168,9 @@ GraphQLModule.forRoot<ApolloFederationDriverConfig>({
 ```
 
 :::info **Hint**
+
 Both `ApolloFederationDriver` class and `ApolloFederationDriverConfig` are exported from the `@nestjs/apollo` package.
+
 :::
 
 Likewise, instead of using a dedicated `GraphQLGatewayModule`, simply pass the appropriate `driver` class to your `GraphQLModule` settings:
@@ -201,5 +203,7 @@ GraphQLModule.forRoot<ApolloGatewayDriverConfig>({
 ```
 
 :::info **Hint**
+
 Both `ApolloGatewayDriver` class and `ApolloGatewayDriverConfig` are exported from the `@nestjs/apollo` package.
+
 :::

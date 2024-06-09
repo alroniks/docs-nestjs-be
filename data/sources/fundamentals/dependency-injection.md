@@ -138,7 +138,9 @@ What happens when your requirements go beyond those offered by _Standard provide
 Nest allows you to define Custom providers to handle these cases. It provides several ways to define custom providers. Let's walk through them.
 
 :::info **Hint**
+
 If you are having problems with dependency resolution you can set the `NEST_DEBUG` environment variable and get extra dependency resolution logs during startup.
+
 :::
 
 ## Value providers: `useValue`
@@ -189,7 +191,9 @@ export class AppModule {}
 In this example, we are associating a string-valued token (`'CONNECTION'`) with a pre-existing `connection` object we've imported from an external file.
 
 :::warning **Notice**
+
 In addition to using strings as token values, you can also use JavaScript [symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) or TypeScript [enums](https://www.typescriptlang.org/docs/handbook/enums.html).
+
 :::
 
 We've previously seen how to inject a provider using the standard [constructor based injection](https://docs.nestjs.com/providers#dependency-injection) pattern. This pattern **requires** that the dependency be declared with a class name. The `'CONNECTION'` custom provider uses a string-valued token. Let's see how to inject such a provider. To do so, we use the `@Inject()` decorator. This decorator takes a single argument - the token.
@@ -209,7 +213,9 @@ export class CatsRepository {
 ```
 
 :::info **Hint**
+
 The `@Inject()` decorator is imported from `@nestjs/common` package.
+
 :::
 
 While we directly use the string `'CONNECTION'` in the above examples for illustration purposes, for clean code organization, it's best practice to define tokens in a separate file, such as `constants.ts`. Treat them much as you would symbols or enums that are defined in their own file and imported where needed.

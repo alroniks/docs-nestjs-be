@@ -153,7 +153,9 @@ async findOne(firstName) {
 You can use this same decorator with different keys to access different properties. If the `user` object is deep or complex, this can make for easier and more readable request handler implementations.
 
 :::info **Hint**
+
 For TypeScript users, note that `createParamDecorator<T>()` is a generic. This means you can explicitly enforce type safety, for example `createParamDecorator<string>((data, ctx) => ...)`. Alternatively, specify a parameter type in the factory function, for example `createParamDecorator((data: string, ctx) => ...)`. If you omit both, the type for `data` will be `any`.
+
 :::
 
 ## Working with pipes
@@ -178,7 +180,9 @@ async findOne(user) {
 ```
 
 :::info **Hint**
+
 Note that `validateCustomDecorators` option must be set to true. `ValidationPipe` does not validate arguments annotated with the custom decorators by default.
+
 :::
 
 ## Decorator composition
@@ -221,5 +225,7 @@ findAllUsers() {}
 This has the effect of applying all four decorators with a single declaration.
 
 :::warning **Warning**
+
 The `@ApiHideProperty()` decorator from the `@nestjs/swagger` package is not composable and won't work properly with the `applyDecorators` function.
+
 :::

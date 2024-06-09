@@ -99,7 +99,9 @@ While the application is running, open your browser and navigate to `http://loca
 If the application logic must dynamically decide which template to render, then we should use the `@Res()` decorator, and supply the view name in our route handler, rather than in the `@Render()` decorator:
 
 :::info **Hint**
+
 When Nest detects the `@Res()` decorator, it injects the library-specific `response` object. We can use this object to dynamically render the template. Learn more about the `response` object API [here](https://expressjs.com/en/api.html).
+
 :::
 
 ```typescript

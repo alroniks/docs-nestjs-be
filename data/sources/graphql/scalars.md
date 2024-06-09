@@ -257,7 +257,9 @@ definitionsFactory.generate({
 ```
 
 :::info **Hint**
+
 Alternatively, you can use a type reference instead, for example: `DateTime: Date`. In this case, `GraphQLDefinitionsFactory` will extract the name property of the specified type (`Date.name`) to generate TS definitions. Note: adding an import statement for non-built-in types (custom types) is required.
+
 :::
 
 Now, given the following GraphQL custom scalar types:
@@ -284,5 +286,7 @@ a `defaultScalarType` of `'unknown'`, so that any custom scalars not specified i
 `unknown` instead of `any` (which [TypeScript recommends](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type) using since 3.0 for added type safety).
 
 :::info **Hint**
+
 Note that we've imported `_BigNumber` from `bignumber.js`; this is to avoid [circular type references](https://github.com/Microsoft/TypeScript/issues/12525#issuecomment-263166239).
+
 :::

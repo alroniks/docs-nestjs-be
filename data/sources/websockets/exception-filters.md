@@ -7,7 +7,9 @@ throw new WsException('Invalid credentials.');
 ```
 
 :::info **Hint**
+
 The `WsException` class is imported from the `@nestjs/websockets` package.
+
 :::
 
 With the sample above, Nest will handle the thrown exception and emit the `exception` message with the following structure:

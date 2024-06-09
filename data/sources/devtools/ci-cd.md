@@ -1,7 +1,9 @@
 # CI/CD integration
 
 :::info **Hint**
+
 This chapter covers the Nest Devtools integration with the Nest framework. If you are looking for the Devtools application, please visit the [Devtools](https://devtools.nestjs.com) website.
+
 :::
 
 CI/CD integration is available for users with the **[Enterprise](/settings)** plan.
@@ -177,7 +179,9 @@ const publishOptions = {
 ```
 
 :::info **Hint**
+
 Ideally, `DEVTOOLS_API_KEY` environment variable should be retrieved from secrets.
+
 :::
 
 This workflow will run per each pull request that's targeting the `master` branch OR in case there's a direct commit to the `master` branch. Feel free to align this configuration to whatever your project needs. What's essential here is that we provide necessary environment variables for our `GraphPublisher` class (to run).

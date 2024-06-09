@@ -33,7 +33,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 The `HttpAdapterHost` is imported from the `@nestjs/core` package.
+
 :::
 
 The `HttpAdapterHost` is **not** an actual `HttpAdapter`. To get the actual `HttpAdapter` instance, simply access the `httpAdapter` property.

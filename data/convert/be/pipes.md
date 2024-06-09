@@ -2,7 +2,7 @@
 
 Канал - гэта клас, анатаваны дэкаратарам `@Injectable()` , які рэалізуе інтэрфейс `PipeTransform` .
 
-<figure>   <img src="/assets/Pipe_1.png"> </figure>
+<figure><img src="/assets/Pipe_1.png"/></figure>
 
 Трубы маюць два тыповых выпадку выкарыстання:
 

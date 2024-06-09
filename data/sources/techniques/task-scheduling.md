@@ -121,7 +121,9 @@ In this example, the `handleCron()` method will be called every `30` seconds.
 Alternatively, you can supply a JavaScript `Date` object to the `@Cron()` decorator. Doing so causes the job to execute exactly once, at the specified date.
 
 :::info **Hint**
+
 Use JavaScript date arithmetic to schedule jobs relative to the current date. For example, `@Cron(new Date(Date.now() + 10 * 1000))` to schedule a job to run 10 seconds after the app starts.
+
 :::
 
 Also, you can supply additional options as the second parameter to the `@Cron()` decorator.
@@ -183,7 +185,9 @@ handleInterval() {
 ```
 
 :::info **Hint**
+
 This mechanism uses the JavaScript `setInterval()` function under the hood. You can also utilize a cron job to schedule recurring jobs.
+
 :::
 
 If you want to control your declarative interval from outside the declaring class via the <a href="/techniques/task-scheduling#dynamic-schedule-module-api">Dynamic API</a>, associate the interval with a name using the following construction:
@@ -209,7 +213,9 @@ handleTimeout() {
 ```
 
 :::info **Hint**
+
 This mechanism uses the JavaScript `setTimeout()` function under the hood.
+
 :::
 
 If you want to control your declarative timeout from outside the declaring class via the <a href="/techniques/task-scheduling#dynamic-schedule-module-api">Dynamic API</a>, associate the timeout with a name using the following construction:
@@ -234,7 +240,9 @@ constructor(private schedulerRegistry: SchedulerRegistry) {}
 ```
 
 :::info **Hint**
+
 Import the `SchedulerRegistry` from the `@nestjs/schedule` package.
+
 :::
 
 Then use it in a class as follows. Assume a cron job was created with the following declaration:
@@ -265,7 +273,9 @@ The `getCronJob()` method returns the named cron job. The returned `CronJob` obj
 - `nextDates(count: number)` - Provides an array (size `count`) of `DateTime` representations for the next set of dates that will trigger job execution. `count` defaults to 0, returning an empty array.
 
 :::info **Hint**
+
 Use `toJSDate()` on `DateTime` objects to render them as a JavaScript Date equivalent to this DateTime.
+
 :::
 
 **Create** a new cron job dynamically using the `SchedulerRegistry#addCronJob` method, as follows:
@@ -288,7 +298,9 @@ addCronJob(name: string, seconds: string) {
 In this code, we use the `CronJob` object from the `cron` package to create the cron job. The `CronJob` constructor takes a cron pattern (just like the `@Cron()` <a href="techniques/task-scheduling#declarative-cron-jobs">decorator</a>) as its first argument, and a callback to be executed when the cron timer fires as its second argument. The `SchedulerRegistry#addCronJob` method takes two arguments: a name for the `CronJob`, and the `CronJob` object itself.
 
 :::warning **Warning**
+
 Remember to inject the `SchedulerRegistry` before accessing it. Import `CronJob` from the `cron` package.
+
 :::
 
 **Delete** a named cron job using the `SchedulerRegistry#deleteCronJob` method, as follows:

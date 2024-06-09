@@ -2,7 +2,7 @@
 
 Перахопнік - гэта клас, анатаваны дэкаратарам `@Injectable()` і рэалізуе інтэрфейс `NestInterceptor` .
 
-<figure><img src="/assets/Interceptors_1.png"></figure>
+<figure><img src="/assets/Interceptors_1.png"/></figure>
 
 Перахопнікі маюць набор карысных магчымасцей, якія натхнёны тэхнікай [аспектна-арыентаванага праграмавання](https://en.wikipedia.org/wiki/Aspect-oriented_programming) (AOP). Яны дазваляюць:
 

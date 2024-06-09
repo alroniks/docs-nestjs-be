@@ -69,7 +69,9 @@ title: string;
 ```
 
 :::info **Hint**
+
 The `@Directive()` decorator is exported from the `@nestjs/graphql` package.
+
 :::
 
 Directives can be applied on fields, field resolvers, input and object types, as well as queries, mutations, and subscriptions. Here's an example of the directive applied on the query handler level:
@@ -102,7 +104,9 @@ GraphQLModule.forRoot({
 ```
 
 :::info **Hint**
+
 Both `GraphQLDirective` and `DirectiveLocation` are exported from the `graphql` package.
+
 :::
 
 ## Schema first

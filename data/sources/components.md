@@ -7,7 +7,9 @@ Providers are a fundamental concept in Nest. Many of the basic Nest classes may 
 In the previous chapter, we built a simple `CatsController`. Controllers should handle HTTP requests and delegate more complex tasks to **providers**. Providers are plain JavaScript classes that are declared as `providers` in a [module](/modules).
 
 :::info **Hint**
+
 Since Nest enables the possibility to design and organize dependencies in a more OO way, we strongly recommend following the [SOLID](https://en.wikipedia.org/wiki/SOLID) principles.
+
 :::
 
 ## Services
@@ -51,7 +53,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 To create a service using the CLI, simply execute the `$ nest g service cats` command.
+
 :::
 
 Our `CatsService` is a basic class with one property and two methods. The only new feature is that it uses the `@Injectable()` decorator. The `@Injectable()` decorator attaches metadata, which declares that `CatsService`  is a class that can be managed by the Nest [IoC](https://en.wikipedia.org/wiki/Inversion_of_control) container. By the way, this example also uses a `Cat` interface, which probably looks something like this:
@@ -166,7 +170,9 @@ export class HttpService<T> {
 ```
 
 :::warning **Warning** If your class doesn't extend another class, you should always prefer using **constructor-based**
+
 injection. The constructor explicitly outlines what dependencies are required and provides better visibility than class attributes annotated with `@Inject`.
+
 :::
 
 ## Provider registration

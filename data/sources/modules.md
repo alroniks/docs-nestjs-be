@@ -37,7 +37,9 @@ export class CatsModule {}
 ```
 
 :::info **Hint**
+
 To create a module using the CLI, simply execute the `$ nest g module cats` command.
+
 :::
 
 Above, we defined the `CatsModule` in the `cats.module.ts` file, and moved everything related to this module into the `cats` directory. The last thing we need to do is import this module into the root module (the `AppModule`, defined in the `app.module.ts` file).
@@ -174,7 +176,9 @@ export class CatsModule {}
 The `@Global()` decorator makes the module global-scoped. Global modules should be registered **only once**, generally by the root or core module. In the above example, the `CatsService` provider will be ubiquitous, and modules that wish to inject the service will not need to import the `CatsModule` in their imports array.
 
 :::info **Hint**
+
 Making everything global is not a good design decision. Global modules are available to reduce the amount of necessary boilerplate. The `imports` array is generally the preferred way to make the module's API available to consumers.
+
 :::
 
 ## Dynamic modules
@@ -225,7 +229,9 @@ export class DatabaseModule {
 ```
 
 :::info **Hint**
+
 The `forRoot()` method may return a dynamic module either synchronously or asynchronously (i.e., via a `Promise`).
+
 :::
 
 This module defines the `Connection` provider by default (in the `@Module()` decorator metadata), but additionally - depending on the `entities` and `options` objects passed into the `forRoot()` method - exposes a collection of providers, for example, repositories. Note that the properties returned by the dynamic module **extend** (rather than override) the base module metadata defined in the `@Module()` decorator. That's how both the statically declared `Connection` provider **and** the dynamically generated repository providers are exported from the module.
@@ -242,7 +248,9 @@ If you want to register a dynamic module in the global scope, set the `global` p
 ```
 
 :::warning **Warning**
+
 As mentioned above, making everything global **is not a good design decision**.
+
 :::
 
 The `DatabaseModule` can be imported and configured in the following manner:
@@ -275,5 +283,7 @@ export class AppModule {}
 The [Dynamic modules](/fundamentals/dynamic-modules) chapter covers this topic in greater detail, and includes a [working example](https://github.com/nestjs/nest/tree/master/sample/25-dynamic-modules).
 
 :::info **Hint**
+
 Learn how to build highly customizable dynamic modules with the use of `ConfigurableModuleBuilder` here in [this chapter](/fundamentals/dynamic-modules#configurable-module-builder).
+
 :::

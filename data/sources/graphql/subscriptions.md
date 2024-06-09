@@ -16,7 +16,9 @@ GraphQLModule.forRoot<ApolloDriverConfig>({
 ```
 
 :::warning **Warning**
+
 The `installSubscriptionHandlers` configuration option has been removed from the latest version of Apollo server and will be soon deprecated in this package as well. By default, `installSubscriptionHandlers` will fallback to use the `subscriptions-transport-ws` ([read more](https://github.com/apollographql/subscriptions-transport-ws)) but we strongly recommend using the `graphql-ws`([read more](https://github.com/enisdenjo/graphql-ws)) library instead.
+
 :::
 
 To switch to use the `graphql-ws` package instead, use the following configuration:
@@ -31,7 +33,9 @@ GraphQLModule.forRoot<ApolloDriverConfig>({
 ```
 
 :::info **Hint**
+
 You can also use both packages (`subscriptions-transport-ws` and `graphql-ws`) at the same time, for example, for backward compatibility.
+
 :::
 
 ## Code first
@@ -54,11 +58,15 @@ export class AuthorResolver {
 ```
 
 :::info **Hint**
+
 All decorators are exported from the `@nestjs/graphql` package, while the `PubSub` class is exported from the `graphql-subscriptions` package.
+
 :::
 
 :::warning **Note**
+
 `PubSub` is a class that exposes a simple `publish` and `subscribe API`. Read more about it [here](https://www.apollographql.com/docs/graphql-subscriptions/setup.html). Note that the Apollo docs warn that the default implementation is not suitable for production (read more [here](https://github.com/apollographql/graphql-subscriptions#getting-started-with-your-first-subscription)). Production apps should use a `PubSub` implementation backed by an external store (read more [here](https://github.com/apollographql/graphql-subscriptions#pubsub-implementations)).
+
 :::
 
 This will result in generating the following part of the GraphQL schema in SDL:
@@ -137,7 +145,9 @@ commentAdded() {
 ```
 
 :::warning **Note**
+
 If you use the `resolve` option, you should return the unwrapped payload (e.g., with our example, return a `newComment` object directly, not a `{{ '{' }} commentAdded: newComment {{ '}' }}` object).
+
 :::
 
 If you need to access injected providers (e.g., use an external service to validate the data), use the following construction.
@@ -340,7 +350,9 @@ The `authToken` in this example is only sent once by the client, when the connec
 All subscriptions made with this connection will have the same `authToken`, and thus the same user info.
 
 :::warning **Note**
+
 There is a bug in `subscriptions-transport-ws` that allows connections to skip the `onConnect` phase (read [more](https://github.com/apollographql/subscriptions-transport-ws/issues/349)). You should not assume that `onConnect` was called when the user starts a subscription, and always check that the `context` is populated.
+
 :::
 
 If you're using the `graphql-ws` package, the signature of the `onConnect` callback will be slightly different:
@@ -376,7 +388,9 @@ GraphQLModule.forRoot<MercuriusDriverConfig>({
 ```
 
 :::info **Hint**
+
 You can also pass the options object to set up a custom emitter, validate incoming connections, etc. Read more [here](https://github.com/mercurius-js/mercurius/blob/master/docs/api/options.md#plugin-options) (see `subscription`).
+
 :::
 
 ## Code first
@@ -397,11 +411,15 @@ export class AuthorResolver {
 ```
 
 :::info **Hint**
+
 All decorators used in the example above are exported from the `@nestjs/graphql` package, while the `PubSub` class is exported from the `mercurius` package.
+
 :::
 
 :::warning **Note**
+
 `PubSub` is a class that exposes a simple `publish` and `subscribe` API. Check out [this section](https://github.com/mercurius-js/mercurius/blob/master/docs/subscriptions.md#subscriptions-with-custom-pubsub) on how to register a custom `PubSub` class.
+
 :::
 
 This will result in generating the following part of the GraphQL schema in SDL:

@@ -3,7 +3,9 @@
 ##### This chapter applies only to TypeScript
 
 :::danger **Warning**
+
 In this article, you'll learn how to create a `DatabaseModule` based on the **Sequelize** package from scratch using custom components. As a consequence, this technique contains a lot of overhead that you can avoid by using the dedicated, out-of-the-box `@nestjs/sequelize` package. To learn more, see [here](/techniques/database#sequelize-integration).
+
 :::
 
 [Sequelize](https://github.com/sequelize/sequelize) is a popular Object Relational Mapper (ORM) written in a vanilla JavaScript, but there is a [sequelize-typescript](https://github.com/RobinBuschmann/sequelize-typescript) TypeScript wrapper which provides a set of decorators and other extras for the base sequelize.
@@ -45,7 +47,9 @@ export const databaseProviders = [
 ```
 
 :::info **Hint**
+
 Following best practices, we declared the custom provider in the separated file which has a `*.providers.ts` suffix.
+
 :::
 
 Then, we need to export these providers to make them **accessible** for the rest part of the application.
@@ -99,7 +103,9 @@ export const catsProviders = [
 ```
 
 :::warning **Warning**
+
 In the real-world applications you should avoid **magic strings**. Both `CATS_REPOSITORY` and `SEQUELIZE` should be kept in the separated `constants.ts` file.
+
 :::
 
 In Sequelize, we use static methods to manipulate the data, and thus we created an **alias** here.
@@ -149,5 +155,7 @@ export class CatsModule {}
 ```
 
 :::info **Hint**
+
 Do not forget to import the `CatsModule` into the root `AppModule`.
+
 :::

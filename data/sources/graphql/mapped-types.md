@@ -1,7 +1,9 @@
 # Mapped types
 
 :::warning **Warning**
+
 This chapter applies only to the code first approach.
+
 :::
 
 As you build out features like CRUD (Create/Read/Update/Delete) it's often useful to construct variants on a base entity type. Nest provides several utility functions that perform type transformations to make this task more convenient.
@@ -36,7 +38,9 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {}
 ```
 
 :::info **Hint**
+
 The `PartialType()` function is imported from the `@nestjs/graphql` package.
+
 :::
 
 The `PartialType()` function takes an optional second argument that is a reference to a decorator factory. This argument can be used to change the decorator function applied to the resulting (child) class. If not specified, the child class effectively uses the same decorator as the **parent** class (the class referenced in the first argument). In the example above, we are extending `CreateUserInput` which is annotated with the `@InputType()` decorator. Since we want `UpdateUserInput` to also be treated as if it were decorated with `@InputType()`, we didn't need to pass `InputType` as the second argument. If the parent and child types are different, (e.g., the parent is decorated with `@ObjectType`), we would pass `InputType` as the second argument. For example:
@@ -74,7 +78,9 @@ export class UpdateEmailInput extends PickType(CreateUserInput, [
 ```
 
 :::info **Hint**
+
 The `PickType()` function is imported from the `@nestjs/graphql` package.
+
 :::
 
 ## Omit
@@ -105,7 +111,9 @@ export class UpdateUserInput extends OmitType(CreateUserInput, [
 ```
 
 :::info **Hint**
+
 The `OmitType()` function is imported from the `@nestjs/graphql` package.
+
 :::
 
 ## Intersection
@@ -143,7 +151,9 @@ export class UpdateUserInput extends IntersectionType(
 ```
 
 :::info **Hint**
+
 The `IntersectionType()` function is imported from the `@nestjs/graphql` package.
+
 :::
 
 ## Composition

@@ -36,7 +36,9 @@ await app.listen(3000);
 Values in the array can be any combination of `'log'`, `'fatal'`, `'error'`, `'warn'`, `'debug'`, and `'verbose'`.
 
 :::info **Hint**
+
 To disable color in the default logger's messages, set the `NO_COLOR` environment variable to some non-empty string.
+
 :::
 
 ## Custom implementation
@@ -154,7 +156,9 @@ await app.listen(3000);
 ```
 
 :::info **Note**
+
 In the example above, we set the `bufferLogs` to `true` to make sure all logs will be buffered until a custom logger is attached (`MyLogger` in this case) and the application initialisation process either completes or fails. If the initialisation process fails, Nest will fallback to the original `ConsoleLogger` to print out any reported error messages. Also, you can set the `autoFlushLogs` to `false` (default `true`) to manually flush logs (using the `Logger#flush()` method).
+
 :::
 
 Here we use the `get()` method on the `NestApplication` instance to retrieve the singleton instance of the `MyLogger` object. This technique is essentially a way to "inject" an instance of a logger for use by Nest. The `app.get()` call retrieves the singleton instance of `MyLogger`, and depends on that instance being first injected in another module, as described above.
@@ -257,7 +261,9 @@ await app.listen(3000);
 ```
 
 :::info **Hint**
+
 Alternatively, instead of setting `bufferLogs` to `true`, you could temporarily disable the logger with `logger: false` instruction. Be mindful that if you supply `logger: false` to `NestFactory.create`, nothing will be logged until you call `useLogger`, so you may miss some important initialization errors. If you don't mind that some of your initial messages will be logged with the default logger, you can just omit the `logger: false` option.
+
 :::
 
 ## Use external logger

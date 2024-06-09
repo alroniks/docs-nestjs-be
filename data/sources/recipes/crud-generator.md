@@ -18,7 +18,9 @@ That's a lot of steps!
 To help speed up this repetitive process, [Nest CLI](/cli/overview) provides a generator (schematic) that automatically generates all the boilerplate code to help us avoid doing all of this, and make the developer experience much simpler.
 
 :::info **Note** The schematic supports generating **HTTP** controllers, **Microservice** controllers, **GraphQL** resolvers (both code first and schema first), and **WebSocket**
+
 Gateways.
+
 :::
 
 ## Generating a new resource
@@ -68,7 +70,9 @@ export class UsersController {
 Also, it automatically creates placeholders for all the CRUD endpoints (routes for REST APIs, queries and mutations for GraphQL, message subscribes for both Microservices and WebSocket Gateways) - all without having to lift a finger.
 
 :::warning **Note** Generated service classes are **not**
+
 tied to any specific **ORM (or data source)**. This makes the generator generic enough to meet the needs of any project. By default, all methods will contain placeholders, allowing you to populate it with the data sources specific to your project.
+
 :::
 
 Likewise, if you want to generate resolvers for a GraphQL application, simply select the `GraphQL (code first)` (or `GraphQL (schema first)`) as your transport layer.
@@ -92,7 +96,9 @@ $ nest g resource users
 ```
 
 :::info **Hint**
+
 To avoid generating test files, you can pass the `--no-spec` flag, as follows: `nest g resource users --no-spec`
+
 :::
 
 We can see below, that not only were all boilerplate mutations and queries created, but everything is all tied together. We're utilizing the `UsersService`, `User` Entity, and our DTO's.

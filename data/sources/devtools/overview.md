@@ -1,7 +1,9 @@
 # Overview
 
 :::info **Hint**
+
 This chapter covers the Nest Devtools integration with the Nest framework. If you are looking for the Devtools application, please visit the [Devtools](https://devtools.nestjs.com) website.
+
 :::
 
 To start debugging your local application, open up the `main.ts` file and make sure to set the `snapshot` attribute to `true` in the application options object, as follows:
@@ -24,7 +26,9 @@ $ npm i @nestjs/devtools-integration
 ```
 
 :::warning **Warning**
+
 If you're using `@nestjs/graphql` package in your application, make sure to install the latest version (`npm i @nestjs/graphql@11`).
+
 :::
 
 With this dependency in place, let's open up the `app.module.ts` file and import the `DevtoolsModule` that we just installed:
@@ -43,7 +47,9 @@ export class AppModule {}
 ```
 
 :::warning **Warning**
+
 The reason we are checking the `NODE_ENV` environment variable here is that you should never use this module in production!
+
 :::
 
 Once the `DevtoolsModule` is imported and your application is up and running (`npm run start:dev`), you should be able to navigate to [Devtools](https://devtools.nestjs.com) URL and see the instrospected graph.
@@ -51,7 +57,9 @@ Once the `DevtoolsModule` is imported and your application is up and running (`n
 <figure><img src="/assets/devtools/modules-graph.png" /></figure>
 
 :::info **Hint**
+
 As you can see on the screenshot above, every module connects to the `InternalCoreModule`. `InternalCoreModule` is a global module that is always imported into the root module. Since it's registered as a global node, Nest automatically creates edges between all of the modules and the `InternalCoreModule` node. Now, if you want to hide global modules from the graph, you can use the "**Hide global modules**" checkbox (in the sidebar).
+
 :::
 
 So as we can see, `DevtoolsModule` makes your application expose an additional HTTP server (on port 8000) that the Devtools application will use to introspect your app.
@@ -63,13 +71,17 @@ Just to double-check that everything works as expected, change the graph view to
 To focus on a specific node, click on the rectangle and the graph will show a popup window with the **"Focus"** button. You can also use the search bar (located in the sidebar) to find a specific node.
 
 :::info **Hint** If you click on the **Inspect**
+
 button, application will take you to the `/debug` page with that specific node selected.
+
 :::
 
 <figure><img src="/assets/devtools/node-popup.png" /></figure>
 
 :::info **Hint** To export a graph as an image, click on the **Export as PNG**
+
 button in the right corner of the graph.
+
 :::
 
 Using the form controls located in the sidebar (on the left), you can control edges proximity to, for example, visualize a specific application sub-tree:
@@ -95,7 +107,9 @@ You can watch this video to see the **Graph Explorer** feature in action:
 ## Investigating the "Cannot resolve dependency" error
 
 :::info **Note**
+
 This feature is supported for `@nestjs/core` >= `v9.3.10`.
+
 :::
 
 Probably the most common error message you might have seen is about Nest not being able to resolve dependencies of a provider. Using Nest Devtools, you can effortlessly identify the issue and learn how to resolve it.
@@ -141,7 +155,9 @@ When you navigate to the **Routes explorer** page, you should see all of the reg
 <figure><img src="/assets/devtools/routes.png" /></figure>
 
 :::info **Hint**
+
 This page shows not only HTTP routes, but also all of the other entrypoints (e.g. WebSockets, gRPC, GraphQL resolvers etc.).
+
 :::
 
 Entrypoints are grouped by their host controllers. You can also use the search bar to find a specific entrypoint.
@@ -163,7 +179,9 @@ Just execute the code **on the fly** and see the results instantly, without havi
 <figure><img src="/assets/devtools/sandbox-table.png" /></figure>
 
 :::info **Hint**
+
 To pretty display an array of objects, use the `console.table()` (or just `table()`) function.
+
 :::
 
 You can watch this video to see the **Interactive Playground** feature in action:
@@ -195,7 +213,9 @@ To see the auto-generated audit - errors/warnings/hints that the application cam
 <figure><img src="/assets/devtools/audit.png" /></figure>
 
 :::info **Hint**
+
 The screenshot above doesn't show all of the available audit rules.
+
 :::
 
 This page comes in handy when you want to identify potential issues in your application.
@@ -210,7 +230,9 @@ fs.writeFileSync('./graph.json', app.get(SerializedGraph).toString());
 ```
 
 :::info **Hint**
+
 `SerializedGraph` is exported from the `@nestjs/core` package.
+
 :::
 
 Then you can drag and drop/upload this file:

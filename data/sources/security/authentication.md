@@ -199,7 +199,9 @@ export class AuthController {
 ```
 
 :::info **Hint**
+
 Ideally, instead of using the `Record<string, any>` type, we should use a DTO class to define the shape of the request body. See the [validation](/techniques/validation) chapter for more information.
+
 :::
 
 <app-banner-courses-auth></app-banner-courses-auth>
@@ -218,7 +220,9 @@ $ npm install --save @nestjs/jwt
 ```
 
 :::info **Hint**
+
 The `@nestjs/jwt` package (see more [here](https://github.com/nestjs/jwt)) is a utility package that helps with JWT manipulation. This includes generating and verifying JWT tokens.
+
 :::
 
 To keep our services cleanly modularized, we'll handle generating the JWT in the `authService`. Open the `auth.service.ts` file in the `auth` folder, inject the `JwtService`, and update the `signIn` method to generate a JWT token as shown below:

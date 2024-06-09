@@ -17,11 +17,15 @@ $ npm i --save @nestjs/config
 ```
 
 :::info **Hint**
+
 The `@nestjs/config` package internally uses [dotenv](https://github.com/motdotla/dotenv).
+
 :::
 
 :::warning **Note**
+
 `@nestjs/config` requires TypeScript 4.1 or later.
+
 :::
 
 ## Getting started
@@ -121,7 +125,9 @@ export class AppModule {}
 ```
 
 :::info **Notice**
+
 The value assigned to the `load` property is an array, allowing you to load multiple configuration files (e.g. `load: [databaseConfig, authConfig]`)
+
 :::
 
 With custom configuration files, we can also manage custom files such as YAML files. Here is an example of a configuration using YAML format:
@@ -166,7 +172,9 @@ export default () => {
 ```
 
 :::warning **Note**
+
 Nest CLI does not automatically move your "assets" (non-TS files) to the `dist` folder during the build process. To make sure that your YAML files are copied, you have to specify this in the `compilerOptions#assets` object in the `nest-cli.json` file. As an example, if the `config` folder is at the same level as the `src` folder, add `compilerOptions#assets` with the value `"assets": [{{ '{' }}"include": "../config/*.yaml", "outDir": "./dist/config"{{ '}' }}]`. Read more [here](/cli/monorepo#assets).
+
 :::
 
 <app-banner-devtools></app-banner-devtools>
@@ -190,7 +198,9 @@ constructor(private configService: ConfigService) {}
 ```
 
 :::info **Hint**
+
 The `ConfigService` is imported from the `@nestjs/config` package.
+
 :::
 
 And use it in our class:
@@ -281,7 +291,9 @@ export default registerAs('database', () => ({
 As with custom configuration files, inside your `registerAs()` factory function, the `process.env` object will contain the fully resolved environment variable key/value pairs (with `.env` file and externally defined variables resolved and merged as described <a href="techniques/configuration#getting-started">above</a>).
 
 :::info **Hint**
+
 The `registerAs` function is exported from the `@nestjs/config` package.
+
 :::
 
 Load a namespaced configuration with the `load` property of the `forRoot()` method's options object, in the same way you load a custom configuration file:
@@ -315,7 +327,9 @@ constructor(
 ```
 
 :::info **Hint**
+
 The `ConfigType` is exported from the `@nestjs/config` package.
+
 :::
 
 ## Cache environment variables
@@ -342,7 +356,9 @@ export class DatabaseModule {}
 ```
 
 :::info **Warning**
+
 In some circumstances, you may need to access properties loaded via partial registration using the `onModuleInit()` hook, rather than in a constructor. This is because the `forFeature()` method is run during module initialization, and the order of module initialization is indeterminate. If you access values loaded this way by another module, in a constructor, the module that the configuration depends upon may not yet have initialized. The `onModuleInit()` method runs only after all modules it depends upon have been initialized, so this technique is safe.
+
 :::
 
 ## Schema validation
@@ -574,7 +590,9 @@ SUPPORT_EMAIL=support@${APP_URL}
 With this construction, the variable `SUPPORT_EMAIL` resolves to `'support@mywebsite.com'`. Note the use of the `${{ '{' }}...{{ '}' }}` syntax to trigger resolving the value of the variable `APP_URL` inside the definition of `SUPPORT_EMAIL`.
 
 :::info **Hint**
+
 For this feature, `@nestjs/config` package internally uses [dotenv-expand](https://github.com/motdotla/dotenv-expand).
+
 :::
 
 Enable environment variable expansion using the `expandVariables` property in the options object passed to the `forRoot()` method of the `ConfigModule`, as shown below:

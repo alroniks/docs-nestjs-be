@@ -9,7 +9,9 @@ A controller's purpose is to receive specific requests for the application. The 
 In order to create a basic controller, we use classes and **decorators**. Decorators associate classes with required metadata and enable Nest to create a routing map (tie requests to the corresponding controllers).
 
 :::info **Hint**
+
 For quickly creating a CRUD controller with the [validation](https://docs.nestjs.com/techniques/validation) built-in, you may use the CLI's [CRUD generator](https://docs.nestjs.com/recipes/crud-generator#crud-generator): `nest g resource [name]`.
+
 :::
 
 ## Routing
@@ -40,7 +42,9 @@ export class CatsController {
 ```
 
 :::info **Hint**
+
 To create a controller using the CLI, simply execute the `$ nest g controller [name]` command.
+
 :::
 
 The `@Get()` HTTP request method decorator before the `findAll()` method tells Nest to create a handler for a specific endpoint for HTTP requests. The endpoint corresponds to the HTTP request method (GET in this case) and the route path. What is the route path? The route path for a handler is determined by concatenating the (optional) prefix declared for the controller, and any path specified in the method's decorator. Since we've declared a prefix for every route ( `cats`), and haven't added any path information in the decorator, Nest will map `GET /cats` requests to this handler. As mentioned, the path includes both the optional controller path prefix **and** any path string declared in the request method decorator. For example, a path prefix of `cats` combined with the decorator `@Get('breed')` would produce a route mapping for requests like `GET /cats/breed`.
@@ -70,7 +74,9 @@ This method will return a 200 status code and the associated response, which in 
 </table>
 
 :::warning **Warning** Nest detects when the handler is using either `@Res()` or `@Next()`, indicating you have chosen the library-specific option. If both approaches are used at the same time, the Standard approach is **automatically disabled**
+
 for this single route and will no longer work as expected. To use both approaches at the same time (for example, by injecting the response object to only set cookies/headers but still leave the rest to the framework), you must set the `passthrough` option to `true` in the `@Res({{ '{' }} passthrough: true {{ '}' }})` decorator.
+
 :::
 
 <app-banner-devtools></app-banner-devtools>
@@ -105,7 +111,9 @@ export class CatsController {
 ```
 
 :::info **Hint**
+
 In order to take advantage of `express` typings (as in the `request: Request` parameter example above), install `@types/express` package.
+
 :::
 
 The request object represents the HTTP request and has properties for the request query string, parameters, HTTP headers, and body (read more [here](https://expressjs.com/en/api.html#req)). In most cases, it's not necessary to grab these properties manually. We can use dedicated decorators instead, such as `@Body()` or `@Query()`, which are available out of the box. Below is a list of the provided decorators and the plain platform-specific objects they represent.
@@ -157,7 +165,9 @@ The request object represents the HTTP request and has properties for the reques
 <sup>\* </sup>For compatibility with typings across underlying HTTP platforms (e.g., Express and Fastify), Nest provides `@Res()` and `@Response()` decorators. `@Res()` is simply an alias for `@Response()`. Both directly expose the underlying native platform `response` object interface. When using them, you should also import the typings for the underlying library (e.g., `@types/express`) to take full advantage. Note that when you inject either `@Res()` or `@Response()` in a method handler, you put Nest into **Library-specific mode** for that handler, and you become responsible for managing the response. When doing so, you must issue some kind of response by making a call on the `response` object (e.g., `res.json(...)` or `res.send(...)`), or the HTTP server will hang.
 
 :::info **Hint**
+
 To learn how to create your own custom decorators, visit [this](/custom-decorators) chapter.
+
 :::
 
 ## Resources
@@ -213,7 +223,9 @@ findAll() {
 The `'ab*cd'` route path will match `abcd`, `ab_cd`, `abecd`, and so on. The characters `?`, `+`, `*`, and `()` may be used in a route path, and are subsets of their regular expression counterparts. The hyphen ( `-`) and the dot (`.`) are interpreted literally by string-based paths.
 
 :::warning **Warning**
+
 A wildcard in the middle of the route is only supported by express.
+
 :::
 
 ## Status code
@@ -229,7 +241,9 @@ create() {
 ```
 
 :::info **Hint**
+
 Import `HttpCode` from the `@nestjs/common` package.
+
 :::
 
 Often, your status code isn't static but depends on various factors. In that case, you can use a library-specific **response** (inject using `@Res()`) object (or, in case of an error, throw an exception).
@@ -247,7 +261,9 @@ create() {
 ```
 
 :::info **Hint**
+
 Import `Header` from the `@nestjs/common` package.
+
 :::
 
 ## Redirection
@@ -262,7 +278,9 @@ To redirect a response to a specific URL, you can either use a `@Redirect()` dec
 ```
 
 :::info **Hint**
+
 Sometimes you may want to determine the HTTP status code or the redirect URL dynamically. Do this by returning an object following the `HttpRedirectResponse` interface (from `@nestjs/common`).
+
 :::
 
 Returned values will override any arguments passed to the `@Redirect()` decorator. For example:
@@ -282,7 +300,9 @@ getDocs(@Query('version') version) {
 Routes with static paths won't work when you need to accept **dynamic data** as part of the request (e.g., `GET /cats/1` to get cat with id `1`). In order to define routes with parameters, we can add route parameter **tokens** in the path of the route to capture the dynamic value at that position in the request URL. The route parameter token in the `@Get()` decorator example below demonstrates this usage. Route parameters declared in this way can be accessed using the `@Param()` decorator, which should be added to the method signature.
 
 :::info **Hint**
+
 Routes with parameters should be declared after any static paths. This prevents the parameterized paths from intercepting traffic destined for the static paths.
+
 :::
 
 ```typescript
@@ -304,7 +324,9 @@ findOne(params) {
 `@Param()` is used to decorate a method parameter (`params` in the example above), and makes the **route** parameters available as properties of that decorated method parameter inside the body of the method. As seen in the code above, we can access the `id` parameter by referencing `params.id`. You can also pass in a particular parameter token to the decorator, and then reference the route parameter directly by name in the method body.
 
 :::info **Hint**
+
 Import `Param` from the `@nestjs/common` package.
+
 :::
 
 ```typescript
@@ -336,7 +358,9 @@ export class AdminController {
 ```
 
 :::danger **Warning**
+
 Since **Fastify** lacks support for nested routers, when using sub-domain routing, the (default) Express adapter should be used instead.
+
 :::
 
 Similar to a route `path`, the `hosts` option can use tokens to capture the dynamic value at that position in the host name. The host parameter token in the `@Controller()` decorator example below demonstrates this usage. Host parameters declared in this way can be accessed using the `@HostParam()` decorator, which should be added to the method signature.
@@ -362,7 +386,9 @@ However, there are edge-cases when request-based lifetime of the controller may 
 We love modern JavaScript and we know that data extraction is mostly **asynchronous**. That's why Nest supports and works well with `async` functions.
 
 :::info **Hint**
+
 Learn more about `async / await` feature [here](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await)
+
 :::
 
 Every async function has to return a `Promise`. This means that you can return a deferred value that Nest will be able to resolve by itself. Let's see an example of this:
@@ -431,7 +457,9 @@ async create(createCatDto) {
 ```
 
 :::info **Hint**
+
 Our `ValidationPipe` can filter out properties that should not be received by the method handler. In this case, we can whitelist the acceptable properties, and any property not included in the whitelist is automatically stripped from the resulting object. In the `CreateCatDto` example, our whitelist is the `name`, `age`, and `breed` properties. Learn more [here](https://docs.nestjs.com/techniques/validation#stripping-properties).
+
 :::
 
 ## Handling errors
@@ -513,7 +541,9 @@ export class CatsController {
 ```
 
 :::info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code**
+
 to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator).
+
 :::
 
 ## Getting up and running

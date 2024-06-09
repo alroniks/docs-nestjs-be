@@ -40,7 +40,9 @@ const app = await NestFactory.createMicroservice(AppModule, {
 ```
 
 :::info **Hint**
+
 The `Transport` enum is imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Options
@@ -134,7 +136,9 @@ getNotifications(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `RmqContext` are imported from the `@nestjs/microservices` package.
+
 :::
 
 To access the original RabbitMQ message (with the `properties`, `fields`, and `content`), use the `getMessage()` method of the `RmqContext` object, as follows:
@@ -227,7 +231,9 @@ this.client.send('replace-emoji', record).subscribe(...);
 ```
 
 :::info **Hint**
+
 `RmqRecordBuilder` class is exported from the `@nestjs/microservices` package.
+
 :::
 
 And you can read these values on the server-side as well, by accessing the `RmqContext`, as follows:

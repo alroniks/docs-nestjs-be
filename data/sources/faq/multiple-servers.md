@@ -77,9 +77,13 @@ shutdownObserver.addHttpServer(httpsServer);
 ```
 
 :::info **Hint**
+
 The `ExpressAdapter` is imported from the `@nestjs/platform-express` package. The `http` and `https` packages are native Node.js packages.
+
 :::
 
 :::danger **Warning**
+
 This recipe does not work with [GraphQL Subscriptions](/graphql/subscriptions).
+
 :::

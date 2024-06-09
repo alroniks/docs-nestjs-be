@@ -3,7 +3,9 @@
 [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html)'s metadata reflection system has several limitations which make it impossible to, for instance, determine what properties a class consists of or recognize whether a given property is optional or required. However, some of these constraints can be addressed at compilation time. Nest provides a plugin that enhances the TypeScript compilation process to reduce the amount of boilerplate code required.
 
 :::info **Hint**
+
 This plugin is **opt-in**. If you prefer, you can declare all decorators manually, or only specific decorators where you need them.
+
 :::
 
 ## Overview
@@ -56,19 +58,25 @@ export class CreateUserDto {
 ```
 
 :::info **Note**
+
 The Swagger plugin will derive the @ApiProperty() annotations from the TypeScript types and class-validator decorators. This helps in clearly describing your API for the generated Swagger UI documentation. However, the validation at runtime would still be handled by class-validator decorators. So, it is required to continue using validators like `IsEmail()`, `IsNumber()`, etc.
+
 :::
 
 Hence, if you intend to relay on automatic annotations for generating documentations and still wish for runtime validations, then the class-validator decorators are still necessary.
 
 :::info **Hint**
+
 When using [mapped types utilities](https://docs.nestjs.com/openapi/mapped-types) (like `PartialType`) in DTOs import them from `@nestjs/swagger` instead of `@nestjs/mapped-types` for the plugin to pick up the schema.
+
 :::
 
 The plugin adds appropriate decorators on the fly based on the **Abstract Syntax Tree**. Thus you won't have to struggle with `@ApiProperty` decorators scattered throughout the code.
 
 :::info **Hint**
+
 The plugin will automatically generate any missing swagger properties, but if you need to override them, you simply set them explicitly via `@ApiProperty()`.
+
 :::
 
 ## Comments introspection
@@ -118,7 +126,9 @@ By default, these options are set to `"description"`. This means the plugin will
 ```
 
 :::info **Hint**
+
 For models, the same logic applies but to `ApiProperty` decorator instead.
+
 :::
 
 ## Using the CLI plugin

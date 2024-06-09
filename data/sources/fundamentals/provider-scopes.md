@@ -24,7 +24,9 @@ A provider can have any of the following scopes:
 </table>
 
 :::info **Hint** Using singleton scope is **recommended**
+
 for most use cases. Sharing providers across consumers and across requests means that an instance can be cached and its initialization occurs only once, during application startup.
+
 :::
 
 ## Usage
@@ -49,13 +51,17 @@ Similarly, for [custom providers](/fundamentals/custom-providers), set the `scop
 ```
 
 :::info **Hint**
+
 Import the `Scope` enum from `@nestjs/common`
+
 :::
 
 Singleton scope is used by default, and need not be declared. If you do want to declare a provider as singleton scoped, use the `Scope.DEFAULT` value for the `scope` property.
 
 :::warning **Notice**
+
 Websocket Gateways should not use request-scoped providers because they must act as singletons. Each gateway encapsulates a real socket and cannot be instantiated multiple times. The limitation also applies to some other providers, like [_Passport strategies_](../security/authentication#request-scoped-strategies) or _Cron controllers_.
+
 :::
 
 ## Controller scope
@@ -156,7 +162,9 @@ In the example above when `AppService#getRoot` is called, `"AppService: My name 
 Using request-scoped providers will have an impact on application performance. While Nest tries to cache as much metadata as possible, it will still have to create an instance of your class on each request. Hence, it will slow down your average response time and overall benchmarking result. Unless a provider must be request-scoped, it is strongly recommended that you use the default singleton scope.
 
 :::info **Hint**
+
 Although it all sounds quite intimidating, a properly designed application that leverages request-scoped providers should not slow down by more than ~5% latency-wise.
+
 :::
 
 ## Durable providers
@@ -204,11 +212,15 @@ export class AggregateByTenantContextIdStrategy implements ContextIdStrategy {
 ```
 
 :::info **Hint**
+
 Similar to the request scope, durability bubbles up the injection chain. That means if A depends on B which is flagged as `durable`, A implicitly becomes durable too (unless `durable` is explicitly set to `false` for A provider).
+
 :::
 
 :::warning **Warning**
+
 Note this strategy is not ideal for applications operating with a large number of tenants.
+
 :::
 
 The value returned from the `attach` method instructs Nest what context identifier should be used for a given host. In this case, we specified that the `tenantSubTreeId` should be used instead of the original, auto-generated `contextId` object, when the host component (e.g., request-scoped controller) is flagged as durable (you can learn how to mark providers as durable below). Also, in the above example, **no payload** would be registered (where payload = `REQUEST`/`CONTEXT` provider that represents the "root" - parent of the sub-tree).
@@ -233,7 +245,9 @@ ContextIdFactory.apply(new AggregateByTenantContextIdStrategy());
 ```
 
 :::info **Hint**
+
 The `ContextIdFactory` class is imported from the `@nestjs/core` package.
+
 :::
 
 As long as the registration occurs before any request hits your application, everything will work as intended.

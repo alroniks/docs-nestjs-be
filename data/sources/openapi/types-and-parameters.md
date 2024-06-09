@@ -10,7 +10,9 @@ async create(@Body() createCatDto: CreateCatDto) {
 ```
 
 :::info **Hint**
+
 To explicitly set the body definition use the `@ApiBody()` decorator (imported from the `@nestjs/swagger` package).
+
 :::
 
 Based on the `CreateCatDto`, the following model definition Swagger UI will be created:
@@ -35,7 +37,9 @@ export class CreateCatDto {
 ```
 
 :::info **Hint**
+
 Instead of manually annotating each property, consider using the Swagger plugin (see [Plugin](/openapi/cli-plugin) section) which will automatically provide this for you.
+
 :::
 
 Let's open the browser and verify the generated `CreateCatDto` model:
@@ -54,7 +58,9 @@ age: number;
 ```
 
 :::info **Hint**
+
 Instead of explicitly typing the `{{"@ApiProperty({ required: false })"}}` you can use the `@ApiPropertyOptional()` short-hand decorator.
+
 :::
 
 In order to explicitly set the type of the property, use the `type` key:
@@ -76,7 +82,9 @@ names: string[];
 ```
 
 :::info **Hint**
+
 Consider using the Swagger plugin (see [Plugin](/openapi/cli-plugin) section) which will automatically detect arrays.
+
 :::
 
 Either include the type as the first element of an array (as shown above) or set the `isArray` property to `true`.
@@ -93,7 +101,9 @@ node: Node;
 ```
 
 :::info **Hint**
+
 Consider using the Swagger plugin (see [Plugin](/openapi/cli-plugin) section) which will automatically detect circular dependencies.
+
 :::
 
 ## Generics and interfaces
@@ -182,7 +192,9 @@ export enum CatInformationEnum {
 ```
 
 :::info **Hint**
+
 The above snippet is generated using a tool called [NSwag](https://github.com/RicoSuter/NSwag).
+
 :::
 
 You can see that now you have two `enums` that are exactly the same.
@@ -214,7 +226,9 @@ CatBreed:
 ```
 
 :::info **Hint** Any **decorator**
+
 that takes `enum` as a property will also take `enumName`.
+
 :::
 
 ## Raw definitions
@@ -261,7 +275,9 @@ export class CreateCatDto {}
 ```
 
 :::info **Hint**
+
 You only need to use `@ApiExtraModels()` once for a specific model class.
+
 :::
 
 Alternatively, you can pass an options object with the `extraModels` property specified to the `SwaggerModule#createDocument()` method, as follows:
@@ -312,7 +328,9 @@ pets: Pet[];
 ```
 
 :::info **Hint**
+
 The `getSchemaPath()` function is imported from `@nestjs/swagger`.
+
 :::
 
 Both `Cat` and `Dog` must be defined as extra models using the `@ApiExtraModels()` decorator (at the class-level).

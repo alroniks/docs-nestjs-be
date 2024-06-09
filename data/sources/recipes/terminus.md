@@ -36,7 +36,9 @@ A health check represents a summary of **health indicators**. A health indicator
 To get started with our first health check, let's create the `HealthModule` and import the `TerminusModule` into it in its imports array.
 
 :::info **Hint**
+
 To create the module using the [Nest CLI](cli/overview), simply execute the `$ nest g module health` command.
+
 :::
 
 ```typescript
@@ -57,7 +59,9 @@ $ nest g controller health
 ```
 
 :::info **Info**
+
 It is highly recommended to enable shutdown hooks in your application. Terminus integration makes use of this lifecycle event if enabled. Read more about shutdown hooks [here](fundamentals/lifecycle-events#application-shutdown).
+
 :::
 
 ## HTTP Healthcheck
@@ -205,7 +209,9 @@ Terminus offers the capability to add database checks to your health check. In o
 should check out the [Database chapter](/techniques/sql) and make sure your database connection within your application is established.
 
 :::info **Hint**
+
 Behind the scenes the `TypeOrmHealthIndicator` simply executes a `SELECT 1`-SQL command which is often used to verify whether the database still alive. In case you are using an Oracle database it uses `SELECT 1 FROM DUAL`.
+
 :::
 
 ```typescript
@@ -352,7 +358,9 @@ To make sure your process does not exceed a certain memory limit the `MemoryHeal
 The following example can be used to check the heap of your process.
 
 :::info **Hint**
+
 Heap is the portion of memory where dynamically allocated memory resides (i.e. memory allocated via malloc). Memory allocated from the heap will remain allocated until one of the following occurs:
+
 :::
 > - The memory is _free_'d
 > - The program terminates
@@ -394,7 +402,9 @@ It is also possible to verify the memory RSS of your process with `MemoryHealthI
 would return an unhealthy response code in case your process does have more than 150MB allocated.
 
 :::info **Hint**
+
 RSS is the Resident Set Size and is used to show how much memory is allocated to that process and is in RAM.
+
 :::
 > It does not include memory that is swapped out. It does include memory from shared libraries as long as the pages from
 > those libraries are actually in memory. It does include all stack and heap memory.
@@ -489,7 +499,9 @@ export class HealthModule { }
 ```
 
 :::info **Hint**
+
 In a real-world application the `DogHealthIndicator` should be provided in a separate module, for example, `DogModule`, which then will be imported by the `HealthModule`.
+
 :::
 
 The last required step is to add the now available health indicator in the required health check endpoint. For that, we go back to our `HealthController` and add it to our `check` function.
@@ -547,7 +559,9 @@ In this section, we are going to walk you through how you create a custom logger
 Therefore you can pick and choose which part of the logger you would like to overwrite
 
 :::info **Info**
+
 If you want to learn more about custom loggers in NestJS, [read more here](/techniques/logger#injecting-a-custom-logger).
+
 :::
 
 

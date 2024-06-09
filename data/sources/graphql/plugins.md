@@ -46,7 +46,9 @@ GraphQLModule.forRoot({
 ```
 
 :::info **Hint**
+
 The `ApolloServerOperationRegistry` plugin is exported from the `@apollo/server-plugin-operation-registry` package.
+
 :::
 
 ## Plugins with Mercurius
@@ -54,7 +56,9 @@ The `ApolloServerOperationRegistry` plugin is exported from the `@apollo/server-
 Some of the existing mercurius-specific Fastify plugins must be loaded after the mercurius plugin (read more [here](https://mercurius.dev/#/docs/plugins)) on the plugin tree.
 
 :::warning **Warning**
+
 [mercurius-upload](https://github.com/mercurius-js/mercurius-upload) is an exception and should be registered in the main file.
+
 :::
 
 For this, `MercuriusDriver` exposes an optional `plugins` configuration option. It represents an array of objects that consist of two attributes: `plugin` and its `options`. Therefore, registering the [cache plugin](https://github.com/mercurius-js/cache) would look like this:

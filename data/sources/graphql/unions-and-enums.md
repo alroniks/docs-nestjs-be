@@ -38,7 +38,9 @@ export const ResultUnion = createUnionType({
 ```
 
 :::warning **Warning**
+
 The array returned by the `types` property of the `createUnionType` function should be given a const assertion. If the const assertion is not given, a wrong declaration file will be generated at compile time, and an error will occur when using it from another project.
+
 :::
 
 Now, we can reference the `ResultUnion` in our query:
@@ -137,7 +139,9 @@ export class ResultUnionResolver {
 ```
 
 :::info **Hint**
+
 All decorators are exported from the `@nestjs/graphql` package.
+
 :::
 
 # Enums
@@ -257,7 +261,9 @@ export const allowedColorResolver: Record<keyof typeof AllowedColor, any> = {
 ```
 
 :::info **Hint**
+
 All decorators are exported from the `@nestjs/graphql` package.
+
 :::
 
 Then use this resolver object together with the `resolvers` property of the `GraphQLModule#forRoot()` method, as follows:

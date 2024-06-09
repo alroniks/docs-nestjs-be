@@ -10,7 +10,9 @@ To quote the [Apollo docs](https://blog.apollographql.com/apollo-federation-f260
 - It’s just **GraphQL**, using only spec-compliant features of the language. Any language, not just JavaScript, can implement federation.
 
 :::warning **Warning**
+
 Federation currently does not support subscriptions.
+
 :::
 
 In the following sections, we'll set up a demo application that consists of a gateway and two federated endpoints: Users service and Posts service.
@@ -392,7 +394,9 @@ $ npm install --save @apollo/subgraph @nestjs/mercurius
 ```
 
 :::info **Note**
+
 The `@apollo/subgraph` package is required to build a subgraph schema (`buildSubgraphSchema`, `printSubgraphSchema` functions).
+
 :::
 
 ## Schema first
@@ -748,7 +752,9 @@ export class AppModule {}
 To quote the [Apollo docs](https://www.apollographql.com/docs/federation/federation-2/new-in-federation-2), Federation 2 improves developer experience from the original Apollo Federation (called Federation 1 in this doc), which is backward compatible with most original supergraphs.
 
 :::warning **Warning**
+
 Mercurius doesn't fully support Federation 2. You can see the list of libraries that support Federation 2 [here](https://www.apollographql.com/docs/federation/supported-subgraphs#javascript--typescript).
+
 :::
 
 In the following sections, we'll upgrade the previous example to Federation 2.

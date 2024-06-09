@@ -36,7 +36,9 @@ const app = await NestFactory.createMicroservice(AppModule, {
 ```
 
 :::info **Hint**
+
 The `Transport` enum is imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Options
@@ -113,5 +115,7 @@ getNotifications(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `RedisContext` are imported from the `@nestjs/microservices` package.
+
 :::

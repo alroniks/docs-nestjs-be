@@ -239,7 +239,9 @@ this.eventBus.publish(new HeroKilledDragonEvent());
 ```
 
 :::info **Hint**
+
 The `EventBus` is an injectable class.
+
 :::
 
 Each event can have multiple **Event Handlers**.
@@ -257,7 +259,9 @@ export class HeroKilledDragonHandler implements IEventHandler<HeroKilledDragonEv
 ```
 
 :::info **Hint**
+
 Be aware that when you start using event handlers you get out of the traditional HTTP web context.
+
 :::
 >
 > - Errors in `CommandHandlers` can still be caught by built-in [Exception filters](/exception-filters).
@@ -299,7 +303,9 @@ export class HeroesGameSagas {
 ```
 
 :::info **Hint**
+
 The `ofType` operator and the `@Saga()` decorator are exported from the `@nestjs/cqrs` package.
+
 :::
 
 The `@Saga()` decorator marks the method as a saga. The `events$` argument is an Observable stream of all events. The `ofType` operator filters the stream by the specified event type. The `map` operator maps the event to a new command instance.

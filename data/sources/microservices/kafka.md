@@ -42,7 +42,9 @@ const app = await NestFactory.createMicroservice(AppModule, {
 ```
 
 :::info **Hint**
+
 The `Transport` enum is imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Options
@@ -186,7 +188,9 @@ To prevent the `ClientKafka` consumers from losing response messages, a Nest-spe
 ## Message response subscription
 
 :::warning **Note**
+
 This section is only relevant if you use [request-response](/microservices/basics#request-response) message style (with the `@MessagePattern` decorator and the `ClientKafka#send` method). Subscribing to the response topic is not necessary for the [event-based](/microservices/basics#event-based) communication (`@EventPattern` decorator and `ClientKafka#emit` method).
+
 :::
 
 The `ClientKafka` class provides the `subscribeToResponseOf()` method. The `subscribeToResponseOf()` method takes a request's topic name as an argument and adds the derived reply topic name to a collection of reply topics. This method is required when implementing the message pattern.
@@ -233,7 +237,9 @@ export class HeroesController {
 ```
 
 :::info **Hint**
+
 `@Payload()` is imported from the `@nestjs/microservices` package.
+
 :::
 
 Outgoing messages can also be keyed by passing an object with the `key` and `value` properties. Keying messages is important for meeting the [co-partitioning requirement](https://docs.confluent.io/current/ksql/docs/developer-guide/partition-data.html#co-partitioning-requirements).
@@ -317,7 +323,9 @@ killDragon(message, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `KafkaContext` are imported from the `@nestjs/microservices` package.
+
 :::
 
 To access the original Kafka `IncomingMessage` object, use the `getMessage()` method of the `KafkaContext` object, as follows:
@@ -415,7 +423,9 @@ client: ClientKafka;
 ```
 
 :::info **Hint**
+
 Kafka client and consumer naming conventions can be customized by extending `ClientKafka` and `KafkaServer` in your own custom provider and overriding the constructor.
+
 :::
 
 Since the Kafka microservice message pattern utilizes two topics for the request and reply channels, a reply pattern should be derived from the request topic. By default, the name of the reply topic is the composite of the request topic name with `.reply` appended.
@@ -428,7 +438,9 @@ onModuleInit() {
 ```
 
 :::info **Hint**
+
 Kafka reply topic naming conventions can be customized by extending `ClientKafka` in your own custom provider and overriding the `getResponsePatternName` method.
+
 :::
 
 ## Retriable exceptions
@@ -436,7 +448,9 @@ Kafka reply topic naming conventions can be customized by extending `ClientKafka
 Similar to other transporters, all unhandled exceptions are automatically wrapped into an `RpcException` and converted to a "user-friendly" format. However, there are edge-cases when you might want to bypass this mechanism and let exceptions be consumed by the `kafkajs` driver instead. Throwing an exception when processing a message instructs `kafkajs` to **retry** it (redeliver it) which means that even though the message (or event) handler was triggered, the offset won't be committed to Kafka.
 
 :::warning **Warning** For event handlers (event-based communication), all unhandled exceptions are considered **retriable exceptions**
+
 by default.
+
 :::
 
 For this, you can use a dedicated class called `KafkaRetriableException`, as follows:
@@ -446,7 +460,9 @@ throw new KafkaRetriableException('...');
 ```
 
 :::info **Hint**
+
 `KafkaRetriableException` class is exported from the `@nestjs/microservices` package.
+
 :::
 
 ## Commit offsets

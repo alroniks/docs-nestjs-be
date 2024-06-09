@@ -1,7 +1,9 @@
 # MongoDB (Mongoose)
 
 :::danger **Warning**
+
 In this article, you'll learn how to create a `DatabaseModule` based on the **Mongoose** package from scratch using custom components. As a consequence, this solution contains a lot of overhead that you can omit using ready to use and available out-of-the-box dedicated `@nestjs/mongoose` package. To learn more, see [here](/techniques/mongodb).
+
 :::
 
 [Mongoose](https://mongoosejs.com) is the most popular [MongoDB](https://www.mongodb.org/) object modeling tool.
@@ -39,7 +41,9 @@ export const databaseProviders = [
 ```
 
 :::info **Hint**
+
 Following best practices, we declared the custom provider in the separated file which has a `*.providers.ts` suffix.
+
 :::
 
 Then, we need to export these providers to make them **accessible** for the rest part of the application.
@@ -102,7 +106,9 @@ export const catsProviders = [
 ```
 
 :::warning **Warning**
+
 In the real-world applications you should avoid **magic strings**. Both `CAT_MODEL` and `DATABASE_CONNECTION` should be kept in the separated `constants.ts` file.
+
 :::
 
 Now we can inject the `CAT_MODEL` to the `CatsService` using the `@Inject()` decorator:
@@ -187,7 +193,9 @@ export class CatsModule {}
 ```
 
 :::info **Hint**
+
 Do not forget to import the `CatsModule` into the root `AppModule`.
+
 :::
 
 ## Example

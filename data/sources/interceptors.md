@@ -74,11 +74,15 @@ export class LoggingInterceptor {
 ```
 
 :::info **Hint**
+
 The `NestInterceptor<T, R>` is a generic interface in which `T` indicates the type of an `Observable<T>` (supporting the response stream), and `R` is the type of the value wrapped by `Observable<R>`.
+
 :::
 
 :::warning **Notice** Interceptors, like controllers, providers, guards, and so on, can **inject dependencies**
+
 through their `constructor`.
+
 :::
 
 Since `handle()` returns an RxJS `Observable`, we have a wide choice of operators we can use to manipulate the stream. In the example above, we used the `tap()` operator, which invokes our anonymous logging function upon graceful or exceptional termination of the observable stream, but doesn't otherwise interfere with the response cycle.
@@ -94,7 +98,9 @@ export class CatsController {}
 ```
 
 :::info **Hint**
+
 The `@UseInterceptors()` decorator is imported from the `@nestjs/common` package.
+
 :::
 
 Using the above construction, each route handler defined in `CatsController` will use `LoggingInterceptor`. When someone calls the `GET /cats` endpoint, you'll see the following output in your standard output:
@@ -140,7 +146,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 When using this approach to perform dependency injection for the interceptor, note that regardless of the
+
 :::
 > module where this construction is employed, the interceptor is, in fact, global. Where should this be done? Choose the module
 > where the interceptor (`LoggingInterceptor` in the example above) is defined. Also, `useClass` is not the only way of dealing with custom provider registration. Learn more [here](/fundamentals/custom-providers).
@@ -150,7 +158,9 @@ When using this approach to perform dependency injection for the interceptor, no
 We already know that `handle()` returns an `Observable`. The stream contains the value **returned** from the route handler, and thus we can easily mutate it using RxJS's `map()` operator.
 
 :::warning **Warning**
+
 The response mapping feature doesn't work with the library-specific response strategy (using the `@Res()` object directly is forbidden).
+
 :::
 
 Let's create the `TransformInterceptor`, which will modify each response in a trivial way to demonstrate the process. It will use RxJS's `map()` operator to assign the response object to the `data` property of a newly created object, returning the new object to the client.
@@ -184,7 +194,9 @@ export class TransformInterceptor {
 ```
 
 :::info **Hint**
+
 Nest interceptors work with both synchronous and asynchronous `intercept()` methods. You can simply switch the method to `async` if necessary.
+
 :::
 
 With the above construction, when someone calls the `GET /cats` endpoint, the response would look like the following (assuming that route handler returns an empty array `[]`):

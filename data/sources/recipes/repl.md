@@ -33,7 +33,9 @@ $ npm run start -- --entryFile repl
 ```
 
 :::info **Hint**
+
 `repl` returns a [Node.js REPL server](https://nodejs.org/api/repl.html) object.
+
 :::
 
 Once it's up and running, you should see the following message in your console:
@@ -101,7 +103,9 @@ Interface: $(token: InjectionToken) => any
 ```
 
 :::info **Hint**
+
 Those function interfaces are written in [TypeScript function type expression syntax](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions).
+
 :::
 
 | Function     | Description                                                                                                        | Signature                                                             |

@@ -127,7 +127,9 @@ In fact, what our `register()` method will return is a `DynamicModule`. A dynami
 Dynamic modules must return an object with the exact same interface, plus one additional property called `module`. The `module` property serves as the name of the module, and should be the same as the class name of the module, as shown in the example below.
 
 :::info **Hint** For a dynamic module, all properties of the module options object are optional **except**
+
 `module`.
+
 :::
 
 What about the static `register()` method? We can now see that its job is to return an object that has the `DynamicModule` interface. When we call it, we are effectively providing a module to the `imports` list, similar to the way we would do so in the static case by listing a module class name. In other words, the dynamic module API simply returns a module, but rather than fix the properties in the `@Module` decorator, we specify them programmatically.
@@ -158,7 +160,9 @@ export class ConfigModule {
 It should now be clear how the pieces tie together. Calling `ConfigModule.register(...)` returns a `DynamicModule` object with properties which are essentially the same as those that, until now, we've provided as metadata via the `@Module()` decorator.
 
 :::info **Hint**
+
 Import `DynamicModule` from `@nestjs/common`.
+
 :::
 
 Our dynamic module isn't very interesting yet, however, as we haven't introduced any capability to **configure** it as we said we would like to do. Let's address that next.

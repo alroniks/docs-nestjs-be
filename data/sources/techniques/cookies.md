@@ -39,7 +39,9 @@ findAll(@Req() request: Request) {
 ```
 
 :::info **Hint**
+
 The `@Req()` decorator is imported from the `@nestjs/common`, while `Request` from the `express` package.
+
 :::
 
 To attach a cookie to an outgoing response, use the `Response#cookie()` method:
@@ -52,11 +54,15 @@ findAll(@Res({ passthrough: true }) response: Response) {
 ```
 
 :::warning **Warning**
+
 If you want to leave the response handling logic to the framework, remember to set the `passthrough` option to `true`, as shown above. Read more [here](/controllers#library-specific-approach).
+
 :::
 
 :::info **Hint**
+
 The `@Res()` decorator is imported from the `@nestjs/common`, while `Response` from the `express` package.
+
 :::
 
 ## Use with Fastify
@@ -89,7 +95,9 @@ findAll(@Req() request: FastifyRequest) {
 ```
 
 :::info **Hint**
+
 The `@Req()` decorator is imported from the `@nestjs/common`, while `FastifyRequest` from the `fastify` package.
+
 :::
 
 To attach a cookie to an outgoing response, use the `FastifyReply#setCookie()` method:
@@ -104,11 +112,15 @@ findAll(@Res({ passthrough: true }) response: FastifyReply) {
 To read more about `FastifyReply#setCookie()` method, check out this [page](https://github.com/fastify/fastify-cookie#sending).
 
 :::warning **Warning**
+
 If you want to leave the response handling logic to the framework, remember to set the `passthrough` option to `true`, as shown above. Read more [here](/controllers#library-specific-approach).
+
 :::
 
 :::info **Hint**
+
 The `@Res()` decorator is imported from the `@nestjs/common`, while `FastifyReply` from the `fastify` package.
+
 :::
 
 ## Creating a custom decorator (cross-platform)

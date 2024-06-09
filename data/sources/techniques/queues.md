@@ -59,7 +59,9 @@ BullModule.registerQueue({
 ```
 
 :::info **Hint**
+
 Create multiple queues by passing multiple comma-separated configuration objects to the `registerQueue()` method.
+
 :::
 
 The `registerQueue()` method is used to instantiate and/or register queues. Queues are shared across modules and processes that connect to the same underlying Redis database with the same credentials. Each queue is unique by its name property. A queue name is used as both an injection token (for injecting the queue into controllers/providers), and as an argument to decorators to associate consumer classes and listeners with queues.
@@ -122,7 +124,9 @@ export class AudioService {
 ```
 
 :::info **Hint**
+
 The `@InjectQueue()` decorator identifies the queue by its name, as provided in the `registerQueue()` method call (e.g., `'audio'`).
+
 :::
 
 Now, add a job by calling the queue's `add()` method, passing a user-defined job object. Jobs are represented as serializable JavaScript objects (since that is how they are stored in the Redis database). The shape of the job you pass is arbitrary; use it to represent the semantics of your job object.
@@ -209,7 +213,9 @@ export class AudioConsumer {}
 ```
 
 :::info **Hint**
+
 Consumers must be registered as `providers` so the `@nestjs/bull` package can pick them up.
+
 :::
 
 Where the decorator's string argument (e.g., `'audio'`) is the name of the queue to be associated with the class methods.
@@ -247,7 +253,9 @@ async transcode(job: Job<unknown>) { ... }
 ```
 
 :::warning **Warning**
+
 When defining multiple consumers for the same queue, the `concurrency` option in `@Process({{ '{' }} concurrency: 1 {{ '}' }})` won't take effect. The minimum `concurrency` will match the number of consumers defined. This also applies even if `@Process()` handlers use a different `name` to handle named jobs.
+
 :::
 
 ## Request-scoped consumers
@@ -270,7 +278,9 @@ constructor(@Inject(JOB_REF) jobRef: Job) {
 ```
 
 :::info **Hint**
+
 The `JOB_REF` token is imported from the `@nestjs/bull` package.
+
 :::
 
 ## Event listeners
@@ -356,7 +366,9 @@ async onGlobalCompleted(jobId: number, result: any) {
 ```
 
 :::info **Hint**
+
 To access the `Queue` object (to make a `getJob()` call), you must of course inject it. Also, the Queue must be registered in the module where you are injecting it.
+
 :::
 
 In addition to the specific event listener decorators, you can also use the generic `@OnQueueEvent()` decorator in combination with either `BullQueueEvents` or `BullQueueGlobalEvents` enums. Read more about events [here](https://github.com/OptimalBits/bull/blob/master/REFERENCE.md#events).

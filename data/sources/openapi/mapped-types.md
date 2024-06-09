@@ -32,7 +32,9 @@ export class UpdateCatDto extends PartialType(CreateCatDto) {}
 ```
 
 :::info **Hint**
+
 The `PartialType()` function is imported from the `@nestjs/swagger` package.
+
 :::
 
 ## Pick
@@ -61,7 +63,9 @@ export class UpdateCatAgeDto extends PickType(CreateCatDto, ['age'] as const) {}
 ```
 
 :::info **Hint**
+
 The `PickType()` function is imported from the `@nestjs/swagger` package.
+
 :::
 
 ## Omit
@@ -90,7 +94,9 @@ export class UpdateCatDto extends OmitType(CreateCatDto, ['name'] as const) {}
 ```
 
 :::info **Hint**
+
 The `OmitType()` function is imported from the `@nestjs/swagger` package.
+
 :::
 
 ## Intersection
@@ -124,7 +130,9 @@ export class UpdateCatDto extends IntersectionType(
 ```
 
 :::info **Hint**
+
 The `IntersectionType()` function is imported from the `@nestjs/swagger` package.
+
 :::
 
 ## Composition

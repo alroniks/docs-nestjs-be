@@ -7,7 +7,9 @@ throw new RpcException('Invalid credentials.');
 ```
 
 :::info **Hint**
+
 The `RpcException` class is imported from the `@nestjs/microservices` package.
+
 :::
 
 With the sample above, Nest will handle the thrown exception and return the `error` object with the following structure:
@@ -48,7 +50,9 @@ export class ExceptionFilter {
 ```
 
 :::warning **Warning**
+
 Global microservice exception filters aren't enabled by default when using a [hybrid application](/faq/hybrid-application).
+
 :::
 
 The following example uses a manually instantiated method-scoped filter. Just as with HTTP based applications, you can also use controller-scoped filters (i.e., prefix the controller class with a `@UseFilters()` decorator).

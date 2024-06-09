@@ -13,7 +13,9 @@ await app.listen(3001);
 ```
 
 :::info **Hint**
+
 the `app.listen(port)` method starts an HTTP server on the specified address. If your application does not handle HTTP requests then you should use the `app.init()` method instead.
+
 :::
 
 To connect multiple microservice instances, issue the call to `connectMicroservice()` for each microservice:
@@ -68,7 +70,9 @@ getTCPDate(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()`, `Transport` and `NatsContext` are imported from `@nestjs/microservices`.
+
 :::
 
 ## Sharing configuration

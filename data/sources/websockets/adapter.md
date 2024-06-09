@@ -30,7 +30,9 @@ The WebSockets module is platform-agnostic, hence, you can bring your own librar
 The [socket.io](https://github.com/socketio/socket.io) package is wrapped in an `IoAdapter` class. What if you would like to enhance the basic functionality of the adapter? For instance, your technical requirements require a capability to broadcast events across multiple load-balanced instances of your web service. For this, you can extend `IoAdapter` and override a single method which responsibility is to instantiate new socket.io servers. But first of all, let's install the required package.
 
 :::warning **Warning**
+
 To use socket.io with multiple load-balanced instances you either have to disable polling by setting `transports: ['websocket']` in your clients socket.io configuration or you have to enable cookie based routing in your load balancer. Redis alone is not enough. See [here](https://socket.io/docs/v4/using-multiple-nodes/#enabling-sticky-session) for more information.
+
 :::
 
 ```bash
@@ -80,7 +82,9 @@ app.useWebSocketAdapter(redisIoAdapter);
 Another available adapter is a `WsAdapter` which in turn acts like a proxy between the framework and integrate blazing fast and thoroughly tested [ws](https://github.com/websockets/ws) library. This adapter is fully compatible with native browser WebSockets and is far faster than socket.io package. Unluckily, it has significantly fewer functionalities available out-of-the-box. In some cases, you may just don't necessarily need them though.
 
 :::info **Hint**
+
 `ws` library does not support namespaces (communication channels popularised by `socket.io`). However, to somehow mimic this feature, you can mount multiple `ws` servers on different paths (example: `@WebSocketGateway({{ '{' }} path: '/users' {{ '}' }})`).
+
 :::
 
 In order to use `ws`, we firstly have to install the required package:
@@ -97,7 +101,9 @@ app.useWebSocketAdapter(new WsAdapter(app));
 ```
 
 :::info **Hint**
+
 The `WsAdapter` is imported from `@nestjs/platform-ws`.
+
 :::
 
 ## Advanced (custom adapter)
@@ -158,7 +164,9 @@ export class WsAdapter implements WebSocketAdapter {
 ```
 
 :::info **Hint**
+
 When you want to take advantage of [ws](https://github.com/websockets/ws) library, use built-in `WsAdapter` instead of creating your own one.
+
 :::
 
 Then, we can set up a custom adapter using `useWebSocketAdapter()` method:

@@ -59,7 +59,9 @@ constructor(private eventEmitter: EventEmitter2) {}
 ```
 
 :::info **Hint**
+
 Import the `EventEmitter2` from the `@nestjs/event-emitter` package.
+
 :::
 
 Then use it in a class as follows:
@@ -86,7 +88,9 @@ handleOrderCreatedEvent(payload: OrderCreatedEvent) {
 ```
 
 :::warning **Warning**
+
 Event subscribers cannot be request-scoped.
+
 :::
 
 The first argument can be a `string` or `symbol` for a simple event emitter and a `string | symbol | Array<string | symbol>` in a case of a wildcard emitter.  
@@ -115,7 +119,9 @@ export type OnEventOptions = OnOptions & {
 ```
 
 :::info **Hint**
+
 Read more about the `OnOptions` options object from [`eventemitter2`](https://github.com/EventEmitter2/EventEmitter2#emitteronevent-listener-options-objectboolean).
+
 :::
 
 ```typescript
@@ -147,7 +153,9 @@ handleEverything(payload: any) {
 ```
 
 :::info **Hint**
+
 `EventEmitter2` class provides several useful methods for interacting with events, like `waitFor` and `onAny`. You can read more about them [here](https://github.com/EventEmitter2/EventEmitter2).
+
 :::
 
 ## Example

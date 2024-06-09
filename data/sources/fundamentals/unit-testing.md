@@ -71,7 +71,9 @@ describe('CatsController', () => {
 ```
 
 :::info **Hint**
+
 Keep your test files located near the classes they test. Testing files should have a `.spec` or `.test` suffix.
+
 :::
 
 Because the above sample is trivial, we aren't really testing anything Nest-specific. Indeed, we aren't even using dependency injection (notice that we pass an instance of `CatsService` to our `catsController`). This form of testing - where we manually instantiate the classes being tested - is often called **isolated testing** as it is independent from the framework. Let's introduce some more advanced capabilities that help you test applications that make more extensive use of Nest features.
@@ -142,7 +144,9 @@ describe('CatsController', () => {
 The `Test` class is useful for providing an application execution context that essentially mocks the full Nest runtime, but gives you hooks that make it easy to manage class instances, including mocking and overriding. The `Test` class has a `createTestingModule()` method that takes a module metadata object as its argument (the same object you pass to the `@Module()` decorator). This method returns a `TestingModule` instance which in turn provides a few methods. For unit tests, the important one is the `compile()` method. This method bootstraps a module with its dependencies (similar to the way an application is bootstrapped in the conventional `main.ts` file using `NestFactory.create()`), and returns a module that is ready for testing.
 
 :::info **Hint** The `compile()` method is **asynchronous** and therefore has to be awaited. Once the module is compiled you can retrieve any **static**
+
 instance it declares (controllers and providers) using the `get()` method.
+
 :::
 
 `TestingModule` inherits from the [module reference](/fundamentals/module-ref) class, and therefore its ability to dynamically resolve scoped providers (transient or request-scoped). Do this with the `resolve()` method (the `get()` method can only retrieve static instances).
@@ -157,11 +161,15 @@ catsService = await moduleRef.resolve(CatsService);
 ```
 
 :::warning **Warning**
+
 The `resolve()` method returns a unique instance of the provider, from its own **DI container sub-tree**. Each sub-tree has a unique context identifier. Thus, if you call this method more than once and compare instance references, you will see that they are not equal.
+
 :::
 
 :::info **Hint**
+
 Learn more about the module reference features [here](/fundamentals/module-ref).
+
 :::
 
 Instead of using the production version of any provider, you can override it with a [custom provider](/fundamentals/custom-providers) for testing purposes. For example, you can mock a database service instead of connecting to a live database. We'll cover overrides in the next section, but they're available for unit tests as well.
@@ -206,11 +214,15 @@ describe('CatsController', () => {
 You can also retrieve these mocks out of the testing container as you normally would custom providers, `moduleRef.get(CatsService)`.
 
 :::info **Hint**
+
 A general mock factory, like `createMock` from [`@golevelup/ts-jest`](https://github.com/golevelup/nestjs/tree/master/packages/testing) can also be passed directly.
+
 :::
 
 :::info **Hint**
+
 `REQUEST` and `INQUIRER` providers cannot be auto-mocked because they're already pre-defined in the context. However, they can be _overwritten_ using the custom provider syntax or by utilizing the `.overrideProvider` method.
+
 :::
 
 ## End-to-end testing
@@ -293,7 +305,9 @@ describe('Cats', () => {
 ```
 
 :::info **Hint**
+
 If you're using [Fastify](/techniques/performance) as your HTTP adapter, it requires a slightly different configuration, and has built-in testing capabilities:
+
 :::
 >
 > ```ts
@@ -397,7 +411,9 @@ The compiled module has several useful methods, as described in the following ta
 </table>
 
 :::info **Hint**
+
 Keep your e2e test files inside the `test` directory. The testing files should have a `.e2e-spec` suffix.
+
 :::
 
 ## Overriding globally registered enhancers
@@ -427,7 +443,9 @@ providers: [
 ```
 
 :::info **Hint**
+
 Change the `useClass` to `useExisting` to reference a registered provider instead of having Nest instantiate it behind the token.
+
 :::
 
 Now the `JwtAuthGuard` is visible to Nest as a regular provider that can be overridden when creating the `TestingModule`:

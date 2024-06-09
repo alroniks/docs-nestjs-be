@@ -3,7 +3,9 @@
 To handle file uploading, Nest provides a built-in module based on the [multer](https://github.com/expressjs/multer) middleware package for Express. Multer handles data posted in the `multipart/form-data` format, which is primarily used for uploading files via an HTTP `POST` request. This module is fully configurable and you can adjust its behavior to your application requirements.
 
 :::warning **Warning**
+
 Multer cannot process data which is not in the supported multipart format (`multipart/form-data`). Also, note that this package is not compatible with the `FastifyAdapter`.
+
 :::
 
 For better type safety, let's install Multer typings package:
@@ -35,7 +37,9 @@ uploadFile(file) {
 ```
 
 :::info **Hint**
+
 The `FileInterceptor()` decorator is exported from the `@nestjs/platform-express` package. The `@UploadedFile()` decorator is exported from `@nestjs/common`.
+
 :::
 
 The `FileInterceptor()` decorator takes two arguments:
@@ -44,7 +48,9 @@ The `FileInterceptor()` decorator takes two arguments:
 - `options`: optional object of type `MulterOptions`. This is the same object used by the multer constructor (more details [here](https://github.com/expressjs/multer#multeropts)).
 
 :::warning **Warning**
+
 `FileInterceptor()` may not be compatible with third party cloud providers like Google Firebase or others.
+
 :::
 
 ## File validation
@@ -120,7 +126,9 @@ export abstract class FileValidator<TValidationOptions = Record<string, any>> {
 ```
 
 :::info **Hint**
+
 The `FileValidator` interfaces supports async validation via its `isValid` function. To leverage type security, you can also type the `file` parameter as `Express.Multer.File` in case you are using express (default) as a driver.
+
 :::
 
 `FileValidator` is a regular class that has access to the file object and validates it according to the options provided by the client. Nest has two built-in `FileValidator` implementations you can use in your project:
@@ -129,7 +137,9 @@ The `FileValidator` interfaces supports async validation via its `isValid` funct
 - `FileTypeValidator` - Checks if a given file's mime-type matches the given value. 
 
 :::warning **Warning**
+
 To verify file type, [FileTypeValidator](https://github.com/nestjs/nest/blob/master/packages/common/pipes/file/file-type.validator.ts) class uses the type as detected by multer. By default, multer derives file type from file extension on user's device. However, it does not check actual file contents. As files can be renamed to arbitrary extensions, consider using a custom implementation (like checking the file's [magic number](https://www.ibm.com/support/pages/what-magic-number)) if your app requires a safer solution.
+
 :::
 
 To understand how these can be used in conjunction with the aforementioned `FileParsePipe`, we'll use an altered snippet of the last presented example:
@@ -146,7 +156,9 @@ To understand how these can be used in conjunction with the aforementioned `File
 file: Express.Multer.File,
 ```
 :::info **Hint**
+
 If the number of validators increase largely or their options are cluttering the file, you can define this array in a separate file and import it here as a named constant like `fileValidators`.
+
 :::
 
 Finally, you can use the special `ParseFilePipeBuilder` class that lets you compose & construct your validators. By using it as shown below you can avoid manual instantiation of each validator and just pass their options directly:
@@ -168,7 +180,9 @@ file: Express.Multer.File,
 ```
 
 :::info **Hint**
+
 File presence is required by default, but you can make it optional by adding `fileIsRequired: false` parameter inside `build` function options (at the same level as `errorHttpStatusCode`).
+
 :::
 
 ## Array of files
@@ -198,7 +212,9 @@ uploadFile(files) {
 ```
 
 :::info **Hint**
+
 The `FilesInterceptor()` decorator is exported from the `@nestjs/platform-express` package. The `@UploadedFiles()` decorator is exported from `@nestjs/common`.
+
 :::
 
 ## Multiple files
@@ -277,7 +293,9 @@ MulterModule.register({
 ```
 
 :::info **Hint**
+
 The `MulterModule` class is exported from the `@nestjs/platform-express` package.
+
 :::
 
 ## Async configuration

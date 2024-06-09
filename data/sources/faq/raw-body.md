@@ -3,7 +3,9 @@
 One of the most common use-case for having access to the raw request body is performing webhook signature verifications. Usually to perform webhook signature validations the unserialized request body is required to calculate an HMAC hash.
 
 :::warning **Warning**
+
 This feature can be used only if the built-in global body parser middleware is enabled, ie., you must not pass `bodyParser: false` when creating the app.
+
 :::
 
 ## Use with Express
@@ -48,7 +50,9 @@ app.useBodyParser('text');
 ```
 
 :::warning **Warning**
+
 Ensure that you are providing the correct application type to the `NestFactory.create` call. For Express applications, the correct type is `NestExpressApplication`. Otherwise the `.useBodyParser` method will not be found.
+
 :::
 
 ## Body parser size limit
@@ -110,7 +114,9 @@ app.useBodyParser('text/plain');
 ```
 
 :::warning **Warning**
+
 Ensure that you are providing the correct application type to the `NestFactory.create` call. For Fastify applications, the correct type is `NestFastifyApplication`. Otherwise the `.useBodyParser` method will not be found.
+
 :::
 
 ## Body parser size limit

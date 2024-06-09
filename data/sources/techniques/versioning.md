@@ -1,7 +1,9 @@
 # Versioning
 
 :::info **Hint**
+
 This chapter is only relevant to HTTP-based applications.
+
 :::
 
 Versioning allows you to have **different versions** of your controllers or individual routes running within the same application. Applications change very often and it is not unusual that there are breaking changes that you need to make while still needing to support the previous version of the application.
@@ -32,7 +34,9 @@ There are 4 types of versioning that are supported:
 URI Versioning uses the version passed within the URI of the request, such as `https://example.com/v1/route` and `https://example.com/v2/route`.
 
 :::warning **Notice**
+
 With URI Versioning the version will be automatically added to the URI after the <a href="faq/global-prefix">global path prefix</a> (if one exists), and before any controller or route paths.
+
 :::
 
 To enable URI Versioning for your application, do the following:
@@ -48,11 +52,15 @@ await app.listen(3000);
 ```
 
 :::warning **Notice**
+
 The version in the URI will be automatically prefixed with `v` by default, however the prefix value can be configured by setting the `prefix` key to your desired prefix or `false` if you wish to disable it.
+
 :::
 
 :::info **Hint**
+
 The `VersioningType` enum is available to use for the `type` property and is imported from the `@nestjs/common` package.
+
 :::
 
 ## Header Versioning Type
@@ -76,7 +84,9 @@ await app.listen(3000);
 The `header` property should be the name of the header that will contain the version of the request.
 
 :::info **Hint**
+
 The `VersioningType` enum is available to use for the `type` property and is imported from the `@nestjs/common` package.
+
 :::
 
 ## Media Type Versioning Type
@@ -100,7 +110,9 @@ await app.listen(3000);
 The `key` property should be the key and separator of the key-value pair that contains the version. For the example `Accept: application/json;v=2`, the `key` property would be set to `v=`.
 
 :::info **Hint**
+
 The `VersioningType` enum is available to use for the `type` property and is imported from the `@nestjs/common` package.
+
 :::
 
 ## Custom Versioning Type
@@ -120,7 +132,9 @@ If versions `[3, 2, 1]` are extracted, but routes only exist for version `2` and
 is selected (version `3` is automatically ignored).
 
 :::warning **Notice** Selecting the highest matching version based on the array returned from `extractor` > **does not reliably work**
+
 with the Express adapter due to design limitations. A single version (either a string or
+
 :::
 > array of 1 element) works just fine in Express. Fastify correctly supports both highest matching version
 > selection and single version selection.
@@ -152,7 +166,9 @@ await app.listen(3000);
 Versioning allows you to version controllers, individual routes, and also provides a way for certain resources to opt-out of versioning. The usage of versioning is the same regardless of the Versioning Type your application uses.
 
 :::warning **Notice**
+
 If versioning is enabled for the application but the controller or route does not specify the version, any requests to that controller/route will be returned a `404` response status. Similarly, if a request is received containing a version that does not have a corresponding controller or route, it will also be returned a `404` response status.
+
 :::
 
 ## Controller versions
@@ -263,7 +279,9 @@ Some controllers or routes may not care about the version and would have the sam
 An incoming request will be mapped to a `VERSION_NEUTRAL` controller or route regardless of the version sent in the request in addition to if the request does not contain a version at all.
 
 :::warning **Notice**
+
 For URI Versioning, a `VERSION_NEUTRAL` resource would not have the version present in the URI.
+
 :::
 
 To add a version neutral controller or route do the following:
@@ -337,5 +355,7 @@ export class AppModule implements NestModule {
 With the code above, the `LoggerMiddleware` will only be applied to the version '2' of `/cats` endpoint.
 
 :::info **Notice**
+
 Middlewares work with any versioning type described in the this section: `URI`, `Header`, `Media Type` or `Custom`.
+
 :::

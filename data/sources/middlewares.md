@@ -124,11 +124,15 @@ export class AppModule {
 ```
 
 :::info **Hint**
+
 The `configure()` method can be made asynchronous using `async/await` (e.g., you can `await` completion of an asynchronous operation inside the `configure()` method body).
+
 :::
 
 :::warning **Warning**
+
 When using the `express` adapter, the NestJS app will register `json` and `urlencoded` from the package `body-parser` by default. This means if you want to customize that middleware via the `MiddlewareConsumer`, you need to turn off the global middleware by setting the `bodyParser` flag to `false` when creating the application with `NestFactory.create()`.
+
 :::
 
 ## Route wildcards
@@ -142,7 +146,9 @@ forRoutes({ path: 'ab*cd', method: RequestMethod.ALL });
 The `'ab*cd'` route path will match `abcd`, `ab_cd`, `abecd`, and so on. The characters `?`, `+`, `*`, and `()` may be used in a route path, and are subsets of their regular expression counterparts. The hyphen ( `-`) and the dot (`.`) are interpreted literally by string-based paths.
 
 :::warning **Warning**
+
 The `fastify` package uses the latest version of the `path-to-regexp` package, which no longer supports wildcard asterisks `*`. Instead, you must use parameters (e.g., `(.*)`, `:splat*`).
+
 :::
 
 ## Middleware consumer
@@ -185,7 +191,9 @@ export class AppModule {
 ```
 
 :::info **Hint**
+
 The `apply()` method may either take a single middleware, or multiple arguments to specify <a href="/middleware#multiple-middleware">multiple middlewares</a>.
+
 :::
 
 ## Excluding routes
@@ -204,7 +212,9 @@ consumer
 ```
 
 :::info **Hint**
+
 The `exclude()` method supports wildcard parameters using the [path-to-regexp](https://github.com/pillarjs/path-to-regexp#parameters) package.
+
 :::
 
 With the example above, `LoggerMiddleware` will be bound to all routes defined inside `CatsController` **except** the three passed to the `exclude()` method.
@@ -238,7 +248,9 @@ consumer
 ```
 
 :::info **Hint** Consider using the simpler **functional middleware**
+
 alternative any time your middleware doesn't need any dependencies.
+
 :::
 
 ## Multiple middleware
@@ -261,5 +273,7 @@ await app.listen(3000);
 ```
 
 :::info **Hint**
+
 Accessing the DI container in a global middleware is not possible. You can use a [functional middleware](middleware#functional-middleware) instead when using `app.use()`. Alternatively, you can use a class middleware and consume it with `.forRoutes('*')` within the `AppModule` (or any other module).
+
 :::

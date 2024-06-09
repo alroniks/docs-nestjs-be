@@ -3,7 +3,9 @@
 [Axios](https://github.com/axios/axios) is a richly featured HTTP client package that is widely used. Nest wraps Axios and exposes it via the built-in `HttpModule`. The `HttpModule` exports the `HttpService` class, which exposes Axios-based methods to perform HTTP requests. The library also transforms the resulting HTTP responses into `Observables`.
 
 :::info **Hint**
+
 You can also use any general purpose Node.js HTTP client library directly, including [got](https://github.com/sindresorhus/got) or [undici](https://github.com/nodejs/undici).
+
 :::
 
 ## Installation
@@ -29,7 +31,9 @@ export class CatsModule {}
 Next, inject `HttpService` using normal constructor injection.
 
 :::info **Hint**
+
 `HttpModule` and `HttpService` are imported from `@nestjs/axios` package.
+
 :::
 
 ```typescript
@@ -57,7 +61,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 `AxiosResponse` is an interface exported from the `axios` package (`$ npm i axios`).
+
 :::
 
 All `HttpService` methods return an `AxiosResponse` wrapped in an `Observable` object.
@@ -181,5 +187,7 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 Visit RxJS's documentation on [`firstValueFrom`](https://rxjs.dev/api/index/function/firstValueFrom) and [`lastValueFrom`](https://rxjs.dev/api/index/function/lastValueFrom) for differences between them.
+
 :::

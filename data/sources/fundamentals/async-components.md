@@ -15,7 +15,9 @@ The syntax for this is to use `async/await` with the `useFactory` syntax. The fa
 ```
 
 :::info **Hint**
+
 Learn more about custom provider syntax [here](/fundamentals/custom-providers).
+
 :::
 
 ## Injection

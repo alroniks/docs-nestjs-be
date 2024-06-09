@@ -11,7 +11,9 @@ $ npm install @nestjs/cache-manager cache-manager
 ```
 
 :::warning **Warning**
+
 `cache-manager` version 4 uses seconds for `TTL (Time-To-Live)`. The current version of `cache-manager` (v5) has switched to using milliseconds instead. NestJS doesn't convert the value, and simply forwards the ttl you provide to the library. In other words:
+
 :::
 > * If using `cache-manager` v4, provide ttl in seconds
 > * If using `cache-manager` v5, provide ttl in milliseconds
@@ -44,7 +46,9 @@ constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 ```
 
 :::info **Hint**
+
 The `Cache` class is imported from the `cache-manager`, while `CACHE_MANAGER` token from the `@nestjs/cache-manager` package.
+
 :::
 
 The `get` method on the `Cache` instance (from the `cache-manager` package) is used to retrieve items from the cache. If the item does not exist in the cache, `null` will be returned.
@@ -88,7 +92,9 @@ await this.cacheManager.reset();
 ## Auto-caching responses
 
 :::warning **Warning**
+
 In [GraphQL](/graphql/quick-start) applications, interceptors are executed separately for each field resolver. Thus, `CacheModule` (which uses interceptors to cache responses) will not work properly.
+
 :::
 
 To enable auto-caching responses, just tie the `CacheInterceptor` where you want to cache data.
@@ -165,7 +171,9 @@ export class AppController {
 ```
 
 :::info **Hint**
+
 The `@CacheKey()` and `@CacheTTL()` decorators are imported from the `@nestjs/cache-manager` package.
+
 :::
 
 The `@CacheKey()` decorator may be used with or without a corresponding `@CacheTTL()` decorator and vice versa. One may choose to override only the `@CacheKey()` or only the `@CacheTTL()`. Settings that are not overridden with a decorator will use the default values as registered globally (see [Customize caching](https://docs.nestjs.com/techniques/caching#customize-caching)).
@@ -213,7 +221,9 @@ handleEvent(client, data) {
 ```
 
 :::info **Hint**
+
 The `@CacheTTL()` decorator may be used with or without a corresponding `@CacheKey()` decorator.
+
 :::
 
 ## Adjust tracking
@@ -319,7 +329,9 @@ CacheModule.registerAsync({
 This works the same as `useClass` with one critical difference - `CacheModule` will lookup imported modules to reuse any already-created `ConfigService`, instead of instantiating its own.
 
 :::info **Hint**
+
 `CacheModule#register` and `CacheModule#registerAsync` and `CacheOptionsFactory` has an optional generic (type argument) to narrow down store-specific configuration options, making it type safe.
+
 :::
 
 ## Example

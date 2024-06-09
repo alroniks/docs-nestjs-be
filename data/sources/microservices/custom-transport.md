@@ -4,14 +4,18 @@ Nest provides a variety of **transporters** out-of-the-box, as well as an API al
 Transporters enable you to connect components over a network using a pluggable communications layer and a very simple application-level message protocol (read full [article](https://dev.to/nestjs/integrate-nestjs-with-external-services-using-microservice-transporters-part-1-p3)).
 
 :::info **Hint**
+
 Building a microservice with Nest does not necessarily mean you must use the `@nestjs/microservices` package. For example, if you want to communicate with external services (let's say other microservices written in different languages), you may not need all the features provided by `@nestjs/microservice` library.
+
 :::
 > In fact, if you don't need decorators (`@EventPattern` or `@MessagePattern`) that let you declaratively define subscribers, running a [Standalone Application](/application-context) and manually maintaining connection/subscribing to channels should be enough for most use-cases and will provide you with more flexibility.
 
 With a custom transporter, you can integrate any messaging system/protocol (including Google Cloud Pub/Sub, Amazon Kinesis, and others) or extend the existing one, adding extra features on top (for example, [QoS](https://github.com/mqttjs/MQTT.js/blob/master/README.md#qos) for MQTT).
 
 :::info **Hint**
+
 To better understand how Nest microservices work and how you can extend the capabilities of existing transporters, we recommend reading the [NestJS Microservices in Action](https://dev.to/johnbiundo/series/4724) and [Advanced NestJS Microservices](https://dev.to/nestjs/part-1-introduction-and-setup-1a2l) article series.
+
 :::
 
 ## Creating a strategy
@@ -39,7 +43,9 @@ class GoogleCloudPubSubServer
 ```
 
 :::warning **Warning**
+
 Please, note we won't be implementing a fully-featured Google Cloud Pub/Sub server in this chapter as this would require diving into transporter specific technical details.
+
 :::
 
 In our example above, we declared the `GoogleCloudPubSubServer` class and provided `listen()` and `close()` methods enforced by the `CustomTransportStrategy` interface.
@@ -89,7 +95,9 @@ Map { 'echo' => [AsyncFunction] { isEventHandler: false } }
 ```
 
 :::info **Hint**
+
 If we used the `@EventPattern` decorator, you would see the same output, but with the `isEventHandler` property set to `true`.
+
 :::
 
 As you can see, the `messageHandlers` property is a `Map` collection of all message (and event) handlers, in which patterns are being used as keys.
@@ -131,7 +139,9 @@ async listen(callback: () => void) {
 As we mentioned in the first section, you don't necessarily need to use the `@nestjs/microservices` package to create microservices, but if you decide to do so and you need to integrate a custom strategy, you will need to provide a "client" class too.
 
 :::info **Hint**
+
 Again, implementing a fully-featured client class compatible with all `@nestjs/microservices` features (e.g., streaming) requires a good understanding of communication techniques used by the framework. To learn more, check out this [article](https://dev.to/nestjs/part-4-basic-client-component-16f9).
+
 :::
 
 To communicate with an external service/emit & publish messages (or events) you can either use a library-specific SDK package, or implement a custom client class that extends the `ClientProxy`, as follows:
@@ -151,7 +161,9 @@ class GoogleCloudPubSubClient extends ClientProxy {
 ```
 
 :::warning **Warning**
+
 Please, note we won't be implementing a fully-featured Google Cloud Pub/Sub client in this chapter as this would require diving into transporter specific technical details.
+
 :::
 
 As you can see, `ClientProxy` class requires us to provide several methods for establishing & closing the connection and publishing messages (`publish`) and events (`dispatchEvent`).
@@ -220,7 +232,9 @@ googlePubSubClient
 ```
 
 :::info **Hint**
+
 The `timeout` operator is imported from the `rxjs/operators` package.
+
 :::
 
 With `timeout` operator applied, your terminal output should look as follows:
@@ -276,5 +290,7 @@ export class AppModule
 ```
 
 :::info **hint**
+
 This is the class itself being passed to `customClass`, not an instance of the class. Nest will create the instance under the hood for you, and will pass any options given to the `options` property to the new `ClientProxy`.
+
 :::

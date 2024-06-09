@@ -13,7 +13,9 @@ Alternatively, we can use ALS to propagate context for only a part of the system
 NestJS itself does not provide any built-in abstraction for `AsyncLocalStorage`, so let's walk through how we could implement it ourselves for the simplest HTTP case to get a better understanding of the whole concept:
 
 :::info **info**
+
 For a ready-made [dedicated package](recipes/async-local-storage#nestjs-cls), continue reading below.
+
 :::
 
 1. First, create a new instance of the `AsyncLocalStorage` in some shared source file. Since we're using NestJS, let's also turn it into a module with a custom provider.
@@ -138,7 +140,9 @@ export class CatService {
 4. That's it. Now we have a way to share request related state without needing to inject the whole `REQUEST` object.
 
 :::warning **warning**
+
 Please be aware that while the technique is useful for many use-cases, it inherently obfuscates the code flow (creating implicit context), so use it responsibly and especially avoid creating contextual "[God objects](https://en.wikipedia.org/wiki/God_object)".
+
 :::
 
 # NestJS CLS
@@ -148,7 +152,9 @@ The [nestjs-cls](https://github.com/Papooch/nestjs-cls) package provides several
 The store can then be accessed with an injectable `ClsService`, or entirely abstracted away from the business logic by using [Proxy Providers](https://www.npmjs.com/package/nestjs-cls#proxy-providers).
 
 :::info **info**
+
 `nestjs-cls` is a third party package and is not managed by the NestJS core team. Please, report any issues found with the library in the [appropriate repository](https://github.com/Papooch/nestjs-cls/issues).
+
 :::
 
 ## Installation
@@ -234,7 +240,9 @@ export interface MyClsStore extends ClsStore {
 ```
 
 :::info **hint**
+
 It it also possible to let the package automatically generate a Request ID and access it later with `cls.getId()`, or to get the whole Request object using `cls.get(CLS_REQ)`.
+
 :::
 ## Testing
 

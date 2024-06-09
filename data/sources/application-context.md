@@ -53,7 +53,9 @@ Following is a summary of the methods available for retrieving instance referenc
 </table>
 
 :::info **Hint**
+
 In non-strict mode, the root module is selected by default. To select any other module, you need to navigate the modules graph manually, step by step.
+
 :::
 
 If you want the node application to close after the script finishes (e.g., for a script running CRON jobs), add `await app.close()` to the end of your `bootstrap` function:

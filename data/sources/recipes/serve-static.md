@@ -41,7 +41,9 @@ With this in place, build the static website and place its content in the locati
 You can set the path to render your static app, specify excluded paths, enable or disable setting Cache-Control response header, etc. See the full list of options [here](https://github.com/nestjs/serve-static/blob/master/lib/interfaces/serve-static-options.interface.ts).
 
 :::warning **Notice**
+
 The default `renderPath` of the Static App is `*` (all paths), and the module will send "index.html" files in response.
+
 :::
 > It lets you create Client-Side routing for your SPA. Paths, specified in your controllers will fallback to the server.
 > You can change this behavior setting `serveRoot`, `renderPath` combining them with other options.

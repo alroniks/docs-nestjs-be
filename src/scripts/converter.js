@@ -34,9 +34,11 @@ function handleFilesInDirectory(inputDir, outputDir) {
 
           let modifiedData = data;
 
-          modifiedData = modifiedData.replace(/^> info \*\*(.*)\*\* (.*)$/gm, ':::info **$1**\n$2\n:::');
-          modifiedData = modifiedData.replace(/^> warning \*\*(.*)\*\* (.*)$/gm, ':::warning **$1**\n$2\n:::');
-          modifiedData = modifiedData.replace(/^> \*\*Warning\*\* (.*)$/gm, ':::danger **Warning**\n$1\n:::');
+          modifiedData = modifiedData.replace(/<img\s+[^>]*[^\/]>/gm, '<img $1 />');
+
+          modifiedData = modifiedData.replace(/^> info \*\*(.*)\*\* (.*)$/gm, ':::info **$1**\n\n$2\n\n:::');
+          modifiedData = modifiedData.replace(/^> warning \*\*(.*)\*\* (.*)$/gm, ':::warning **$1**\n\n$2\n\n:::');
+          modifiedData = modifiedData.replace(/^> \*\*Warning\*\* (.*)$/gm, ':::danger **Warning**\n\n$1\n\n:::');
 
           modifiedData = modifiedData.replace(/^###\s/gm, `# `);
           modifiedData = modifiedData.replace(/^####\s/gm, `## `);

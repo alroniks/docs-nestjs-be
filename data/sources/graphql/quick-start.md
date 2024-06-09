@@ -22,7 +22,9 @@ $ npm i @nestjs/graphql @nestjs/apollo @apollo/server graphql
 ```
 
 :::warning **Warning** `@nestjs/graphql@>=9` and `@nestjs/apollo^10` packages are compatible with **Apollo v3** (check out Apollo Server 3 [migration guide](https://www.apollographql.com/docs/apollo-server/migration/) for more details), while `@nestjs/graphql@^8` only supports **Apollo v2**
+
 (e.g., `apollo-server-express@2.x.x` package).
+
 :::
 
 ## Overview
@@ -38,7 +40,9 @@ In the **schema first** approach, the source of truth is GraphQL SDL (Schema Def
 ## Getting started with GraphQL & TypeScript
 
 :::info **Hint**
+
 In the following chapters, we'll be integrating the `@nestjs/apollo` package. If you want to use `mercurius` package instead, navigate to [this section](/graphql/quick-start#mercurius-integration).
+
 :::
 
 Once the packages are installed, we can import the `GraphQLModule` and configure it with the `forRoot()` static method.
@@ -60,7 +64,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 For `mercurius` integration, you should be using the `MercuriusDriver` and `MercuriusDriverConfig` instead. Both are exported from the `@nestjs/mercurius` package.
+
 :::
 
 The `forRoot()` method takes an options object as an argument. These options are passed through to the underlying driver instance (read more about available settings here: [Apollo](https://www.apollographql.com/docs/apollo-server/v2/api/apollo-server.html#constructor-options-lt-ApolloServer-gt) and [Mercurius](https://github.com/mercurius-js/mercurius/blob/master/docs/api/options.md#plugin-options)). For example, if you want to disable the `playground` and turn off `debug` mode (for Apollo), pass the following options:
@@ -95,7 +101,9 @@ With that in place, and with your application running in the background, you can
 </figure>
 
 :::warning **Note**
+
 `@nestjs/mercurius` integration does not ship with the built-in GraphQL Playground integration. Instead, you can use [GraphiQL](https://github.com/graphql/graphiql) (set `graphiql: true`).
+
 :::
 
 ## Multiple endpoints
@@ -109,7 +117,9 @@ GraphQLModule.forRoot({
 ```
 
 :::warning **Warning**
+
 If you use the `@apollo/server` with `@as-integrations/fastify` package with multiple GraphQL endpoints in a single application, make sure to enable the `disableHealthCheck` setting in the `GraphQLModule` configuration.
+
 :::
 
 ## Code first
@@ -205,7 +215,9 @@ $ ts-node generate-typings
 ```
 
 :::info **Hint**
+
 You can compile the script beforehand (e.g., with `tsc`) and use `node` to execute it.
+
 :::
 
 To enable watch mode for the script (to automatically generate typings whenever any `.graphql` file changes), pass the `watch` option to the `generate()` method.
@@ -274,7 +286,9 @@ const { schema } = app.get(GraphQLSchemaHost);
 ```
 
 :::info **Hint**
+
 You must call the `GraphQLSchemaHost#schema` getter after the application has been initialized (after the `onModuleInit` hook has been triggered by either the `app.listen()` or `app.init()` method).
+
 :::
 
 ## Async configuration
@@ -358,7 +372,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 Once the application is running, open your browser and navigate to `http://localhost:3000/graphiql`. You should see the [GraphQL IDE](https://github.com/graphql/graphiql).
+
 :::
 
 The `forRoot()` method takes an options object as an argument. These options are passed through to the underlying driver instance. Read more about available settings [here](https://github.com/mercurius-js/mercurius/blob/master/docs/api/options.md#plugin-options).

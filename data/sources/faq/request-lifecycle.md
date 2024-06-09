@@ -27,7 +27,9 @@ export class CatsController {
 `Guard1` will execute before `Guard2` and both will execute before `Guard3`.
 
 :::info **Hint**
+
 When speaking about globally bound vs controller or locally bound, the difference is where the guard (or other component is bound). If you are using `app.useGlobalGuard()` or providing the component via a module, it is globally bound. Otherwise, it is bound to a controller if the decorator precedes a controller class, or to a route if the decorator precedes a route declaration.
+
 :::
 
 ## Interceptors
@@ -63,7 +65,9 @@ then the `GeneralValidationPipe` will run for the `query`, then the `params`, an
 Filters are the only component that do not resolve global first. Instead, filters resolve from the lowest level possible, meaning execution starts with any route bound filters and proceeding next to controller level, and finally to global filters. Note that exceptions cannot be passed from filter to filter; if a route level filter catches the exception, a controller or global level filter cannot catch the same exception. The only way to achieve an effect like this is to use inheritance between the filters.
 
 :::info **Hint**
+
 Filters are only executed if any uncaught exception occurs during the request process. Caught exceptions, such as those caught with a `try/catch` will not trigger Exception Filters to fire. As soon as an uncaught exception is encountered, the rest of the lifecycle is ignored and the request skips straight to the filter.
+
 :::
 
 ## Summary

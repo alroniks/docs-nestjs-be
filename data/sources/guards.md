@@ -9,7 +9,9 @@ Guards have a **single responsibility**. They determine whether a given request 
 But middleware, by its nature, is dumb. It doesn't know which handler will be executed after calling the `next()` function. On the other hand, **Guards** have access to the `ExecutionContext` instance, and thus know exactly what's going to be executed next. They're designed, much like exception filters, pipes, and interceptors, to let you interpose processing logic at exactly the right point in the request/response cycle, and to do so declaratively. This helps keep your code DRY and declarative.
 
 :::info **Hint** Guards are executed **after** all middleware, but **before**
+
 any interceptor or pipe.
+
 :::
 
 ## Authorization guard
@@ -43,7 +45,9 @@ export class AuthGuard {
 ```
 
 :::info **Hint**
+
 If you are looking for a real-world example on how to implement an authentication mechanism in your application, visit [this chapter](/security/authentication). Likewise, for more sophisticated authorization example, check [this page](/security/authorization).
+
 :::
 
 The logic inside the `validateRequest()` function can be as simple or sophisticated as needed. The main point of this example is to show how guards fit into the request/response cycle.
@@ -101,7 +105,9 @@ export class CatsController {}
 ```
 
 :::info **Hint**
+
 The `@UseGuards()` decorator is imported from the `@nestjs/common` package.
+
 :::
 
 Above, we passed the `RolesGuard` class (instead of an instance), leaving responsibility for instantiation to the framework and enabling dependency injection. As with pipes and exception filters, we can also pass an in-place instance:
@@ -124,7 +130,9 @@ app.useGlobalGuards(new RolesGuard());
 ```
 
 :::warning **Notice**
+
 In the case of hybrid apps the `useGlobalGuards()` method doesn't set up guards for gateways and micro services by default (see [Hybrid application](/faq/hybrid-application) for information on how to change this behavior). For "standard" (non-hybrid) microservice apps, `useGlobalGuards()` does mount the guards globally.
+
 :::
 
 Global guards are used across the whole application, for every controller and every route handler. In terms of dependency injection, global guards registered from outside of any module (with `useGlobalGuards()` as in the example above) cannot inject dependencies since this is done outside the context of any module. In order to solve this issue, you can set up a guard directly from any module using the following construction:
@@ -146,7 +154,9 @@ export class AppModule {}
 ```
 
 :::info **Hint**
+
 When using this approach to perform dependency injection for the guard, note that regardless of the
+
 :::
 > module where this construction is employed, the guard is, in fact, global. Where should this be done? Choose the module
 > where the guard (`RolesGuard` in the example above) is defined. Also, `useClass` is not the only way of dealing with
@@ -240,11 +250,15 @@ export class RolesGuard {
 ```
 
 :::info **Hint** In the node.js world, it's common practice to attach the authorized user to the `request` object. Thus, in our sample code above, we are assuming that `request.user` contains the user instance and allowed roles. In your app, you will probably make that association in your custom **authentication guard**
+
 (or middleware). Check [this chapter](/security/authentication) for more information on this topic.
+
 :::
 
 :::warning **Warning**
+
 The logic inside the `matchRoles()` function can be as simple or sophisticated as needed. The main point of this example is to show how guards fit into the request/response cycle.
+
 :::
 
 Refer to the <a href="https://docs.nestjs.com/fundamentals/execution-context#reflection-and-metadata">Reflection and metadata</a> section of the **Execution context** chapter for more details on utilizing `Reflector` in a context-sensitive way.
@@ -268,5 +282,7 @@ throw new UnauthorizedException();
 Any exception thrown by a guard will be handled by the [exceptions layer](/exception-filters) (global exceptions filter and any exceptions filters that are applied to the current context).
 
 :::info **Hint**
+
 If you are looking for a real-world example on how to implement authorization, check [this chapter](/security/authorization).
+
 :::

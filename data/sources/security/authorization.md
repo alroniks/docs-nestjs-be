@@ -21,7 +21,9 @@ export enum Role {
 ```
 
 :::info **Hint**
+
 In more sophisticated systems, you may store roles within a database, or pull them from the external authentication provider.
+
 :::
 
 With this in place, we can create a `@Roles()` decorator. This decorator allows specifying what roles are required to access specific resources.
@@ -107,11 +109,15 @@ export class RolesGuard {
 ```
 
 :::info **Hint**
+
 Refer to the [Reflection and metadata](/fundamentals/execution-context#reflection-and-metadata) section of the Execution context chapter for more details on utilizing `Reflector` in a context-sensitive way.
+
 :::
 
 :::warning **Notice**
+
 This example is named "**basic**" as we only check for the presence of roles on the route handler level. In real-world applications, you may have endpoints/handlers that involve several operations, in which each of them requires a specific set of permissions. In this case, you'll have to provide a mechanism to check roles somewhere within your business-logic, making it somewhat harder to maintain as there will be no centralized place that associates permissions with specific actions.
+
 :::
 
 In this example, we assumed that `request.user` contains the user instance and allowed roles (under the `roles` property). In your app, you will probably make that association in your custom **authentication guard** - see [authentication](/security/authentication) chapter for more details.
@@ -147,7 +153,9 @@ When a user with insufficient privileges requests an endpoint, Nest automaticall
 ```
 
 :::info **Hint**
+
 If you want to return a different error response, you should throw your own specific exception instead of returning a boolean value.
+
 :::
 
 <app-banner-courses-auth></app-banner-courses-auth>
@@ -175,7 +183,9 @@ create(createCatDto) {
 ```
 
 :::info **Hint**
+
 In the example above, `Permission` (similar to `Role` we have shown in RBAC section) is a TypeScript enum that contains all the permissions available in your system.
+
 :::
 
 ## Integrating CASL
@@ -189,7 +199,9 @@ $ npm i @casl/ability
 ```
 
 :::info **Hint**
+
 In this example, we chose CASL, but you can use any other library like `accesscontrol` or `acl`, depending on your preferences and project needs.
+
 :::
 
 Once the installation is complete, for the sake of illustrating the mechanics of CASL, we'll define two entity classes: `User` and `Article`.
@@ -233,7 +245,9 @@ export enum Action {
 ```
 
 :::warning **Notice**
+
 `manage` is a special keyword in CASL which represents "any" action.
+
 :::
 
 To encapsulate CASL library, let's generate the `CaslModule` and `CaslAbilityFactory` now.
@@ -276,15 +290,21 @@ export class CaslAbilityFactory {
 ```
 
 :::warning **Notice**
+
 `all` is a special keyword in CASL that represents "any subject".
+
 :::
 
 :::info **Hint**
+
 `Ability`, `AbilityBuilder`, `AbilityClass`, and `ExtractSubjectType` classes are exported from the `@casl/ability` package.
+
 :::
 
 :::info **Hint**
+
 `detectSubjectType` option let CASL understand how to get subject type out of an object. For more information read [CASL documentation](https://casl.js.org/v6/en/guide/subject-type-detection#use-classes-as-subject-types) for details.
+
 :::
 
 In the example above, we created the `Ability` instance using the `AbilityBuilder` class. As you probably guessed, `can` and `cannot` accept the same arguments but have different meanings, `can` allows to do an action on the specified subject and `cannot` forbids. Both may accept up to 4 arguments. To learn more about these functions, visit the official [CASL documentation](https://casl.js.org/v6/en/guide/intro).
@@ -318,7 +338,9 @@ if (ability.can(Action.Read, 'all')) {
 ```
 
 :::info **Hint**
+
 Learn more about the `Ability` class in the official [CASL documentation](https://casl.js.org/v6/en/guide/intro).
+
 :::
 
 For example, let's say we have a user who is not an admin. In this case, the user should be able to read articles, but creating new ones or removing the existing articles should be prohibited.
@@ -334,7 +356,9 @@ ability.can(Action.Create, Article); // false
 ```
 
 :::info **Hint**
+
 Although both `Ability` and `AbilityBuilder` classes provide `can` and `cannot` methods, they have different purposes and accept slightly different arguments.
+
 :::
 
 Also, as we have specified in our requirements, the user should be able to update its articles:
@@ -420,7 +444,9 @@ export class PoliciesGuard implements CanActivate {
 ```
 
 :::info **Hint** In this example, we assumed that `request.user` contains the user instance. In your app, you will probably make that association in your custom **authentication guard**
+
 - see [authentication](/security/authentication) chapter for more details.
+
 :::
 
 Let's break this example down. The `policyHandlers` is an array of handlers assigned to the method through the `@CheckPolicies()` decorator. Next, we use the `CaslAbilityFactory#create` method which constructs the `Ability` object, allowing us to verify whether a user has sufficient permissions to perform specific actions. We are passing this object to the policy handler which is either a function or an instance of a class that implements the `IPolicyHandler`, exposing the `handle()` method that returns a boolean. Lastly, we use the `Array#every` method to make sure that every handler returned `true` value.
@@ -458,5 +484,7 @@ findAll() {
 ```
 
 :::warning **Notice**
+
 Since we must instantiate the policy handler in-place using the `new` keyword, `ReadArticlePolicyHandler` class cannot use the Dependency Injection. This can be addressed with the `ModuleRef#get` method (read more [here](/fundamentals/module-ref)). Basically, instead of registering functions and instances through the `@CheckPolicies()` decorator, you must allow passing a `Type<IPolicyHandler>`. Then, inside your guard, you could retrieve an instance using a type reference: `moduleRef.get(YOUR_HANDLER_TYPE)` or even dynamically instantiate it using the `ModuleRef#create` method.
+
 :::

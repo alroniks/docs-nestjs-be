@@ -1,7 +1,9 @@
 # Field middleware
 
 :::warning **Warning**
+
 This chapter applies only to the code first approach.
+
 :::
 
 Field Middleware lets you run arbitrary code **before or after** a field is resolved. A field middleware can be used to convert the result of a field, validate the arguments of a field, or even check field-level roles (for example, required to access a target field for which a middleware function is executed).
@@ -26,11 +28,15 @@ const loggerMiddleware: FieldMiddleware = async (
 ```
 
 :::info **Hint**
+
 The `MiddlewareContext` is an object that consist of the same arguments that are normally received by the GraphQL resolver function (`{{ '{' }} source, args, context, info {{ '}' }}`), while `NextFn` is a function that let you execute the next middleware in the stack (bound to this field) or the actual field resolver.
+
 :::
 
 :::warning **Warning**
+
 Field middleware functions cannot inject dependencies nor access Nest's DI container as they are designed to be very lightweight and shouldn't perform any potentially time-consuming operations (like retrieving data from the database). If you need to call external services/query data from the data source, you should do it in a guard/interceptor bounded to a root query/mutation handler and assign it to `context` object which you can access from within the field middleware (specifically, from the `MiddlewareContext` object).
+
 :::
 
 Note that field middleware must match the `FieldMiddleware` interface. In the example above, we first run the `next()` function (which executes the actual field resolver and returns a field value) and then, we log this value to our terminal. Also, the value returned from the middleware function completely overrides the previous value and since we don't want to perform any changes, we simply return the original value.
@@ -48,11 +54,15 @@ export class Recipe {
 Now whenever we request the `title` field of `Recipe` object type, the original field's value will be logged to the console.
 
 :::info **Hint**
+
 To learn how you can implement a field-level permissions system with the use of [extensions](/graphql/extensions) feature, check out this [section](/graphql/extensions#using-custom-metadata).
+
 :::
 
 :::warning **Warning**
+
 Field middleware can be applied only to `ObjectType` classes. For more details, check out this [issue](https://github.com/nestjs/graphql/issues/2446).
+
 :::
 
 Also, as mentioned above, we can control the field's value from within the middleware function. For demonstration purposes, let's capitalise a recipe's title (if present):
@@ -74,7 +84,9 @@ title() {
 ```
 
 :::warning **Warning** In case enhancers are enabled at the field resolver level ([read more](/graphql/other-features#execute-enhancers-at-the-field-resolver-level)), field middleware functions will run before any interceptors, guards, etc., **bounded to the method**
+
 (but after the root-level enhancers registered for query or mutation handlers).
+
 :::
 
 ## Global field middleware
@@ -91,5 +103,7 @@ GraphQLModule.forRoot({
 ```
 
 :::info **Hint** Globally registered field middleware functions will be executed **before**
+
 locally registered ones (those bound directly to specific fields).
+
 :::

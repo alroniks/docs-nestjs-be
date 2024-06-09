@@ -5,7 +5,9 @@ Serverless computing is a cloud computing execution model in which the cloud pro
 With a **serverless architecture**, you focus purely on the individual functions in your application code. Services such as AWS Lambda, Google Cloud Functions, and Microsoft Azure Functions take care of all the physical hardware, virtual machine operating system, and web server software management.
 
 :::info **Hint**
+
 This chapter does not cover the pros and cons of serverless functions nor dives into the specifics of any cloud providers.
+
 :::
 
 ## Cold start
@@ -73,7 +75,9 @@ For all these scripts, we used the `tsc` (TypeScript) compiler and so the code r
 | Raw Node.js script                   | 0.0071s (7.1ms)   |
 
 :::info **Note**
+
 Machine: MacBook Pro Mid 2014, 2.5 GHz Quad-Core Intel Core i7, 16 GB 1600 MHz DDR3, SSD.
+
 :::
 
 Now, let's repeat all benchmarks but this time, using `webpack` (if you have [Nest CLI](/cli/overview) installed, you can run `nest build --webpack`) to bundle our application into a single executable JavaScript file.
@@ -109,7 +113,9 @@ module.exports = (options, webpack) => {
 ```
 
 :::info **Hint**
+
 To instruct Nest CLI to use this configuration, create a new `webpack.config.js` file in the root directory of your project.
+
 :::
 
 With this configuration, we received the following results:
@@ -122,11 +128,15 @@ With this configuration, we received the following results:
 | Raw Node.js script                   | 0.0066s (6.6ms)  |
 
 :::info **Note**
+
 Machine: MacBook Pro Mid 2014, 2.5 GHz Quad-Core Intel Core i7, 16 GB 1600 MHz DDR3, SSD.
+
 :::
 
 :::info **Hint**
+
 You could optimize it even further by applying additional code minification & optimization techniques (using `webpack` plugins, etc.).
+
 :::
 
 As you can see, the way you compile (and whether you bundle your code) is crucial and has a significant impact on the overall startup time. With `webpack`, you can get the bootstrap time of a standalone Nest application (starter project with one module, controller, and service) down to ~32ms on average, and down to ~81.5ms for a regular HTTP, express-based NestJS app.
@@ -192,7 +202,9 @@ $ npm i -D @types/aws-lambda serverless-offline
 ```
 
 :::info **Hint**
+
 To speed up development cycles, we install the `serverless-offline` plugin which emulates AWS λ and API Gateway.
+
 :::
 
 Once the installation process is complete, let's create the `serverless.yml` file to configure the Serverless framework:
@@ -220,7 +232,9 @@ functions:
 ```
 
 :::info **Hint**
+
 To learn more about the Serverless framework, visit the [official documentation](https://www.serverless.com/framework/docs/).
+
 :::
 
 With this in place, we can now navigate to the `main.ts` file and update our bootstrap code with the required boilerplate:
@@ -252,11 +266,15 @@ export const handler: Handler = async (
 ```
 
 :::info **Hint**
+
 For creating multiple serverless functions and sharing common modules between them, we recommend using the [CLI Monorepo mode](/cli/monorepo#monorepo-mode).
+
 :::
 
 :::warning **Warning**
+
 If you use `@nestjs/swagger` package, there are a few additional steps required to make it work properly in the context of serverless function. Check out this [thread](https://github.com/nestjs/swagger/issues/199) for more information.
+
 :::
 
 Next, open up the `tsconfig.json` file and make sure to enable the `esModuleInterop` option to make the `@codegenie/serverless-express` package load properly.
@@ -351,7 +369,9 @@ export const handler: Handler = async (
 ```
 
 :::info **Hint**
+
 Be aware that `NestFactory.createApplicationContext` does not wrap controller methods with enhancers (guard, interceptors, etc.). For this, you must use the `NestFactory.create` method.
+
 :::
 
 You could also pass the `event` object down to, let's say, `EventsService` provider that could process it and return a corresponding value (depending on the input value and your business logic).

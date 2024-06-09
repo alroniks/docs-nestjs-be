@@ -17,8 +17,18 @@ const sidebars: SidebarsConfig = {
     { type: 'category', label: "Агляд", items: [
       "first-steps",
       // "controllers",
+      // "components",
+      "modules",
+      "middlewares",
+      "exception-filters",
+      "pipes",
+      "guards",
+      "interceptors",
+      "custom-decorators",
     ]},
-    // { type: 'category', label: "Асновы", items: []},
+    // { type: 'category', label: "Асновы", items: [
+    //   ""
+    // ]},
     // { type: 'category', label: "Тэхнікі", items: []},
     // { type: 'category', label: "Бяспека", items: []},
     // { type: 'category', label: "GraphQL", items: []},
@@ -30,6 +40,7 @@ const sidebars: SidebarsConfig = {
     // { type: 'category', label: "Рэцэпты", items: []},
     // { type: 'category', label: "FAQ", items: []},
     // { type: 'category', label: "Інструменты", items: []},
+    { type: 'doc', id: "support"},
   ],
 };
 

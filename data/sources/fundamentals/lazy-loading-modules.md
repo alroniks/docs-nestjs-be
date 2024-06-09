@@ -5,11 +5,15 @@ By default, modules are eagerly loaded, which means that as soon as the applicat
 Lazy loading can help decrease bootstrap time by loading only modules required by the specific serverless function invocation. In addition, you could also load other modules asynchronously once the serverless function is "warm" to speed-up the bootstrap time for subsequent calls even further (deferred modules registration).
 
 :::info **Hint** If you're familiar with the **[Angular](https://angular.dev/)** framework, you might have seen the "[lazy-loading modules](https://angular.dev/guide/ngmodules/lazy-loading#lazy-loading-basics)" term before. Be aware that this technique is **functionally different**
+
 in Nest and so think about this as an entirely different feature that shares similar naming conventions.
+
 :::
 
 :::warning **Warning**
+
 Do note that [lifecycle hooks methods](https://docs.nestjs.com/fundamentals/lifecycle-events) are not invoked in lazy loaded modules and services.
+
 :::
 
 ## Getting started
@@ -33,7 +37,9 @@ export class CatsService {
 ```
 
 :::info **Hint**
+
 The `LazyModuleLoader` class is imported from the `@nestjs/core` package.
+
 :::
 
 Alternatively, you can obtain a reference to the `LazyModuleLoader` provider from within your application bootstrap file (`main.ts`), as follows:
@@ -51,7 +57,9 @@ const moduleRef = await this.lazyModuleLoader.load(() => LazyModule);
 ```
 
 :::info **Hint** "Lazy loaded" modules are **cached** upon the first `LazyModuleLoader#load` method invocation. That means, each consecutive attempt to load `LazyModule` will be **very fast**
+
 and will return a cached instance, instead of loading the module again.
+
 :::
 >
 > ```bash
@@ -80,7 +88,9 @@ export class LazyModule {}
 ```
 
 :::info **Hint** Lazy loaded modules cannot be registered as **global modules** as it simply makes no sense (since they are registered lazily, on-demand when all the statically registered modules have been already instantiated). Likewise, registered **global enhancers** (guards/interceptors/etc.) **will not work**
+
 properly either.
+
 :::
 
 With this, we could obtain a reference to the `LazyService` provider, as follows:
@@ -94,7 +104,9 @@ const lazyService = moduleRef.get(LazyService);
 ```
 
 :::warning **Warning**
+
 If you use **Webpack**, make sure to update your `tsconfig.json` file - setting `compilerOptions.module` to `"esnext"` and adding `compilerOptions.moduleResolution` property with `"node"` as a value:
+
 :::
 >
 > ```json

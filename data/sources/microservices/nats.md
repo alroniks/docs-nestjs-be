@@ -32,7 +32,9 @@ const app = await NestFactory.createMicroservice(AppModule, {
 ```
 
 :::info **Hint**
+
 The `Transport` enum is imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Options
@@ -107,7 +109,9 @@ getNotifications(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `NatsContext` are imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Wildcards
@@ -146,7 +150,9 @@ this.client.send('replace-emoji', record).subscribe(...);
 ```
 
 :::info **Hint**
+
 `NatsRecordBuilder` class is exported from the `@nestjs/microservices` package.
+
 :::
 
 And you can read these headers on the server-side as well, by accessing the `NatsContext`, as follows:

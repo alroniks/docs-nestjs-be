@@ -1,7 +1,9 @@
 # Generating SDL
 
 :::warning **Warning**
+
 This chapter applies only to the code first approach.
+
 :::
 
 To manually generate a GraphQL SDL schema (i.e., without running an application, connecting to the database, hooking up resolvers, etc.), use the `GraphQLSchemaBuilderModule`.
@@ -18,7 +20,9 @@ async function generateSchema() {
 ```
 
 :::info **Hint**
+
 The `GraphQLSchemaBuilderModule` and `GraphQLSchemaFactory` are imported from the `@nestjs/graphql` package. The `printSchema` function is imported from the `graphql` package.
+
 :::
 
 ## Usage

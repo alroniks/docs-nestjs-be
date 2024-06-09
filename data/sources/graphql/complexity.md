@@ -1,7 +1,9 @@
 # Complexity
 
 :::warning **Warning**
+
 This chapter applies only to the code first approach.
+
 :::
 
 Query complexity allows you to define how complex certain fields are, and to restrict queries with a **maximum complexity**. The idea is to define how complex each field is by using a simple number. A common default is to give each field a complexity of `1`. In addition, the complexity calculation of a GraphQL query can be customized with so-called complexity estimators. A complexity estimator is a simple function that calculates the complexity for a field. You can add any number of complexity estimators to the rule, which are then executed one after another. The first estimator that returns a numeric complexity value determines the complexity for that field.
@@ -72,7 +74,9 @@ For demonstration purposes, we specified the maximum allowed complexity as `20`.
 - `fieldExtensionsEstimator`: the field extensions estimator extracts the complexity value for each field of your schema
 
 :::info **Hint**
+
 Remember to add this class to the providers array in any module.
+
 :::
 
 ## Field-level complexity

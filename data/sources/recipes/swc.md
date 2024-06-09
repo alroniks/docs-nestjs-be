@@ -4,7 +4,9 @@
 Using SWC with Nest CLI is a great and simple way to significantly speed up your development process.
 
 :::info **Hint** SWC is approximately **x20 times faster**
+
 than the default TypeScript compiler.
+
 :::
 
 ## Installation
@@ -25,7 +27,9 @@ $ nest start -b swc
 ```
 
 :::info **Hint**
+
 If your repository is a monorepo, check out [this section](/recipes/swc#monorepo).
+
 :::
 
 Instead of passing the `-b` flag you can also just set the `compilerOptions.builder` property to `"swc"` in your `nest-cli.json` file, like so:
@@ -151,7 +155,9 @@ generator.generate({
 ```
 
 :::info **Hint**
+
 In this example we used `@nestjs/swagger` plugin, but you can use any plugin of your choice.
+
 :::
 
 The `generate()` method accepts the following options:
@@ -185,7 +191,9 @@ export class User {
 ```
 
 :::info **Hint**
+
 `Relation` type is exported from the `typeorm` package.
+
 :::
 
 Doing this prevents the type of the property from being saved in the transpiled code in the property metadata, preventing circular dependency issues.
@@ -357,5 +365,7 @@ These scripts configure Vitest for running tests, watching for changes, generati
 With this setup, you can now enjoy the benefits of using Vitest in your NestJS project, including faster test execution and a more modern testing experience.
 
 :::info **Hint**
+
 You can check out a working example in this [repository](https://github.com/TrilonIO/nest-vitest)
+
 :::

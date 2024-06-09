@@ -23,7 +23,9 @@ $ npm i --save class-validator class-transformer
 ```
 
 :::info **Hint**
+
 The `ValidationPipe` is exported from the `@nestjs/common` package.
+
 :::
 
 Because this pipe uses the [`class-validator`](https://github.com/typestack/class-validator) and [`class-transformer`](https://github.com/typestack/class-transformer) libraries, there are many options available. You configure these settings via a configuration object passed to the pipe. Following are the built-in options:
@@ -134,7 +136,9 @@ In addition to these, all `class-validator` options (inherited from the `Validat
 </table>
 
 :::info **Notice**
+
 Find more information about the `class-validator` package in its [repository](https://github.com/typestack/class-validator).
+
 :::
 
 ## Auto-validation
@@ -160,11 +164,15 @@ create(@Body() createUserDto: CreateUserDto) {
 ```
 
 :::info **Hint**
+
 Since TypeScript does not store metadata about **generics or interfaces**, when you use them in your DTOs, `ValidationPipe` may not be able to properly validate incoming data.  For this reason, consider using concrete classes in your DTOs.
+
 :::
 
 :::info **Hint**
+
 When importing your DTOs, you can't use a type-only import as that would be erased at runtime, i.e. remember to `import {{ '{' }} CreateUserDto {{ '}' }}` instead of `import type {{ '{' }} CreateUserDto {{ '}' }}`.
+
 :::
 
 Now we can add a few validation rules in our `CreateUserDto`. We do this using decorators provided by the `class-validator` package, described in detail [here](https://github.com/typestack/class-validator#validation-decorators). In this fashion, any route that uses the `CreateUserDto` will automatically enforce these validation rules.
@@ -297,7 +305,9 @@ findOne(
 ```
 
 :::info **Hint**
+
 The `ParseIntPipe` and `ParseBoolPipe` are exported from the `@nestjs/common` package.
+
 :::
 
 ## Mapped types
@@ -305,7 +315,9 @@ The `ParseIntPipe` and `ParseBoolPipe` are exported from the `@nestjs/common` pa
 As you build out features like **CRUD** (Create/Read/Update/Delete) it's often useful to construct variants on a base entity type. Nest provides several utility functions that perform type transformations to make this task more convenient.
 
 :::danger **Warning**
+
 If your application uses the `@nestjs/swagger` package, see [this chapter](/openapi/mapped-types) for more information about Mapped Types. Likewise, if you use the `@nestjs/graphql` package see [this chapter](/graphql/mapped-types). Both packages heavily rely on types and so they require a different import to be used. Therefore, if you used `@nestjs/mapped-types` (instead of an appropriate one, either `@nestjs/swagger` or `@nestjs/graphql` depending on the type of your app), you may face various, undocumented side-effects.
+
 :::
 
 When building input validation types (also called DTOs), it's often useful to build **create** and **update** variations on the same type. For example, the **create** variant may require all fields, while the **update** variant may make all fields optional.
@@ -329,7 +341,9 @@ export class UpdateCatDto extends PartialType(CreateCatDto) {}
 ```
 
 :::info **Hint**
+
 The `PartialType()` function is imported from the `@nestjs/mapped-types` package.
+
 :::
 
 The `PickType()` function constructs a new type (class) by picking a set of properties from an input type. For example, suppose we start with a type like:
@@ -349,7 +363,9 @@ export class UpdateCatAgeDto extends PickType(CreateCatDto, ['age'] as const) {}
 ```
 
 :::info **Hint**
+
 The `PickType()` function is imported from the `@nestjs/mapped-types` package.
+
 :::
 
 The `OmitType()` function constructs a type by picking all properties from an input type and then removing a particular set of keys. For example, suppose we start with a type like:
@@ -369,7 +385,9 @@ export class UpdateCatDto extends OmitType(CreateCatDto, ['name'] as const) {}
 ```
 
 :::info **Hint**
+
 The `OmitType()` function is imported from the `@nestjs/mapped-types` package.
+
 :::
 
 The `IntersectionType()` function combines two types into one new type (class). For example, suppose we start with two types like:
@@ -395,7 +413,9 @@ export class UpdateCatDto extends IntersectionType(
 ```
 
 :::info **Hint**
+
 The `IntersectionType()` function is imported from the `@nestjs/mapped-types` package.
+
 :::
 
 The type mapping utility functions are composable. For example, the following will produce a type (class) that has all of the properties of the `CreateCatDto` type except for `name`, and those properties will be set to optional:

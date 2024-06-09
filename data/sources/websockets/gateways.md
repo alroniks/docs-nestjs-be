@@ -7,7 +7,9 @@ In Nest, a gateway is simply a class annotated with `@WebSocketGateway()` decora
 <figure><img src="/assets/Gateways_1.png" /></figure>
 
 :::info **Hint**
+
 Gateways can be treated as [providers](/providers); this means they can inject dependencies through the class constructor. Also, gateways can be injected by other classes (providers and controllers) as well.
+
 :::
 
 ## Installation
@@ -30,7 +32,9 @@ In general, each gateway is listening on the same port as the **HTTP server**, u
 ```
 
 :::warning **Warning**
+
 Gateways are not instantiated until they are referenced in the providers array of an existing module.
+
 :::
 
 You can pass any supported [option](https://socket.io/docs/v4/server-options/) to the socket constructor with the second argument to the `@WebSocketGateway()` decorator, as shown below:
@@ -56,7 +60,9 @@ handleEvent(data) {
 ```
 
 :::info **Hint**
+
 `@SubscribeMessage()` and `@MessageBody()` decorators are imported from `@nestjs/websockets` package.
+
 :::
 
 Once the gateway is created, we can register it in our module.
@@ -127,7 +133,9 @@ handleEvent(data, client) {
 ```
 
 :::info **Hint**
+
 `@ConnectedSocket()` decorator is imported from `@nestjs/websockets` package.
+
 :::
 
 However, in this case, you won't be able to leverage interceptors. If you don't want to respond to the user, you can simply skip the `return` statement (or explicitly return a "falsy" value, e.g. `undefined`).
@@ -165,11 +173,15 @@ handleEvent(data) {
 ```
 
 :::info **Hint**
+
 The `WsResponse` interface is imported from `@nestjs/websockets` package.
+
 :::
 
 :::warning **Warning**
+
 You should return a class instance that implements `WsResponse` if your `data` field relies on `ClassSerializerInterceptor`, as it ignores plain JavaScript object responses.
+
 :::
 
 In order to listen for the incoming response(s), the client has to apply another event listener.
@@ -243,7 +255,9 @@ There are 3 useful lifecycle hooks available. All of them have corresponding int
 </table>
 
 :::info **Hint**
+
 Each lifecycle interface is exposed from `@nestjs/websockets` package.
+
 :::
 
 ## Server
@@ -256,7 +270,9 @@ server: Server;
 ```
 
 :::warning **Notice**
+
 The `@WebSocketServer()` decorator is imported from the `@nestjs/websockets` package.
+
 :::
 
 Nest will automatically assign the server instance to this property once it is ready to use.

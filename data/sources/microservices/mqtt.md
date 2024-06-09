@@ -32,7 +32,9 @@ const app = await NestFactory.createMicroservice(AppModule, {
 ```
 
 :::info **Hint**
+
 The `Transport` enum is imported from the `@nestjs/microservices` package.
+
 :::
 
 ## Options
@@ -83,7 +85,9 @@ getNotifications(data, context) {
 ```
 
 :::info **Hint**
+
 `@Payload()`, `@Ctx()` and `MqttContext` are imported from the `@nestjs/microservices` package.
+
 :::
 
 To access the original mqtt [packet](https://github.com/mqttjs/mqtt-packet), use the `getPacket()` method of the `MqttContext` object, as follows:
@@ -134,7 +138,9 @@ client.send('replace-emoji', record).subscribe(...);
 ```
 
 :::info **Hint**
+
 `MqttRecordBuilder` class is exported from the `@nestjs/microservices` package.
+
 :::
 
 And you can read these options on the server-side as well, by accessing the `MqttContext`.

@@ -3,7 +3,9 @@
 This recipe is here to help users get started with MikroORM in Nest. MikroORM is the TypeScript ORM for Node.js based on Data Mapper, Unit of Work and Identity Map patterns. It is a great alternative to TypeORM and migration from TypeORM should be fairly easy. The complete documentation on MikroORM can be found [here](https://mikro-orm.io/docs).
 
 :::info **info**
+
 `@mikro-orm/nestjs` is a third party package and is not managed by the NestJS core team. Please report any issues found with the library in the [appropriate repository](https://github.com/mikro-orm/nestjs).
+
 :::
 
 ## Installation
@@ -82,7 +84,9 @@ export class MyService {
 ```
 
 :::info **info**
+
 Notice that the `EntityManager` is imported from the `@mikro-orm/driver` package, where driver is `mysql`, `sqlite`, `postgres` or what driver you are using. In case you have `@mikro-orm/knex` installed as a dependency, you can also import the `EntityManager` from there.
+
 :::
 
 ## Repositories
@@ -90,7 +94,9 @@ Notice that the `EntityManager` is imported from the `@mikro-orm/driver` package
 MikroORM supports the repository design pattern. For every entity, we can create a repository. Read the complete documentation on repositories [here](https://mikro-orm.io/docs/repositories). To define which repositories should be registered in the current scope you can use the `forFeature()` method. For example, in this way:
 
 :::info **info** You should **not**
+
 register your base entities via `forFeature()`, as there are no
+
 :::
 > repositories for those. On the other hand, base entities need to be part of the list in `forRoot()` (or in the ORM config in general).
 
@@ -185,13 +191,17 @@ method will be automatically added to the entities array of the configuration
 object.
 
 :::info **info**
+
 Note that entities that aren't registered through the `forFeature()` method, but
+
 :::
 > are only referenced from the entity (via a relationship), won't be included by
 > way of the `autoLoadEntities` setting.
 
 :::info **info**
+
 Using `autoLoadEntities` also has no effect on the MikroORM CLI - for that we
+
 :::
 > still need CLI config with the full list of entities. On the other hand, we can
 > use globs there, as the CLI won't go thru webpack.
@@ -199,7 +209,9 @@ Using `autoLoadEntities` also has no effect on the MikroORM CLI - for that we
 ## Serialization
 
 :::warning **Note**
+
 MikroORM wraps every single entity relation in a `Reference<T>` or a `Collection<T>` object, in order to provide better type-safety. This will make [Nest's built-in serializer](/techniques/serialization) blind to any wrapped relations. In other words, if you return MikroORM entities from your HTTP or WebSocket handlers, all of their relations will NOT be serialized.
+
 :::
 
 Luckily, MikroORM provides a [serialization API](https://mikro-orm.io/docs/serializing) which can be used in lieu of `ClassSerializerInterceptor`.
@@ -247,7 +259,9 @@ export class MyService {
 ```
 
 :::warning **Note**
+
 As the name suggests, this decorator always creates new context, as opposed to its alternative `@EnsureRequestContext` that only creates it if it's already not inside another one.
+
 :::
 
 ## Testing

@@ -1,13 +1,17 @@
 # CLI Plugin
 
 :::warning **Warning**
+
 This chapter applies only to the code first approach.
+
 :::
 
 TypeScript's metadata reflection system has several limitations which make it impossible to, for instance, determine what properties a class consists of or recognize whether a given property is optional or required. However, some of these constraints can be addressed at compilation time. Nest provides a plugin that enhances the TypeScript compilation process to reduce the amount of boilerplate code required.
 
 :::info **Hint**
+
 This plugin is **opt-in**. If you prefer, you can declare all decorators manually, or only specific decorators where you need them.
+
 :::
 
 ## Overview
@@ -60,7 +64,9 @@ export class Author {
 The plugin adds appropriate decorators on-the-fly based on the **Abstract Syntax Tree**. Thus, you won't have to struggle with `@Field` decorators scattered throughout the code.
 
 :::info **Hint**
+
 The plugin will automatically generate any missing GraphQL properties, but if you need to override them, simply set them explicitly via `@Field()`.
+
 :::
 
 ## Comments introspection

@@ -45,13 +45,17 @@ export class Author {
 ```
 
 :::info **Hint**
+
 TypeScript's metadata reflection system has several limitations which make it impossible, for instance, to determine what properties a class consists of or recognize whether a given property is optional or required. Because of these limitations, we must either explicitly use the `@Field()` decorator in our schema definition classes to provide metadata about each field's GraphQL type and optionality, or use a [CLI plugin](/graphql/cli-plugin) to generate these for us.
+
 :::
 
 The `Author` object type, like any class, is made of a collection of fields, with each field declaring a type. A field's type corresponds to a [GraphQL type](https://graphql.org/learn/schema/). A field's GraphQL type can be either another object type or a scalar type. A GraphQL scalar type is a primitive (like `ID`, `String`, `Boolean`, or `Int`) that resolves to a single value.
 
 :::info **Hint**
+
 In addition to GraphQL's built-in scalar types, you can define custom scalar types (read [more](/graphql/scalars)).
+
 :::
 
 The above `Author` object type definition will cause Nest to **generate** the SDL we showed above:
@@ -83,7 +87,9 @@ title: string;
 ```
 
 :::info **Hint**
+
 You can also add a description to, or deprecate, the whole object type: `@ObjectType({{ '{' }} description: 'Author model' {{ '}' }})`.
+
 :::
 
 When the field is an array, we must manually indicate the array type in the `Field()` decorator's type function, as shown below:
@@ -94,7 +100,9 @@ posts: Post[];
 ```
 
 :::info **Hint**
+
 Using array bracket notation (`[ ]`), we can indicate the depth of the array. For example, using `[[Int]]` would represent an integer matrix.
+
 :::
 
 To declare that an array's items (not the array itself) are nullable, set the `nullable` property to `'items'` as shown below:
@@ -105,7 +113,9 @@ posts: Post[];
 ```
 
 :::info **Hint**
+
 If both the array and its items are nullable, set `nullable` to `'itemsAndList'` instead.
+
 :::
 
 Now that the `Author` object type is created, let's define the `Post` object type.
@@ -164,13 +174,17 @@ export class AuthorsResolver {
 ```
 
 :::info **Hint**
+
 All decorators (e.g., `@Resolver`, `@ResolveField`, `@Args`, etc.) are exported from the `@nestjs/graphql` package.
+
 :::
 
 You can define multiple resolver classes. Nest will combine these at run time. See the [module](/graphql/resolvers#module) section below for more on code organization.
 
 :::warning **Note**
+
 The logic inside the `AuthorsService` and `PostsService` classes can be as simple or sophisticated as needed. The main point of this example is to show how to construct resolvers and how they can interact with other providers.
+
 :::
 
 In the example above, we created the `AuthorsResolver` which defines one query resolver function and one field resolver function. To create a resolver, we create a class with resolver functions as methods, and annotate the class with the `@Resolver()` decorator.
@@ -184,7 +198,9 @@ In our example, since the class includes a **field resolver** function (for the 
 We can define multiple `@Query()` resolver functions (both within this class, and in any other resolver class), and they will be aggregated into a single **Query type** definition in the generated SDL along with the appropriate entries in the resolver map. This allows you to define queries close to the models and services that they use, and to keep them well organized in modules.
 
 :::info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code**
+
 to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator).
+
 :::
 
 ## Query type names
@@ -207,7 +223,9 @@ type Query {
 ```
 
 :::info **Hint**
+
 Learn more about GraphQL queries [here](https://graphql.org/learn/queries/).
+
 :::
 
 Conventionally, we prefer to decouple these names; for example, we prefer to use a name like `getAuthor()` for our query handler method, but still use `author` for our query type name. The same applies to our field resolvers. We can easily do this by passing the mapping names as arguments of the `@Query()` and `@ResolveField()` decorators, as shown below:
@@ -314,7 +332,9 @@ class GetAuthorArgs {
 ```
 
 :::info **Hint**
+
 Again, due to TypeScript's metadata reflection system limitations, it's required to either use the `@Field` decorator to manually indicate type and optionality, or use a [CLI plugin](/graphql/cli-plugin).
+
 :::
 
 This will result in generating the following part of the GraphQL schema in SDL:
@@ -326,7 +346,9 @@ type Query {
 ```
 
 :::info **Hint**
+
 Note that arguments classes like `GetAuthorArgs` play very well with the `ValidationPipe` (read [more](/techniques/validation)).
+
 :::
 
 ## Class inheritance
@@ -483,7 +505,9 @@ class PaginatedAuthor extends Paginated(Author) {}
 As mentioned in the [previous](/graphql/quick-start) chapter, in the schema first approach we start by manually defining schema types in SDL (read [more](https://graphql.org/learn/schema/#type-language)). Consider the following SDL type definitions.
 
 :::info **Hint**
+
 For convenience in this chapter, we've aggregated all of the SDL in one location (e.g., one `.graphql` file, as shown below). In practice, you may find it appropriate to organize your code in a modular fashion. For example, it can be helpful to create individual SDL files with type definitions representing each domain entity, along with related services, resolver code, and the Nest module definition class, in a dedicated directory for that entity. Nest will aggregate all the individual schema type definitions at run time.
+
 :::
 
 ```graphql
@@ -510,7 +534,9 @@ type Query {
 The schema above exposes a single query - `author(id: Int!): Author`.
 
 :::info **Hint**
+
 Learn more about GraphQL queries [here](https://graphql.org/learn/queries/).
+
 :::
 
 Let's now create an `AuthorsResolver` class that resolves author queries:
@@ -538,11 +564,15 @@ export class AuthorsResolver {
 ```
 
 :::info **Hint**
+
 All decorators (e.g., `@Resolver`, `@ResolveField`, `@Args`, etc.) are exported from the `@nestjs/graphql` package.
+
 :::
 
 :::warning **Note**
+
 The logic inside the `AuthorsService` and `PostsService` classes can be as simple or sophisticated as needed. The main point of this example is to show how to construct resolvers and how they can interact with other providers.
+
 :::
 
 The `@Resolver()` decorator is required. It takes an optional string argument with the name of a class. This class name is required whenever the class includes `@ResolveField()` decorators to inform Nest that the decorated method is associated with a parent type (the `Author` type in our current example). Alternatively, instead of setting `@Resolver()` at the top of the class, this can be done for each method:
@@ -559,11 +589,15 @@ async posts(@Parent() author) {
 In this case (`@Resolver()` decorator at the method level), if you have multiple `@ResolveField()` decorators inside a class, you must add `@Resolver()` to all of them. This is not considered the best practice (as it creates extra overhead).
 
 :::info **Hint** Any class name argument passed to `@Resolver()` **does not**
+
 affect queries (`@Query()` decorator) or mutations (`@Mutation()` decorator).
+
 :::
 
 :::warning **Warning** Using the `@Resolver` decorator at the method level is not supported with the **code first**
+
 approach.
+
 :::
 
 In the above examples, the `@Query()` and `@ResolveField()` decorators are associated with GraphQL schema types based on the method name. For example, consider the following construction from the example above:
@@ -608,7 +642,9 @@ export class AuthorsResolver {
 ```
 
 :::info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code**
+
 to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator).
+
 :::
 
 ## Generating types
@@ -647,7 +683,9 @@ export class CreatePostInput {
 ```
 
 :::warning **Notice**
+
 To enable auto-validation of your inputs (and parameters), use `ValidationPipe`. Read more about validation [here](/techniques/validation) and more specifically about pipes [here](/pipes).
+
 :::
 
 However, if you add decorators directly to the automatically generated file, they will be **overwritten** each time the file is generated. Instead, create a separate file and simply extend the generated class.
@@ -715,5 +753,7 @@ export class AuthorsModule {}
 ```
 
 :::info **Hint** It is helpful to organize your code by your so-called **domain model**
+
 (similar to the way you would organize entry points in a REST API). In this approach, keep your models (`ObjectType` classes), resolvers and services together within a Nest module representing the domain model. Keep all of these components in a single folder per module. When you do this, and use the [Nest CLI](/cli/overview) to generate each element, Nest will wire all of these parts together (locating files in appropriate folders, generating entries in `provider` and `imports` arrays, etc.) automatically for you.
+
 :::

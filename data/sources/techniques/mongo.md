@@ -54,7 +54,9 @@ export const CatSchema = SchemaFactory.createForClass(Cat);
 ```
 
 :::info **Hint**
+
 Note you can also generate a raw schema definition using the `DefinitionsFactory` class (from the `nestjs/mongoose`). This allows you to manually modify the schema definition generated based on the metadata you provided. This is useful for certain edge-cases where it may be hard to represent everything with decorators.
+
 :::
 
 The `@Schema()` decorator marks a class as a schema definition. It maps our `Cat` class to a MongoDB collection of the same name, but with an additional “s” at the end - so the final mongo collection name will be `cats`. This decorator accepts a single optional argument which is a schema options object. Think of it as the object you would normally pass as a second argument of the `mongoose.Schema` class' constructor (e.g., `new mongoose.Schema(_, options)`)). To learn more about available schema options, see [this](https://mongoosejs.com/docs/guide.html#options) chapter.
@@ -218,7 +220,9 @@ export class AppModule {}
 ```
 
 :::warning **Notice**
+
 Please note that you shouldn't have multiple connections without a name, or with the same name, otherwise they will get overridden.
+
 :::
 
 With this setup, you have to tell the `MongooseModule.forFeature()` function which connection should be used.
@@ -392,7 +396,9 @@ export const EventSchema = SchemaFactory.createForClass(Event);
 ```
 
 :::info **Hint**
+
 The way mongoose tells the difference between the different discriminator models is by the "discriminator key", which is `__t` by default. Mongoose adds a String path called `__t` to your schemas that it uses to track which discriminator this document is an instance of.
+
 :::
 > You may also use the `discriminatorKey` option to define the path for discrimination.
 
