@@ -1,4 +1,4 @@
-### Modules
+# Modules
 
 A module is a class annotated with a `@Module()` decorator. The `@Module()` decorator provides metadata that **Nest** makes use of to organize the application structure.
 
@@ -17,7 +17,7 @@ The `@Module()` decorator takes a single object whose properties describe the mo
 
 The module **encapsulates** providers by default. This means that it's impossible to inject providers that are neither directly part of the current module nor exported from the imported modules. Thus, you may consider the exported providers from a module as the module's public interface, or API.
 
-#### Feature modules
+## Feature modules
 
 The `CatsController` and `CatsService` belong to the same application domain. As they are closely related, it makes sense to move them into a feature module. A feature module simply organizes code relevant for a specific feature, keeping code organized and establishing clear boundaries. This helps us manage complexity and develop with [SOLID](https://en.wikipedia.org/wiki/SOLID) principles, especially as the size of the application and/or team grow.
 
@@ -75,7 +75,7 @@ Here is how our directory structure looks now:
   </div>
 </div>
 
-#### Shared modules
+## Shared modules
 
 In Nest, modules are **singletons** by default, and thus you can share the same instance of any provider between multiple modules effortlessly.
 
@@ -101,7 +101,7 @@ Now any module that imports the `CatsModule` has access to the `CatsService` and
 
 <app-banner-devtools></app-banner-devtools>
 
-#### Module re-exporting
+## Module re-exporting
 
 As seen above, Modules can export their internal providers. In addition, they can re-export modules that they import. In the example below, the `CommonModule` is both imported into **and** exported from the `CoreModule`, making it available for other modules which import this one.
 
@@ -113,7 +113,7 @@ As seen above, Modules can export their internal providers. In addition, they ca
 export class CoreModule {}
 ```
 
-#### Dependency injection
+## Dependency injection
 
 A module class can **inject** providers as well (e.g., for configuration purposes):
 
@@ -149,7 +149,7 @@ export class CatsModule {
 
 However, module classes themselves cannot be injected as providers due to [circular dependency](/fundamentals/circular-dependency) .
 
-#### Global modules
+## Global modules
 
 If you have to import the same set of modules everywhere, it can get tedious. Unlike in Nest, [Angular](https://angular.dev) `providers` are registered in the global scope. Once defined, they're available everywhere. Nest, however, encapsulates providers inside the module scope. You aren't able to use a module's providers elsewhere without first importing the encapsulating module.
 
@@ -173,7 +173,7 @@ The `@Global()` decorator makes the module global-scoped. Global modules should 
 
 > info **Hint** Making everything global is not a good design decision. Global modules are available to reduce the amount of necessary boilerplate. The `imports` array is generally the preferred way to make the module's API available to consumers.
 
-#### Dynamic modules
+## Dynamic modules
 
 The Nest module system includes a powerful feature called **dynamic modules**. This feature enables you to easily create customizable modules that can register and configure providers dynamically. Dynamic modules are covered extensively [here](/fundamentals/dynamic-modules). In this chapter, we'll give a brief overview to complete the introduction to modules.
 
