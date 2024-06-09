@@ -1,18 +1,18 @@
-### Першыя крокі
+# Першыя крокі
 
 У гэтым наборы артыкулаў вы даведаецеся **асноўныя асновы** Nest. Каб азнаёміцца ​​з асноўнымі будаўнічымі блокамі прыкладанняў Nest, мы створым базавую праграму CRUD з функцыямі, якія ахопліваюць шмат пытанняў на пачатковым узроўні.
 
-#### Мова
+## Мова
 
 Мы любім [TypeScript](https://www.typescriptlang.org/) , але больш за ўсё мы любім [Node.js.](https://nodejs.org/en/) Вось чаму Nest сумяшчальны як з TypeScript, так і **з чыстым JavaScript** . Nest выкарыстоўвае найноўшыя моўныя магчымасці, таму, каб выкарыстоўваць яго з ванільным JavaScript, нам спатрэбіцца кампілятар [Babel](https://babeljs.io/) .
 
 Мы ў асноўным будзем выкарыстоўваць TypeScript у прадстаўленых прыкладах, але вы заўсёды можаце **пераключыць фрагменты кода** на сінтаксіс JavaScript (проста націсніце, каб пераключыць кнопку мовы ў правым верхнім куце кожнага фрагмента).
 
-#### Перадумовы
+## Перадумовы
 
 Пераканайцеся, што ў вашай аперацыйнай сістэме ўсталяваны [Node.js](https://nodejs.org) (версія &gt;= 16).
 
-#### Усталяваць
+## Усталяваць
 
 З [Nest CLI](/cli/overview) наладзіць новы праект даволі проста. З усталяваным [npm](https://www.npmjs.com/) вы можаце стварыць новы праект Nest з дапамогай наступных каманд у тэрмінале АС:
 
@@ -21,7 +21,11 @@ $ npm i -g @nestjs/cli
 $ nest new project-name
 ```
 
-> info **Hint** To create a new project with TypeScript's [stricter](https://www.typescriptlang.org/tsconfig#strict) feature set, pass the `--strict` flag to the `nest new` command.
+:::info **Падказка**
+
+Каб стварыць новы праект з [больш строгім](https://www.typescriptlang.org/tsconfig#strict) наборам функцый TypeScript, перадайце сцяг `--strict` камандзе `nest new` .
+
+:::
 
 Будзе створаны каталог `project-name` , будуць устаноўлены модулі вузлоў і некалькі іншых шаблонных файлаў, а таксама будзе створаны каталог `src/` і запоўнены некалькімі асноўнымі файламі.
 
@@ -74,11 +78,15 @@ bootstrap();
 
 Note that a project scaffolded with the Nest CLI creates an initial project structure that encourages developers to follow the convention of keeping each module in its own dedicated directory.
 
-> info **Hint** By default, if any error happens while creating the application your app will exit with the code `1`. If you want to make it throw an error instead disable the option `abortOnError` (e.g., `NestFactory.create(AppModule, {{ '{' }} abortOnError: false {{ '}' }})`).
+:::info **Падказка**
+
+Па ўмаўчанні, калі пры стварэнні прыкладання ўзнікае якая-небудзь памылка, ваша прыкладанне выйдзе з кодам `1` . Калі вы хочаце, каб замест гэтага выдавалася памылка, адключыце опцыю `abortOnError` (напрыклад, `NestFactory.create(AppModule, {{ '{' }} abortOnError: false {{ '}' }})` .
+
+:::
 
 <app-banner-courses></app-banner-courses>
 
-#### Платформа
+## Платформа
 
 Nest імкнецца быць фрэймворкам, які не залежыць ад платформы. Незалежнасць ад платформы дазваляе ствараць шматразовыя лагічныя часткі, якія распрацоўшчыкі могуць выкарыстоўваць у розных тыпах прыкладанняў. Тэхнічна Nest можа працаваць з любым фрэймворкам Node HTTP пасля стварэння адаптара. Існуюць дзве стандартныя платформы HTTP, якія падтрымліваюцца: [express](https://expressjs.com/) і [fastify](https://www.fastify.io) . Вы можаце выбраць той, які найбольш адпавядае вашым патрэбам.
 
@@ -95,7 +103,7 @@ When you pass a type to the `NestFactory.create()` method, as in the example bel
 const app = await NestFactory.create<NestExpressApplication>(AppModule);
 ```
 
-#### Запуск прыкладання
+## Запуск прыкладання
 
 Пасля завяршэння працэсу ўстаноўкі вы можаце выканаць наступную каманду ў камандным радку вашай АС, каб запусціць прыкладанне праслухоўванне ўваходных HTTP-запытаў:
 
@@ -103,7 +111,11 @@ const app = await NestFactory.create<NestExpressApplication>(AppModule);
 $ npm run start
 ```
 
-> info **Hint** To speed up the development process (x20 times faster builds), you can use the [SWC builder](/recipes/swc) by passing the `-b swc` flag to the `start` script, as follows `npm run start -- -b swc`.
+:::info **Падказка**
+
+Каб паскорыць працэс распрацоўкі (у 20 разоў больш хуткія зборкі), вы можаце выкарыстоўваць [канструктар SWC](/recipes/swc) , перадаўшы сцяг `-b swc` у скрыпт `start` наступным чынам: `npm run start -- -b swc` .
+
+:::
 
 Гэтая каманда запускае праграму з HTTP-серверам, які праслухоўвае порт, вызначаны ў файле `src/main.ts` . Пасля запуску прыкладання адкрыйце браўзер і перайдзіце да `http://localhost:3000/` . Вы павінны ўбачыць `Hello World!` паведамленне.
 
@@ -115,11 +127,15 @@ $ npm run start:dev
 
 Гэтая каманда будзе сачыць за вашымі файламі, аўтаматычна перакампілюючы і перазагружаючы сервер.
 
-#### Linting and formatting
+## Linting and formatting
 
 [CLI](/cli/overview) provides best effort to scaffold a reliable development workflow at scale. Thus, a generated Nest project comes with both a code **linter** and **formatter** preinstalled (respectively [eslint](https://eslint.org/) and [prettier](https://prettier.io/)).
 
-> info **Hint** Not sure about the role of formatters vs linters? Learn the difference [here](https://prettier.io/docs/en/comparison.html).
+:::info **Падказка**
+
+Не ўпэўнены ў ролі фарматаў і лінтараў? Даведайцеся розніцу [тут](https://prettier.io/docs/en/comparison.html) .
+
+:::
 
 Каб забяспечыць максімальную стабільнасць і пашыральнасць, мы выкарыстоўваем пакеты Base [`eslint`](https://www.npmjs.com/package/eslint) і [`prettier`](https://www.npmjs.com/package/prettier) cli. Такая ўстаноўка дазваляе акуратную інтэграцыю IDE з афіцыйнымі пашырэннямі.
 
