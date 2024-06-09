@@ -1,50 +1,66 @@
 const fs = require('fs');
 const path = require('path');
 
-// const inputDir = './data/content';
-// const outputDir = './data/sources';
+const inputDir = './data/content';
+const outputDir = './data/sources';
 
-const inputDir = './data/sources';
-const outputDir = './data/content-2';
+function handleFilesInDirectory(inputDir, outputDir) {
 
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir);
-}
+  console.log("Processing directory: ", inputDir);
 
-fs.readdir(inputDir, (err, files) => {
-
-  if (err) {
-    console.error('Error reading input directory:', err);
-    return;
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir);
   }
 
-  files.forEach(file => {
-    const filePath = path.join(inputDir, file);
-    const outputFilePath = path.join(outputDir, file);
+  fs.readdir(inputDir, { withFileTypes: true }, (err, files) => {
 
-    fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        console.error(`Error reading file ${file}:`, err);
-        return;
-      }
+    if (err) {
+      console.error('Error reading input directory:', err);
+      return;
+    }
 
-      let modifiedData = data;
+    files
+      .filter(dirent => !dirent.isDirectory() && path.extname(dirent.name) == '.md')
+      .map(dirent => dirent.name)
+      .forEach(file => {
+        const filePath = path.join(inputDir, file);
+        const outputFilePath = path.join(outputDir, file);
 
-      modifiedData = modifiedData.replace(/^> info \*\*(.*)\*\* (.*)$/gm, ':::info **$1**\n$2\n:::');
-      modifiedData = modifiedData.replace(/^> warning \*\*(.*)\*\* (.*)$/gm, ':::warning **$1**\n$2\n:::');
-      modifiedData = modifiedData.replace(/^> \*\*Warning\*\* (.*)$/gm, ':::danger **Warning**\n$1\n:::');
+        fs.readFile(filePath, 'utf8', (err, data) => {
+          if (err) {
+            console.error(`Error reading file ${file}:`, err);
+            return;
+          }
 
-      modifiedData = modifiedData.replace(/^###\s/gm, `# `);
-      modifiedData = modifiedData.replace(/^####\s/gm, `## `);
+          let modifiedData = data;
 
-      fs.writeFile(outputFilePath, modifiedData, 'utf8', err => {
-        if (err) {
-          console.error(`Error writing file ${file}:`, err);
-          return;
-        }
+          modifiedData = modifiedData.replace(/^> info \*\*(.*)\*\* (.*)$/gm, ':::info **$1**\n$2\n:::');
+          modifiedData = modifiedData.replace(/^> warning \*\*(.*)\*\* (.*)$/gm, ':::warning **$1**\n$2\n:::');
+          modifiedData = modifiedData.replace(/^> \*\*Warning\*\* (.*)$/gm, ':::danger **Warning**\n$1\n:::');
 
-        console.log(`File ${file} processed successfully.`);
-      });
+          modifiedData = modifiedData.replace(/^###\s/gm, `# `);
+          modifiedData = modifiedData.replace(/^####\s/gm, `## `);
+
+          fs.writeFile(outputFilePath, modifiedData, 'utf8', err => {
+            if (err) {
+              console.error(`Error writing file ${file}:`, err);
+              return;
+            }
+
+            console.log(`File ${file} processed successfully.`);
+          });
+        });
     });
+  });
+}
+
+handleFilesInDirectory(inputDir, outputDir);
+
+fs.readdir(inputDir, { withFileTypes: true }, (err, files) => {
+  files.filter(e => e.isDirectory()).forEach(file => {
+    handleFilesInDirectory(
+      path.join(inputDir, file.name),
+      path.join(outputDir, file.name)
+    );
   });
 });
