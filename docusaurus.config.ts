@@ -33,7 +33,7 @@ const config: Config = {
       {
         blog: false,
         docs: {
-          path: 'convert/be',
+          path: 'data/convert/be',
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           sidebarCollapsible: true,

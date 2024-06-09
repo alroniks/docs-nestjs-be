@@ -10,8 +10,10 @@
   },
   "repository": "https://github.com/alroniks/docs-nestjs-be",
   "scripts": {
+    "copy": "cp -R ../docs.nestjs.com/content ./data/",
+    "prep": "node src/scripts/converter.js",
+    "sync": "yarn copy && yarn prep",
     "docusaurus": "docusaurus",
-    "sync": "cp -R ../docs.nestjs.com/content .",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
